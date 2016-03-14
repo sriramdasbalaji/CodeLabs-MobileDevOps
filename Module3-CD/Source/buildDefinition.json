@@ -1,0 +1,300 @@
+{
+    "build":  [
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "NuGet restore 04_Demos_NativeXamarinApps.sln",
+                      "task":  {
+                                   "id":  "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "solution":  "04_Demos_NativeXamarinApps.sln",
+                                     "nugetConfigPath":  "",
+                                     "noCache":  "false",
+                                     "nuGetRestoreArgs":  "",
+                                     "nuGetPath":  ""
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "Activate Xamarin license",
+                      "task":  {
+                                   "id":  "6237827d-6244-4d52-b93e-47d8610fbd8a",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "action":  "Activate",
+                                     "email":  "$(XamarinEmail)",
+                                     "password":  "$(XamarinPassword)",
+                                     "activateAndroid":  "true",
+                                     "timeout":  "30"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "Version Assemblies using AndroidManifest.xml",
+                      "task":  {
+                                   "id":  "5b4d14d0-3868-11e4-a31d-3f0a2d8202f4",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "sourcePath":  "src/MyHealth.Client.Droid",
+                                     "filePattern":  "AndroidManifest.xml",
+                                     "buildRegex":  "(?:\\d+\\.\\d+\\.)(\\d+)",
+                                     "failIfNoMatchFound":  "true",
+                                     "replaceRegex":  "versionCode=\"\\d+",
+                                     "replacePrefix":  "versionCode=\"",
+                                     "buildRegexIndex":  "1"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "Build solution 04_Demos_NativeXamarinApps.sln",
+                      "task":  {
+                                   "id":  "71a9a2d3-a98a-4caa-96ab-affca411ecda",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "solution":  "04_Demos_NativeXamarinApps.sln",
+                                     "msbuildArgs":  "",
+                                     "platform":  "$(BuildPlatform)",
+                                     "configuration":  "$(BuildConfiguration)",
+                                     "clean":  "false",
+                                     "vsVersion":  "14.0",
+                                     "restoreNugetPackages":  "false",
+                                     "msbuildArchitecture":  "x86",
+                                     "logProjectEvents":  "true"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "Test Assemblies **\\$(BuildConfiguration)\\*unittest*.dll;-:**\\obj\\**",
+                      "task":  {
+                                   "id":  "ef087383-ee5e-42c7-9a53-ab56c98420f9",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "testAssembly":  "**\\$(BuildConfiguration)\\*unittest*.dll;-:**\\obj\\**",
+                                     "testFiltercriteria":  "",
+                                     "runSettingsFile":  "",
+                                     "overrideTestrunParameters":  "",
+                                     "codeCoverageEnabled":  "true",
+                                     "runInParallel":  "false",
+                                     "vsTestVersion":  "14.0",
+                                     "pathtoCustomTestAdapters":  "",
+                                     "otherConsoleOptions":  "",
+                                     "testRunTitle":  "",
+                                     "platform":  "$(BuildPlatform)",
+                                     "configuration":  "$(BuildConfiguration)",
+                                     "publishRunAttachments":  "true"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  false,
+                      "displayName":  "Build solution src/MyHealth.Client.Droid/MyHealth.Client.Droid.csproj",
+                      "task":  {
+                                   "id":  "71a9a2d3-a98a-4caa-96ab-affca411ecda",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "solution":  "src/MyHealth.Client.Droid/MyHealth.Client.Droid.csproj",
+                                     "msbuildArgs":  "/t:SignAndroidPackage",
+                                     "platform":  "",
+                                     "configuration":  "$(BuildConfiguration)",
+                                     "clean":  "false",
+                                     "vsVersion":  "14.0",
+                                     "restoreNugetPackages":  "false",
+                                     "msbuildArchitecture":  "x86",
+                                     "logProjectEvents":  "true"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  true,
+                      "alwaysRun":  false,
+                      "displayName":  "Publish symbols path: ",
+                      "task":  {
+                                   "id":  "0675668a-7bba-4ccb-901d-5ad6554ca653",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "SymbolsPath":  "",
+                                     "SearchPattern":  "**\\bin\\**\\*.pdb",
+                                     "SymbolsFolder":  "",
+                                     "SkipIndexing":  "false",
+                                     "TreatNotIndexedAsWarning":  "false",
+                                     "SymbolsMaximumWaitTime":  "",
+                                     "SymbolsProduct":  "",
+                                     "SymbolsVersion":  "",
+                                     "SymbolsArtifactName":  "Symbols_$(BuildConfiguration)"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  true,
+                      "displayName":  "Copy Files to: $(build.artifactstagingdirectory)",
+                      "task":  {
+                                   "id":  "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "SourceFolder":  "src/MyHealth.Client.Droid",
+                                     "Contents":  "**\\*-signed.apk",
+                                     "TargetFolder":  "$(build.artifactstagingdirectory)",
+                                     "CleanTargetFolder":  "false",
+                                     "OverWrite":  "false"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  true,
+                      "displayName":  "Deactivate Xamarin license",
+                      "task":  {
+                                   "id":  "6237827d-6244-4d52-b93e-47d8610fbd8a",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "action":  "Deactivate",
+                                     "email":  "$(XamarinEmail)",
+                                     "password":  "$(XamarinPassword)",
+                                     "activateAndroid":  "true",
+                                     "timeout":  "30"
+                                 }
+                  },
+                  {
+                      "enabled":  true,
+                      "continueOnError":  false,
+                      "alwaysRun":  true,
+                      "displayName":  "Publish Artifact: drop",
+                      "task":  {
+                                   "id":  "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+                                   "versionSpec":  "*"
+                               },
+                      "inputs":  {
+                                     "PathtoPublish":  "$(build.artifactstagingdirectory)",
+                                     "ArtifactName":  "drop",
+                                     "ArtifactType":  "Container",
+                                     "TargetPath":  "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
+                                 }
+                  }
+              ],
+    "options":  [
+                    {
+                        "enabled":  false,
+                        "definition":  {
+                                           "id":  "7c555368-ca64-4199-add6-9ebaf0b0137d"
+                                       },
+                        "inputs":  {
+                                       "multipliers":  "[]",
+                                       "parallel":  "false",
+                                       "continueOnError":  "true",
+                                       "additionalFields":  "{}"
+                                   }
+                    },
+                    {
+                        "enabled":  false,
+                        "definition":  {
+                                           "id":  "a9db38f9-9fdc-478c-b0f9-464221e58316"
+                                       },
+                        "inputs":  {
+                                       "workItemType":  "151702",
+                                       "assignToRequestor":  "true",
+                                       "additionalFields":  "{}"
+                                   }
+                    },
+                    {
+                        "enabled":  false,
+                        "definition":  {
+                                           "id":  "57578776-4c22-4526-aeb0-86b6da17ee9c"
+                                       },
+                        "inputs":  {
+                                       "additionalFields":  "{}"
+                                   }
+                    }
+                ],
+    "triggers":  [
+                     {
+                         "branchFilters":  [
+                                               "+refs/heads/master"
+                                           ],
+                         "batchChanges":  true,
+                         "maxConcurrentBuildsPerBranch":  1,
+                         "triggerType":  "continuousIntegration"
+                     }
+                 ],
+    "variables":  {
+                      "system.debug":  {
+                                           "value":  "false",
+                                           "allowOverride":  true
+                                       },
+                      "BuildConfiguration":  {
+                                                 "value":  "release",
+                                                 "allowOverride":  true
+                                             },
+                      "BuildPlatform":  {
+                                            "value":  "any cpu",
+                                            "allowOverride":  true
+                                        },
+                      "XamarinEmail":  {
+                                           "value":  "colin.dembovsky@nwcadence.com"
+                                       },
+                      "XamarinPassword":  {
+                                              "value":  null,
+                                              "isSecret":  true
+                                          }
+                  },
+    "retentionRules":  [
+                           {
+                               "branches":  [
+                                                "+refs/heads/*"
+                                            ],
+                               "artifacts":  [
+                                                 "build.SourceLabel"
+                                             ],
+                               "daysToKeep":  10,
+                               "minimumToKeep":  1,
+                               "deleteBuildRecord":  true,
+                               "deleteTestResults":  true
+                           }
+                       ],
+    "buildNumberFormat":  "1.0$(rev:.r)",
+    "jobAuthorizationScope":  "projectCollection",
+    "jobTimeoutInMinutes":  60,
+    "repository":  {
+                       "properties":  {
+                                          "labelSources":  "0"
+                                      },
+                       "id":  "d2b5d087-6c29-4caf-8ccf-05c3ab3be311",
+                       "type":  "TfsGit",
+                       "name":  "HealthClinic",
+                       "url":  "repoUrl",
+                       "defaultBranch":  "refs/heads/master",
+                       "clean":  "false",
+                       "checkoutSubmodules":  false
+                   },
+    "quality":  "definition",
+    "queue":  {
+                  "pool":  {
+                               "id":  2,
+                               "name":  "Hosted"
+                           },
+                  "id":  2,
+                  "name":  "Hosted"
+              },
+    "type":  "build",
+    "name":  "Xamarin CI"
+}
