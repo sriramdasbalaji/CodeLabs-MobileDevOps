@@ -1,4 +1,4 @@
-<a name="HOLTop"></a>
+﻿<a name="HOLTop"></a>
 # Cross Platform Mobile Development with Xamarin #
 
 ---
@@ -394,13 +394,13 @@ In this task, you will initialize a local Git repo for your source code.
 
 Since there is more code in the repository than just the solution you have open, you will use the command line to initialize the repo.
 
-1. Press the **Start** button in the Taskbar (or press the Windows key on your keyboard) and type in **dev**. Find the **Developer Command Prompt for VS2015** and click it to launch the developer command prompt:
+1. Press the **Start** button in the Taskbar (or press the Windows key on your keyboard) and type in **dev**. Find the **Developer Command Prompt for VS2015** and click it to launch the developer command prompt.
 
     ![Open the Developer Command Prompt](Images/open-developer-command.png "Open the Developer Command Prompt")
 
     _Open the Developer Command Prompt_
 
-    The Developer Command Prompt should open:
+1. The Developer Command Prompt should open.
 
     ![The Developer Command Prompt](Images/developer-command-prompt.png "The Developer Command Prompt")
 
@@ -414,28 +414,27 @@ Since there is more code in the repository than just the solution you have open,
 
 1. Now enter the following command. This will initialize the Git repo. The response should be `Initialized empty Git repository in C:/buildworkshop/HealthClinic.biz/.git/`
 
-	> **Note**: This initializes the repository and places the current version onto the `master` branch. The name `master` is simply a convention, but it is a well
-	used one.
+	> **Note**: This initializes the repository and places the current version onto the `master` branch. The name `master` is simply a convention, but it is a well-used one.
 
     ```
     git init
     ```
 
-1. You'll connect to the newly initialized repo in Visual Studio. Click **View->Team Explorer** and then, **Connect** (it looks like a little plug):
+1. You'll connect to the newly initialized repo in Visual Studio. Click **View->Team Explorer** and then, **Connect** (it looks like a little plug).
 
-    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the commmand line. Then skip to the [next task](Ex5Task3).
+    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the command line. Then skip to the [next task](Ex5Task3).
 
     ![The Connect button in Team Explorer](Images/vs-te-connect.png "The Connect button in Team Explorer")
 
     _The Connect button in Team Explorer_
 
-1. At the bottom of the Pane, find the section with the heading **Local Git Repositories**. Click the **Add** link, enter (or browse to) **c:\buildworkshop\HealthClinic.biz** and click **Add**:
+1. At the bottom of the Pane, find the section with the heading **Local Git Repositories**. Click the **Add** link, enter (or browse to) **c:\buildworkshop\HealthClinic.biz** and click **Add**.
 
     ![Adding a Git repo in Team Explorer](Images/vs-te-add-git-repo.png "Adding a Git repo in Team Explorer")
 
     _Adding a Git repo in Team Explorer_
 
-1. Double-click on the newly added **HealthClinic.biz** repo to connect to the repo. Team Explorer should now list all the solutions in the repo in the **Home** pane:
+1. Double-click on the newly added **HealthClinic.biz** repo to connect to the repo. Team Explorer should now list all the solutions in the repo in the **Home** pane.
 
     ![The Home Pane in Team Explorer](Images/vs-te-home-pane.png "The Home Pane in Team Explorer")
 
@@ -443,7 +442,7 @@ Since there is more code in the repository than just the solution you have open,
 
 1. Click on the **Changes** tile to navigate to the Changes pane. Expand the **Untracked Files** section to see the files that Git has detected are not yet tracked. In order to track these files, you must first _add_ them to the repo.
 
-1. Right click the top node and click **Add**:
+1. Right click the top node and click **Add**.
 
     ![Add untracked files in Team Explorer](Images/vs-te-add-untracked.png "Add untracked files in Team Explorer")
 
@@ -453,9 +452,9 @@ Since there is more code in the repository than just the solution you have open,
 
 1. Enter **Initial commit** into the message box and click the **Commit** button:
 
-    ![The intial commit](Images/vs-te-initial-commit.png "The intial commit")
+    ![The initial commit](Images/vs-te-initial-commit.png "The initial commit")
 
-    _The intial commit_
+    _The initial commit_
 
     This may take a few moments. Once completed, the Changes pane will show no changes pending.
 
@@ -520,25 +519,21 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _Publish to the remote_
 
-1. You will be prompted to enter crentials. Enter the username and password of the MSA account that you used to create your VSTS account.
+1. You will be prompted to enter credentials. Enter the username and password of the MSA account that you used to create your VSTS account.
 
     ![Entering credentials when pushing to the remote](Images/vs-te-push-creds.png "Entering credentials when pushing to the remote")
 
     _Entering credentials when pushing to the remote_
 
-    This may take a few moments to complete.
+    > **Note**: Typically, you will use the Sync Pane to _fetch_, _pull_ and _push_. You only need to publish the first time since this is the first time you are pushing to the remote. _Fetch_ allows you to preview incoming changes. If you want to pull down the changes (merging into your current workspace) you will have to perform a _pull_. If there are _conflicts_ (which will happen if someone changed a file in the remote repo that you have also changed in your local repo) you will have to resolve the conflicts. Once you've made changes via _commits_ in your local repo, you can _push_ those commits to the remote server. _Sync_ is a convenience operation that performs a _pull_ followed immediately by a _push_ (assuming there are no conflicts in the _pull_ operation).
 
-    > **Note**: Typically you will use the Sync Pane to _fetch_, _pull_ and _push_. You only need to publish the first time since this is the first time you are pushing
-    to the remote. _Fetch_ allows you to preview incoming changes. If you want to pull down the changes (merging into your current workspace) you will have to perform a
-    _pull_. If there are _conflicts_ (which will happen if someone changed a file in the remote repo that you have also changed in your local repo) you will have to resolve
-    the conflicts. Once you've made changes via _commits_ in your local repo, you can _push_ those commits to the remote server. _Sync_ is a convenience operation that performs
-    a _pull_ followed immediately by a _push_ (assuming there are no conflicts in the _pull_ operation).
+1. Wait until the following message appears. This may take a few moments to complete.
 
     ![Successful push to the remote](Images/vs-te-successful-push.png "Successful push to the remote")
 
     _Successful push to the remote_
 
-    If you open the Solution Explorer, you will see padlock icons next to all the files. The Solution Explorer understands source control, and at present all the files are unchanged in the repo.
+1. If you open the **Solution Explorer**, you will see padlock icons next to all the files. The **Solution Explorer** understands source control, and at present all the files are unchanged in the repo.
 
     ![Source Control icons in Solution Explorer](Images/vs-source-icons-in-se.png "Source Control icons in Solution Explorer")
 
@@ -597,7 +592,7 @@ In this task, you will run the unit tests.
 
 In this task you will analyze the code coverage for the unit tests.
 
-1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyse Code Coverage for Selected Tests**.
+1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyze Code Coverage for Selected Tests**.
     This runs the unit tests again, but this time calculates how much of the code is touched while the tests are running.
 
     When the run is complete, you will see the Code Coverage Results window pop up. If it does not, you can open it by clicking **Test->Windows->Code Coverage Results**.
@@ -666,7 +661,7 @@ In this task, you will run UI tests.
     - `Screenshot` marks discreet steps in the test
     - `WaitForElement` waits for a condition to be fulfilled, with an optional timeout setting
     - The condition for `WaitForElement` is an `AppQuery` lambda. The expression `q => q.Marked("toolbar_title").Text("Home")` can be read "find the control with the name `toolbar_title` that has the text property `Home`"
-    - `Flash` uses an `AppQuery` lambda to find a control and make it blink (or flash) in the UI. If you watch the test running, you will see the medicine names flash as this methodf finds the controls
+    - `Flash` uses an `AppQuery` lambda to find a control and make it blink (or flash) in the UI. If you watch the test running, you will see the medicine names flash as this method finds the controls
     - `Tap` is used to tap a control or point - specified by another `AppQuery` lambda
 
 <a name="Ex6Task4"></a>
@@ -750,7 +745,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
     ````
 
     When a Fake is generated for the `DateTime` class (you'll see shortly how to do this) a `Shim` class is created to _shim_ concrete methods. (_Stubs_ are also created to _stub_ out interfaces). The test uses the _shim_ to inject code to calls to the concrete method. In this case, the _shim_ is for the `DateTime` class (hence the name `ShimDateTime`). The method to intercept is the `NowGetter` - or the `get` method of the `Now` property. This code is telling the runtime to
-    look for calls to `DateTime.Now` and to intercept the calls, injecting the lambda supplied - in this case, return `time` which is set to a well known time.
+    look for calls to `DateTime.Now` and to intercept the calls, injecting the lambda supplied - in this case, return `time` which is set to a well-known time.
 
     This makes testing any code that calls `DateTime.Now` much easier, since the test knows the value that this call is going to return. This only works within the context of the `ShimsContext`.
 
@@ -782,20 +777,18 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
     _Creating a Fakes assembly_
 
-    You will also see the reference to `mscorlib.4.0.0.0.Fakes` which contains the Fake shims and stubs for `System` classes.
+1. You will also see the reference to `mscorlib.4.0.0.0.Fakes` which contains the Fake shims and stubs for `System` classes.
 
-    > **Note**: Because `System` is a rather large assembly, you have to _white list_ fakes that you want Visual Studio to create. You can see the configuration files for `mscorlib` and `System` in the Fakes folder of the unit test project. Typcially, each assembly that you Fake will have its own configuration - but again, `System` is a special case: when you Fake `System`, it fakes both `System` and `mscorlib`. The reason that you only see `mscorlib.4.0.0.0.Fakes` and not `System.4.0.0.0.Fakes` is that `DateTime` is defined in the `mscorlib` assembly.
+    > **Note**: Because `System` is a rather large assembly, you have to _white list_ fakes that you want Visual Studio to create. You can see the configuration files for `mscorlib` and `System` in the Fakes folder of the unit test project. Typically, each assembly that you Fake will have its own configuration - but again, `System` is a special case: when you Fake `System`, it fakes both `System` and `mscorlib`. The reason that you only see `mscorlib.4.0.0.0.Fakes` and not `System.4.0.0.0.Fakes` is that `DateTime` is defined in the `mscorlib` assembly.
 
 <a name="Ex6Task5"></a>
 #### Task 5 - Mocks ####
 
 In this task, you will examine how mocks are used to isolate the unit tests from dependencies - like services.
 
-1. Open the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test
+1. In the **Test Explorer** window, find the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** test and double click it to open it.
 
-    In the **Test Explorer** window, find the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test and double click it to open it.
-
-    Have a look at the _act_ section of this test:
+1. Have a look at the _act_ section of this test.
 
     ````C#
     // act
@@ -803,9 +796,9 @@ In this task, you will examine how mocks are used to isolate the unit tests from
     await homeviewModel.RetrieveMedecinesAsync();
     ````
 
-1. This code is testing that the `RetrieveMedecinesAsync` method in the `HomeViewModel` class is correct. Place your cursor on the `RetrieveMedecinesAsync` method call and press **F12** to go to its definition.
+1. This code is testing that the **RetrieveMedecinesAsync** method in the **HomeViewModel** class is correct. Place your cursor on the **RetrieveMedecinesAsync** method call and press **F12** to go to its definition.
 
-1. Examine the `HomeviewModel.RetrieveMedecinesAsync` method. This method calls a REST method on the `MedicinesService`.
+1. Examine the **HomeviewModel.RetrieveMedecinesAsync** method. This method calls a REST method on the **MedicinesService**.
 
     ````C#
     var medicines = await _myHealthClient.MedicinesService.GetMedicinesWithDosesAsync (AppSettings.DefaultPatientId, AmountOfMedicines);
@@ -813,18 +806,13 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
 1. Set a breakpoint on this line of code, which you'll later hit when debugging the test.
 
-    >**Note**: The call to the service is asynchronous, so the `await` keyword is used. If you look back at the unit test, you'll see
-    that the unit test is an `async` method so that it can properly test asynchronous code.
+    > **Note**: The call to the service is asynchronous, so the `await` keyword is used. If you look back at the unit test, you'll see that the unit test is an `async` method so that it can properly test asynchronous code.
 
-    Calling the actual service during a test would be a bad idea - the returned data could change, and the test would break.
+1. Calling the actual service during a test would be a bad idea - the returned data could change, and the test would break. It is best proactive to _isolate_ your unit tests from external dependencies - like services or databases. There are several ways to do this, but one good way is to use _mocks_.
 
-    It is best proactive to _isolate_ your unit tests from external dependencies - like services or databases. There are several ways to do this, but one good way is to use _mocks_.
+1. Open the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method again by clicking the **Navigate Back** button once in the toolbar, or double-clicking the test in the **Test Explorer** window.
 
- 1. See how to implement a mock
-
-    Open the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` method again by clicking the **Navigate Back** button once in the toolbar, or double-clicking the test in the **Test Explorer** window.
-
-    Examine the `arrange` section of this test (if it is folder, click the `+` icon on the left to open the folded section):
+1. Examine the `arrange` section of this test (if it is folder, click the `+` icon on the left to open the folded section):
 
     ````C#
     #region arrange
@@ -865,16 +853,13 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
     Next, the code uses the `Setup` method to _set up_ an asynchronous value of `list` whenever the `GetMedicinesWithDosesAsync` method is called on the `Mock`. The return value will be the same irrespective of the arguments passed to the method (which is expecting 2 integer arguments).
 
-    > **Note**: The `It.IsAny<int>()` method calls mean "for any integer in this argument". You could call `Setup` several times and return different return values if the arguments
-    are different. For example, you could return null when the arguments are 0 and 5 respectively by using this snippet:
-    ````C#
+    > **Note**: The `It.IsAny<int>()` method calls mean "for any integer in this argument". You could call `Setup` several times and return different return values if the arguments are different. For example, you could return null when the arguments are 0 and 5 respectively by using this snippet.
+
+    > ````C#
     mockAppointmentService.Setup(m => m.GetMedicinesWithDosesAsync(It.Is<int>(0), It.Is<int>(5))).ReturnsAsync(null);
     ````
 
-1. Examine the rest of the Setup of the Mock
-
-    Go back to the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` method. Once the test has a `Mock<MedicinesService>`, it needs to mock the `IMyHealthClient`. This interface is injected into the `HomeViewModel` and has a getter method that returns an instance of the `MedicinesService`. The code now creates a `Mock<IMyHealthClient>` to ensure that
-    when the test is run, the `MedicinesService` returned in this call is the `Mock<MedicinesService>`:
+1. Go back to the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method. Once the test has a `Mock<MedicinesService>`, it needs to mock the `IMyHealthClient`. This interface is injected into **HomeViewModel** and has a getter method that returns an instance of **MedicinesService**. The code now creates a `Mock<IMyHealthClient>` to ensure that when the test is run, the `MedicinesService` returned in this call is the `Mock<MedicinesService>`.
 
     ````C#
     var mockHealthClient = new Mock<IMyHealthClient>();
@@ -887,18 +872,15 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
     After the call to `RetrieveMedecinesAsync`, various assertions are made to test the validity of the method.
 
-    >**Note**: It is possible to test if a method on a mock that has been `Setup` has been called (or how many times it was called, or with what arguments it was called) using
-    the Moq `Validate<T>` method. It is not necessary for this test.
+    > **Note**: It is possible to test if a method on a mock that has been `Setup` has been called (or how many times it was called, or with what arguments it was called) using the Moq `Validate<T>` method. It is not necessary for this test.
 
-1. Hit the `Mock` method during debugging.
-
-    Right click the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in `HomeViewModel`, press **F10** to step over the call to `_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync`. Then hover over the `medicines` object to see its value:
+1. Right click the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in `HomeViewModel`, press **F10** to step over the call to `_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync`. Then hover over the `medicines` object to see its value.
 
     ![The results of the call to the Mock method](Images/vs-debug-medicines.png "The results of the call to the Mock method")
 
     _The results of the call to the Mock method_
 
-    If you expand the objects, you'll see that they are the objects that were created in the `GetMockMedicineService` helper method in the test.
+1. If you expand the objects, you'll see that they are the objects that were created in the `GetMockMedicineService` helper method in the test.
 
 ---
 

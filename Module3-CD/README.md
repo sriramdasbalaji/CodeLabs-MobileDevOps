@@ -6,7 +6,7 @@
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Delivery is the next step to good DevOps after Continuous Integration. Typically this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not manage the target infrastructure - that is, the modile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
+Continuous Delivery is the next step to good DevOps after Continuous Integration. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not manage the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
 
 In Module 1, you covered developing cross platform mobile apps using Xamarin. You learned about the project structure and Portable Class Libraries and saw how to unit test the core of the application. You then created a Visual Studio Team Services (VSTS) Team Project and committed the code into it.
 
@@ -318,7 +318,7 @@ In this task you will install the HockeyApp extension into your VSTS account.
     
     _Create a new HockeyApp connection_
     
-1. You will now see a HockeApp endpoint.
+1. You will now see a HockeyApp endpoint.
     
     ![The HockeyApp endpoint](Images/vsts-hockeyapp-connection.png "The HockeyApp endpoint")
     
@@ -329,7 +329,7 @@ In this task you will install the HockeyApp extension into your VSTS account.
 <a name="Ex1Task3"></a>
 #### Task 3 - Install HockeyApp in the Emulator ####
 
-In this task you will install HockeyApp on a device for testing the HealthClinic Patiets app which is being produced by the CI build. The device you are going to use is the Android
+In this task you will install HockeyApp on a device for testing the HealthClinic Patients app which is being produced by the CI build. The device you are going to use is the Android
 emulator.
 
 1. If the solution is not open in Visual Studio, click **File | Open | Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
@@ -360,7 +360,7 @@ emulator.
     
     _Click the Browser button_
     
-1. Install HockeyApp on the emulator. To do this, enter in the HockeyApp link that you noted earlier into the address bar and press enter. If you do not have this, go the the HockeyApp dashboard and obtain the registration link.
+1. Install HockeyApp on the emulator. To do this, enter in the HockeyApp link that you noted earlier into the address bar and press enter. If you do not have this, go the HockeyApp dashboard and obtain the registration link.
     
     ![Enter the HockeyApp registration link](Images/emulator-hockeyapp-link.png "Enter the HockeyApp registration link")
     
@@ -490,7 +490,7 @@ In this task you will create a new Release Definition to release the Android app
     
 1. Configure Approvers and Deployment conditions. To do this, click on the **...** button of the **Default Environment** tile and click **Assign Approvers**.
 
-    >**Note**: Before a release can continue, it must obtain approval. There are two types of approval for every environment: _pre-deployment_ and _post-deployment_. Pre-deployment approvals pause the release until the approvers have signalled that the environment is ready to start executing its tasks. Post-deployment approvals pause the release _after_ the tasks have been executed and before proceeding to the next environment (if there is one). Both types of approvals can also be set to automatic.
+    >**Note**: Before a release can continue, it must obtain approval. There are two types of approval for every environment: _pre-deployment_ and _post-deployment_. Pre-deployment approvals pause the release until the approvers have signaled that the environment is ready to start executing its tasks. Post-deployment approvals pause the release _after_ the tasks have been executed and before proceeding to the next environment (if there is one). Both types of approvals can also be set to automatic.
     
     ![Click Assign approvers](Images/vsts-rm-assign-approvers.png "Click Assign approvers")
     
@@ -615,7 +615,7 @@ In this exercise you will learn how to track user feedback from the app back to 
 
 In this task you will obtain the app's unique HockeyApp ID from the HockeyApp dashboard. You will then update the code with this ID and redeploy the app.
 
-1. Get the App ID from HockeyApp, in order to do this, in a browser, open HockeyApp and click the dashboard button (the top left button) to navigate to the dashboard. You should see **Patients** listed under the Apps tab. Click the app to open its details.
+1. Get the App ID from HockeyApp, in order to do this, in a browser, open HockeyApp and click the dashboard button (the top left button) to navigate to the dashboard. You should see **Patients** listed under the **Apps** tab. Click the app to open its details.
     
     ![HockeyApp showing the Patients App](Images/hockeyapp-patients-app.png "HockeyApp showing the Patients App")
     
@@ -793,9 +793,9 @@ In this task you will perform an action that crashes the app. You will then look
     
 1. The app will now prompt the user to send the app crash report. Click **OK** to send the report.
     
-    ![Send the crahs report](Images/emulator-send-crash.png "Send the crahs report")
+    ![Send the crash report](Images/emulator-send-crash.png "Send the crash report")
     
-    _Send the crahs report_
+    _Send the crash report_
     
 1. Go back to HockeyApp and navigate to the latest version of the app. You should see a crash report. Click it to open it.
     
@@ -903,7 +903,7 @@ In this task you will fix the bug and release a new version simply by pushing th
     
 1. After a few moments, a new release should become available. In the **BUILD** hub you can check on the progress of the latest build.
     
-1. Update the App through HockeyApp Update Manager. To do this, in the emulator, stop the **Patients** app. Then start it again. This time you should see a notifaction that a new version of the app is available. This is made possible by the update manager.
+1. Update the App through HockeyApp Update Manager. To do this, in the emulator, stop the **Patients** app. Then start it again. This time you should see a notification that a new version of the app is available. This is made possible by the update manager.
     
 1. Click **Show** to view details.
     
@@ -915,7 +915,7 @@ In this task you will fix the bug and release a new version simply by pushing th
     
 1. Once you have uninstalled the app (as before), open HockeyApp and install the latest version.
     
-1. Verify that the bug is fixed by running the **Patients** app. On the Home page, scroll down and click on the second appointment. Verify that the app no longer crashes and the appointement detail is displayed.
+1. Verify that the bug is fixed by running the **Patients** app. On the Home page, scroll down and click on the second appointment. Verify that the app no longer crashes and the appointment detail is displayed.
     
     ![The crash has been fixed](Images/emulator-app-crash-fixed.png "The crash has been fixed")
     
@@ -926,7 +926,7 @@ In this task you will fix the bug and release a new version simply by pushing th
 <a name="Summary" ></a>
 ## Summary ##
 
-By completing this module you should have:
+By completing this module, you should have:
 
 - Created a HockeyApp account
 - Created a VSTS Release Definition with a HockeyApp task

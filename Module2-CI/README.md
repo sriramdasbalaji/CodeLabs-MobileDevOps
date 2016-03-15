@@ -429,7 +429,7 @@ In this task, you will configure the Build tasks.
 
     >**Note**: It is possible to run the UI tests using either [Xamarin Test Cloud](https://xamarin.com/test-cloud) or [Perfecto Mobile](http://www.perfectomobile.com/).
     These services allow you to run the tests against a myriad of devices, recording results of runs against each device. If you click **Add new task** and browse
-    to the **Test** tasks, you will see a `Xamarin Test Cloud` task. You can instal the Perfecto task to your account through the
+    to the **Test** tasks, you will see a `Xamarin Test Cloud` task. You can install the Perfecto task to your account through the
     [VSTS Marketplace](https://Marketplace.visualstudio.com/). For this lab, you will not run tests against either Xamarin Test Cloud or Perfecto, but
     it is possible to do so.
 
@@ -579,7 +579,7 @@ In this task, you will open the failing test in Visual Studio and fix the bug.
 
 1. In the Test Window, double-click the **Test_RetrieveAppointments_WhenMoreThanOneAppointments_InitsCorrectly** to open it.
 
-1. In the previous exercise, the stack trace of the failing test showed you that the `Assert.IsNotNull` on line 83 failed. Go to line 83 by pressing `Cntrl-G`, entering
+1. In the previous exercise, the stack trace of the failing test showed you that the `Assert.IsNotNull` on line 83 failed. Go to line 83 by pressing `Ctrl-G`, entering
     83 and pressing enter. This takes you to the following failing assertion:
 
     ```csharp
@@ -793,60 +793,46 @@ has created a Task that solves a problem you are facing before you reinvent the 
     Let's examine these parameters:
     - **Source Path**: this is the path in which to find files to replace the version number. In your case, it's the **MyHealth.Client.Droid** project folder.
     - **File Pattern**: this specifies the file pattern for files in which to replace the version number - you set it to the Android manifest file.
-    - **Build Regex Pattern**: This is going to extract the last number of a 3 digit version string. So if the version is **1.0.5**, then this Regex will extract the **5**.
-    - **Fail If No Match Found**: If there is no match for the replacement Regex, then fail this task. This ensures that you know if the version number could not be
-    successfully replaced.
-    - **Regex Replace Pattern**: You set this to `versionCode="\d+`. The task will find `versionCode="1` in the target file (note that the ending `"` is not part of the
-    pattern).
-    - **Prefix for Replacements**: You set this to `versionCode="` since the replacement pattern will include the string `versionCode="` which we need to prefix to the
-    version number so that we retain the `versionCode="` string.
-    - **Build Regex Index**: The Build Regex Pattern uses group notation. The 0th group ends up being the entire version number, while the 1st group is the actual number
-    that should be used in the replacement - so you set this to 1.
+    - **Build Regex Pattern**: This is going to extract the last number of a 3-digit version string. So if the version is **1.0.5**, then this Regex will extract the **5**.
+    - **Fail If No Match Found**: If there is no match for the replacement Regex, then fail this task. This ensures that you know if the version number could not be successfully replaced.
+    - **Regex Replace Pattern**: You set this to `versionCode="\d+`. The task will find `versionCode="1` in the target file (note that the ending `"` is not part of the pattern).
+    - **Prefix for Replacements**: You set this to `versionCode="` since the replacement pattern will include the string `versionCode="` which we need to prefix to the  version number so that we retain the `versionCode="` string.
+    - **Build Regex Index**: The Build Regex Pattern uses group notation. The 0th group ends up being the entire version number, while the 1st group is the actual number that should be used in the replacement - so you set this to 1.
 
-1. Customize the Build Number
-    The **Version Assembly** task assumes that the build number is of the form `1.0.1` - i.e. 3 digits separated by periods. However, the default format (as you will have seen
-    in the builds that have run so far) is `yyyymmdd.r` where `r` is an incrementing integer.
-
-    Click on the **General** tab. Change the **Build number format** field to `1.0$(rev:.r)`. This will produce the correct format for the version number.
+1. The **Version Assembly** task assumes that the build number is of the form `1.0.1` - i.e. 3 digits separated by periods. However, the default format (as you will have seen in the builds that have run so far) is `yyyymmdd.r` where `r` is an incrementing integer. Click on the **General** tab. Change the **Build number format** field to `1.0$(rev:.r)`. This will produce the correct format for the version number.
 
     ![Set the Build number format](Images/vsts-build-number-format.png "Set the Build number format")
 
     _Set the Build number format_
 
-1. Save the build. Once it is saved, click **Queue build** to queue a new build. Verify that the build number is `Build 1.0.1` and then immediately cancel the build. Since the
-    Android Manifest is already set to `versionCode="1"`, you want to queue a build where the revisions is not a 1. Immediately queue a new build - this time, the build number
-    should be `1.0.2`:
+1. Save the build. Once it is saved, click **Queue build** to queue a new build. Verify that the build number is `Build 1.0.1` and then immediately cancel the build. Since the Android Manifest is already set to `versionCode="1"`, you want to queue a build where the revision is not a 1. Immediately queue a new build - this time, the build number should be `1.0.2`:
 
     ![The build number](Images/vsts-build-102.png "The build number")
 
     _The build number_
 
-1. Verify that the `apk` version code is set correctly
-    Once the build has completed, you can verify that the version code is set correctly. The first check is to look at the build log and make sure that the `Version Assembly`
-    task has run correctly. Click on the `Version Assemblies` node in the task log to see the logs for that task:
+1. Verify that the `apk` version code is set correctly. Once the build has completed, you can verify that the version code is set correctly. The first check is to look at the build log and make sure that the `Version Assembly` task has run correctly. Click on the `Version Assemblies` node in the task log to see the logs for that task:
 
     ![The Version Assemblies log](Images/vsts-build-versionassemblies-working.png "The Version Assemblies log")
 
     _The Version Assemblies log_
 
-    You should see the task has used version 2 and processed 1 file.
+1. You should see the task has used version 2 and processed 1 file. To really be sure though, you must download the **apk** file. Click **Artifacts** and then click **Explore**. Expand the folders until you find the **myHealth.Client.Droid-Signed.apk** file and click **Download** to download it. Save it to **c:\buildworkshop**.
 
-    To really be sure though, you must download the **apk** file. Click **Artifacts** and then click **Explore**. Expand the folders until you find the **myHealth.Client.Droid-Signed.apk** file and click **Download** to download it. Save it to **c:\buildworkshop**.
-
-    In Visual Studio, open the **Android Adb Command Prompt** from the toolbar.
+1. In Visual Studio, open the **Android Adb Command Prompt** from the toolbar.
 
     ![The Android Adb Command Prompt button](Images/vs-toolbar-adb.png "The Android Adb Command Prompt button")
 
     _The Android Adb Command Prompt button_
 
-    Enter the following commands:
+1. Enter the following commands:
 
     ```
     cd \buildworkshop
     "c:\Program Files (x86)\Android\android-sdk\build-tools\19.1.0\aapt.exe" dump badging myHealth.Client.Droid-Signed.apk
     ```
 
-    This dumps information about the `apk` file - scroll right to the top of the information and you should see that the version code is `2` (since the build is `1.0.2`):
+1. This dumps information about the `apk` file - scroll right to the top of the information and you should see that the version code is `2` (since the build is `1.0.2`):
 
     ![The apk version code](Images/apk-version-code.png "The apk version code")
 
@@ -857,7 +843,7 @@ has created a Task that solves a problem you are facing before you reinvent the 
 <a name="Summary" ></a>
 ## Summary ##
 
-By completing this module you should have:
+By completing this module, you should have:
 
 - Created a Team Build with a CI trigger for the Xamarin solution
 - Analyzed test results and code coverage for the build
