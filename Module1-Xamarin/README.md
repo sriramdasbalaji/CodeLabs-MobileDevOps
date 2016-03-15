@@ -582,13 +582,13 @@ In this task you will analyze the code coverage for the unit tests.
 
 1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyze Code Coverage for Selected Tests**. This runs the unit tests again, but this time calculates how much of the code is touched while the tests are running.
 
-    When the run is complete, you will see the Code Coverage Results window pop up. If it does not, you can open it by clicking **Test->Windows->Code Coverage Results**.
+1. When the run is complete, you will see the Code Coverage Results window pop up. If it does not, you can open it by clicking **Test->Windows->Code Coverage Results**.
 
     ![Code Coverage results](Images/vs-tex-coverage-results.png "Code Coverage results")
 
     _Code Coverage results_
 
-1. Expand the `myhealth.client.core.dll` and examine the coverage results.
+1. Expand **myhealth.client.core.dll** and examine the coverage results.
 
     You will examine the unit tests in more detail later.
 
@@ -655,10 +655,9 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
 1. Open the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` test.
 
-    In the **Test Explorer** window, find the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` test in the `MyHealth.Client.Core.UnitTests` project and double click it to open the test. You will now follow the methods this test invokes to understand why it is written as it is. You will then come back and examine
-    this method in more detail.
+1. In the **Test Explorer** window, find the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** test in the **MyHealth.Client.Core.UnitTests** project and double click it to open the test. You will now follow the methods this test invokes to understand why it is written as it is. You will then come back and examine this method in more detail.
 
-1. Examine the **MedicineWithDoses** and **TimeOfDayHelper** classes. Put your cursor on the `CalcCountDownValue` method call (line 11 in the above snippet). Then press **F12** to go to the definition of this method.
+1. Examine the **MedicineWithDoses** and **TimeOfDayHelper** classes. Put your cursor on the **CalcCountDownValue** method call (line 11 in the above snippet). Then press **F12** to go to the definition of this method.
 
     ````C#
     public static int CalcCountDownValue(MedicineWithDoses medicine)
@@ -677,7 +676,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
     }
     ````
 
-1. This method invokes the `GetTimeBetween` and `GetTimeOffsetForNextPill` methods of the **TimeOfDayHelper** class. Place the cursor on `GetTimeOffsetForNextPill` and again click **F12** to go to its definition.
+1. This method invokes the **GetTimeBetween** and **GetTimeOffsetForNextPill** methods of the **TimeOfDayHelper** class. Place the cursor on **GetTimeOffsetForNextPill** and again click **F12** to go to its definition.
 
     ````C#
     public static TimeSpan GetTimeOffsetForNextPill (TimeOfDay timeOfDay)
@@ -696,13 +695,13 @@ In this task, you will examine how Fakes are used to test hard to test code in t
         DateTime nextTake;
     ````
 
-    You can see how this method uses `DateTime.Now`. This makes this method hard to test, since the `DateTime.Now` method returns a different time every time a test invokes the `GetTimeOffsetForNextPill` method.
+    You can see how this method uses **DateTime.Now**. This makes this method hard to test, since the **DateTime.Now** method returns a different time every time a test invokes the **GetTimeOffsetForNextPill** method.
 
 1. Set a breakpoint on the line `var currentDateTime = DateTime.Now;` line (line 3 above). You'll hit this shortly.
 
 1. Examine how Fakes are used to intercept `DateTime.Now` calls.
 
-1. Open the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` method again by clicking the Navigate Back button twice in the toolbar, or double-clicking the test in the **Test Explorer** window.
+1. Open the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method again by clicking the Navigate Back button twice in the toolbar, or double-clicking the test in the **Test Explorer** window.
 
     ````C#
     [TestMethod]
@@ -721,21 +720,18 @@ In this task, you will examine how Fakes are used to test hard to test code in t
     }
     ````
 
-    The test creates a `ShimsContext` (in the `using` statement in line 4 above). This context allows you to intercept calls to methods. You can see an intercept in these lines:
+    The test creates a **ShimsContext** (in the `using` statement in line 4 above). This context allows you to intercept calls to methods. You can see an intercept in these lines:
 
     ````C#
     var time = new DateTime(2016, 2, 25, 16, 0, 0);
     ShimDateTime.NowGet = () => time;
     ````
 
-    When a Fake is generated for the `DateTime` class (you'll see shortly how to do this) a `Shim` class is created to _shim_ concrete methods. (_Stubs_ are also created to _stub_ out interfaces). The test uses the _shim_ to inject code to calls to the concrete method. In this case, the _shim_ is for the `DateTime` class (hence the name `ShimDateTime`). The method to intercept is the `NowGetter` - or the `get` method of the `Now` property. This code is telling the runtime to
-    look for calls to `DateTime.Now` and to intercept the calls, injecting the lambda supplied - in this case, return `time` which is set to a well-known time.
+    When a Fake is generated for the **DateTime** class (you'll see shortly how to do this) a **Shim** class is created to _shim_ concrete methods. (_Stubs_ are also created to _stub_ out interfaces). The test uses the _shim_ to inject code to calls to the concrete method. In this case, the _shim_ is for the **DateTime** class (hence the name **ShimDateTime**). The method to intercept is the **NowGetter** - or the **get** method of the **Now** property. This code is telling the runtime to look for calls to **DateTime.Now** and to intercept the calls, injecting the lambda supplied - in this case, return **time** which is set to a well-known time.
 
-    This makes testing any code that calls `DateTime.Now` much easier, since the test knows the value that this call is going to return. This only works within the context of the `ShimsContext`.
+    This makes testing any code that calls **DateTime.Now** much easier, since the test knows the value that this call is going to return. This only works within the context of the **ShimsContext**.
 
-1. Debug the Test to see the Fake working
-
-    In the **Test Explorer** window, right-click the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the `DayOfTimeHelper.GetTimeOffsetForNextPill` method.
+1.  In the **Test Explorer** window, right-click the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the **DayOfTimeHelper.GetTimeOffsetForNextPill** method.
 
 1. Press **F11** to step into the call. You should be brought back to the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method into the lambda supplied for the **NowGet**.
 
@@ -743,7 +739,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
     _Breaking at the Fakes lambda_
 
-1. Press **F10** to return the `time` object. Back in the `GetTimeOffsetForNextPill` method, click **F10** again. Mouse over the `currentDateTime` variable and confirm that the value is `2/25/2016 4:00:00 PM` - the value that was set in the `Shim`.
+1. Press **F10** to return the **time** object. Back in the **GetTimeOffsetForNextPill** method, click **F10** again. Mouse over the **currentDateTime** variable and confirm that the value is `2/25/2016 4:00:00 PM` - the value that was set in the **Shim**.
 
     ![The DateTime.Now value set by a Fake](Images/vs-debug-value-datetime.png "The DateTime.Now value set by a Fake")
 
@@ -751,9 +747,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
 1. Press **F5** to complete the test.
 
-1. Learn how to create Fakes.
-
-    The **ShimDateTime** is created when a Fakes assembly is created for a real assembly. To see how to create a Fakes assembly, open the **Solution explorer** and expand the **MyHealth.Client.Core.UnitTests** project in the **Tests** folder. Then expand the **References** node.
+1. The **ShimDateTime** is created when a Fakes assembly is created for a real assembly. To see how to create a Fakes assembly, open the **Solution explorer** and expand the **MyHealth.Client.Core.UnitTests** project in the **Tests** folder. Then expand the **References** node.
 
 1. Right-click the reference to **System** to see the **Add Fakes** menu item. This has already been done, so do not press it.
 
@@ -761,9 +755,9 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
     _Creating a Fakes assembly_
 
-1. You will also see the reference to `mscorlib.4.0.0.0.Fakes` which contains the Fake shims and stubs for `System` classes.
+1. You will also see the reference to `mscorlib.4.0.0.0.Fakes` which contains the Fake shims and stubs for **System** classes.
 
-    > **Note**: Because `System` is a rather large assembly, you have to _white list_ fakes that you want Visual Studio to create. You can see the configuration files for `mscorlib` and `System` in the Fakes folder of the unit test project. Typically, each assembly that you Fake will have its own configuration - but again, `System` is a special case: when you Fake `System`, it fakes both `System` and `mscorlib`. The reason that you only see `mscorlib.4.0.0.0.Fakes` and not `System.4.0.0.0.Fakes` is that `DateTime` is defined in the `mscorlib` assembly.
+    > **Note**: Because **System** is a rather large assembly, you have to _white list_ fakes that you want Visual Studio to create. You can see the configuration files for **mscorlib** and **System** in the Fakes folder of the unit test project. Typically, each assembly that you Fake will have its own configuration - but again, **System** is a special case: when you Fake **System**, it fakes both **System** and **mscorlib**. The reason that you only see `mscorlib.4.0.0.0.Fakes` and not `System.4.0.0.0.Fakes` is that **DateTime** is defined in the **mscorlib** assembly.
 
 <a name="Ex6Task5"></a>
 #### Task 5 - Mocks ####
@@ -811,7 +805,7 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
     > **Note**: This test project uses [Moq](https://github.com/Moq/moq4/wiki/Quickstart) to create mocks. There are other mocking frameworks such as [Rhino Mocks](https://www.hibernatingrhinos.com/oss/rhino-mocks).
 
-    The test first creates a **Mock** of type `MedicinesService` by calling the helper method `GetMockMedicineService`. Put your cursor onto the `GetMockMedicineService` call and press **F12** to navigate to its definition.
+1. The test first creates a **Mock** of type **MedicinesService** by calling the helper method **GetMockMedicineService**. Put your cursor onto the **GetMockMedicineService** call and press **F12** to navigate to its definition.
 
   	````C#
     private static Mock<MedicinesService> GetMockMedicineService(int numMeds)
@@ -833,9 +827,9 @@ In this task, you will examine how mocks are used to isolate the unit tests from
     }
     ````
 
-    This method first creates a `List` of `MedicineWithDoses`. Then, it creates a `Mock<MedicinesService>`, invoking the constructor with 2 arguments.
+    This method first creates a **List** of **MedicineWithDoses**. Then, it creates a `Mock<MedicinesService>`, invoking the constructor with 2 arguments.
 
-    Next, the code uses the `Setup` method to _set up_ an asynchronous value of `list` whenever the `GetMedicinesWithDosesAsync` method is called on the `Mock`. The return value will be the same irrespective of the arguments passed to the method (which is expecting 2 integer arguments).
+    Next, the code uses the **Setup** method to _set up_ an asynchronous value of **list** whenever the **GetMedicinesWithDosesAsync** method is called on the **Mock**. The return value will be the same irrespective of the arguments passed to the method (which is expecting 2 integer arguments).
 
     > **Note**: The `It.IsAny<int>()` method calls mean "for any integer in this argument". You could call `Setup` several times and return different return values if the arguments are different. For example, you could return null when the arguments are 0 and 5 respectively by using this snippet.
 
@@ -843,28 +837,28 @@ In this task, you will examine how mocks are used to isolate the unit tests from
     mockAppointmentService.Setup(m => m.GetMedicinesWithDosesAsync(It.Is<int>(0), It.Is<int>(5))).ReturnsAsync(null);
     ````
 
-1. Go back to the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method. Once the test has a `Mock<MedicinesService>`, it needs to mock the `IMyHealthClient`. This interface is injected into **HomeViewModel** and has a getter method that returns an instance of **MedicinesService**. The code now creates a `Mock<IMyHealthClient>` to ensure that when the test is run, the `MedicinesService` returned in this call is the `Mock<MedicinesService>`.
+1. Go back to the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method. Once the test has a `Mock<MedicinesService>`, it needs to mock the **IMyHealthClient**. This interface is injected into **HomeViewModel** and has a getter method that returns an instance of **MedicinesService**. The code now creates a `Mock<IMyHealthClient>` to ensure that when the test is run, the **MedicinesService** returned in this call is the `Mock<MedicinesService>`.
 
     ````C#
     var mockHealthClient = new Mock<IMyHealthClient>();
     mockHealthClient.Setup(h => h.MedicinesService).Returns(mockMedicineService.Object);
     ````
 
-    Note how the `Setup` method is used to make sure that any call to the `IMyHealthClient.MedicinesService` property returns the `Mock<MedicinesService>`.
+1. Note how the **Setup** method is used to make sure that any call to the `IMyHealthClient.MedicinesService` property returns the `Mock<MedicinesService>`.
 
-    The final piece to arrange is to create a `Mock<IMvxMessenger>` class. The constructor of the `HomeViewModel` requires an instance of the `IMvxMessenger` interface. There is no setup for this mock since there is no need to mock calls on that interface during this particular test.
+    The final piece to arrange is to create a `Mock<IMvxMessenger>` class. The constructor of the **HomeViewModel** requires an instance of the `IMvxMessenger` interface. There is no setup for this mock since there is no need to mock calls on that interface during this particular test.
 
     After the call to `RetrieveMedecinesAsync`, various assertions are made to test the validity of the method.
 
     > **Note**: It is possible to test if a method on a mock that has been `Setup` has been called (or how many times it was called, or with what arguments it was called) using the Moq `Validate<T>` method. It is not necessary for this test.
 
-1. Right-click the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in `HomeViewModel`, press **F10** to step over the call to `_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync`. Then hover over the `medicines` object to see its value.
+1. Right-click the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in **HomeViewModel**, press **F10** to step over the call to **_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync**. Then hover over the **medicines** object to see its value.
 
     ![The results of the call to the Mock method](Images/vs-debug-medicines.png "The results of the call to the Mock method")
 
     _The results of the call to the Mock method_
 
-1. If you expand the objects, you'll see that they are the objects that were created in the `GetMockMedicineService` helper method in the test.
+1. If you expand the objects, you'll see that they are the objects that were created in the **GetMockMedicineService** helper method in the test.
 
 ---
 
