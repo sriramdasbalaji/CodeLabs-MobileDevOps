@@ -243,12 +243,13 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     The source code for the service is in the source structure (you can see it if you open the **06_Demos_MobileApp.sln** solution). For this workshop, the service has already been deployed to Azure at this address: [https://healthclinicmobile-build.azurewebsites.net](https://healthclinicmobile-build.azurewebsites.net). Deploying this service is beyond the scope of this workshop.
 
-    >**Note**: [Azure Mobile Apps](https://azure.microsoft.com/en-us/services/app-service/mobile/) can be used for:
-    - Broadcasting push with customer segmentation
-    - Enterprise single sign-on with Active Directory
-    - Autoscaling to support millions of devices
-    - Allowing apps to work offline and sync
-    - Social integration with Facebook, Twitter, Google
+    > **Note**: [Azure Mobile Apps](https://azure.microsoft.com/en-us/services/app-service/mobile/) can be used for:
+    > 
+    > - Broadcasting push with customer segmentation
+    > - Enterprise single sign-on with Active Directory
+    > - Autoscaling to support millions of devices
+    > - Allowing apps to work offline and sync
+    > - Social integration with Facebook, Twitter, Google
 
     In later tasks, you will mock the services so that unit tests do not have any dependency on the services. However, when you run the applications in the emulators, they will connect to the service in Azure.
 
@@ -380,11 +381,9 @@ In this exercise, you will push the source code to your VSTS Team Project. Once 
 <a name="Ex5Task1"></a>
 #### Task 1 - Initialize the Local Repo ####
 
-In this task, you will initialize a local Git repo for your source code.
+In this task, you will initialize a local Git repo for your source code. Since there is more code in the repository than just the solution you have open, you will use the command line to initialize the repo.
 
 > **Note**: The local repository contains the complete history of the source code. If other developers obtain your repo (in Git language, if they _clone_ your repo) they will see all the history of the source in their local copy. Typically, the Git workflow is: you _commit_ your changes to your local repo and then _push_ the changes to a remote repo. Other developers would then _pull_ your changes into their local repo before _committing_ and _pushing_ their changes.
-
-Since there is more code in the repository than just the solution you have open, you will use the command line to initialize the repo.
 
 1. Press the **Start** button in the Taskbar (or press the Windows key on your keyboard) and type in **dev**. Find the **Developer Command Prompt for VS2015** and click it to launch the developer command prompt.
 
@@ -588,9 +587,7 @@ In this task you will analyze the code coverage for the unit tests.
 
     _Code Coverage results_
 
-1. Expand **myhealth.client.core.dll** and examine the coverage results.
-
-    You will examine the unit tests in more detail later.
+1. Expand **myhealth.client.core.dll** and examine the coverage results. You will examine the unit tests in more detail later.
 
 <a name="Ex6Task3"></a>
 #### Task 3 - Run UI Tests ####
@@ -653,7 +650,7 @@ In this task, you will run UI tests.
 
 In this task, you will examine how Fakes are used to test hard to test code in the **Client.Core** project.
 
-1. Open the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` test.
+1. Open the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** test.
 
 1. In the **Test Explorer** window, find the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** test in the **MyHealth.Client.Core.UnitTests** project and double click it to open the test. You will now follow the methods this test invokes to understand why it is written as it is. You will then come back and examine this method in more detail.
 
@@ -720,7 +717,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
     }
     ````
 
-    The test creates a **ShimsContext** (in the `using` statement in line 4 above). This context allows you to intercept calls to methods. You can see an intercept in these lines:
+    The test creates a **ShimsContext** (in the **using** statement in line 4 above). This context allows you to intercept calls to methods. You can see an intercept in these lines:
 
     ````C#
     var time = new DateTime(2016, 2, 25, 16, 0, 0);
@@ -846,11 +843,9 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
 1. Note how the **Setup** method is used to make sure that any call to the `IMyHealthClient.MedicinesService` property returns the `Mock<MedicinesService>`.
 
-    The final piece to arrange is to create a `Mock<IMvxMessenger>` class. The constructor of the **HomeViewModel** requires an instance of the `IMvxMessenger` interface. There is no setup for this mock since there is no need to mock calls on that interface during this particular test.
+    The final piece to arrange is to create a `Mock<IMvxMessenger>` class. The constructor of the **HomeViewModel** requires an instance of the **IMvxMessenger** interface. There is no setup for this mock since there is no need to mock calls on that interface during this particular test. After the call to **RetrieveMedecinesAsync**, various assertions are made to test the validity of the method.
 
-    After the call to `RetrieveMedecinesAsync`, various assertions are made to test the validity of the method.
-
-    > **Note**: It is possible to test if a method on a mock that has been `Setup` has been called (or how many times it was called, or with what arguments it was called) using the Moq `Validate<T>` method. It is not necessary for this test.
+    > **Note**: It is possible to test if a method on a mock that has been **Setup** has been called (or how many times it was called, or with what arguments it was called) using the Moq `Validate<T>` method. It is not necessary for this test.
 
 1. Right-click the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in **HomeViewModel**, press **F10** to step over the call to **_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync**. Then hover over the **medicines** object to see its value.
 
