@@ -6,11 +6,9 @@
 <a name="Overview"></a>
 ## Overview ##
 
-Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, good DevOps practices like
-Continuous Integration (CI) and Continuous Delivery (CD) are also challenging.
+Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, good DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) are also challenging.
 
-However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage
-[Visual Studio Team Services (VSTS)](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) for source code, work item management, CI and CD for mobile applications.
+However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services (VSTS)](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) for source code, work item management, CI and CD for mobile applications.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -51,13 +49,13 @@ This module includes the following exercises:
 
 Estimated time to complete this module: **60 minutes**
 
->**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options.
-It is recommended that you use the **General Development Settings** collection.
+> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. It is recommended that you use the **General Development Settings** collection.
 
 <a name="Exercise1"></a>
 ### Exercise 1: Sign up for a Xamarin Account ###
-Xamarin provides developers with tools to manage cross-platform applications. Xamarin is not free - though you can use a trial account for this workshop. Developers can choose
-to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
+
+Xamarin provides developers with tools to manage cross-platform applications. Xamarin is not free - though you can use a trial account for this workshop. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
+
 In this workshop you will be using Xamarin Visual Studio Tools, though the concepts work just as well in Xamarin Studio.
 
 Xamarin provides many benefits:
@@ -81,7 +79,7 @@ In this task, you will create a Xamarin account.
 
 	_Xamarin Store Login screen_
 
-1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**:
+1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
 
     ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
 
@@ -94,25 +92,25 @@ In this task, you will create a Xamarin account.
 
 In this task, you will activate your Xamarin Account in Visual Studio.
 
-1. Start Visual Studio. In the Tools menu, click **Xamarin Account...**:
+1. Start Visual Studio. In the Tools menu, click **Xamarin Account...**.
 
     ![Xamarin Account in the Tools Menu](Images/vs-xamarin-account-menu.png "Xamarin Account in the Tools Menu")
 
     _Xamarin Account in the Tools Menu_
 
-1. Click **Log In** and enter your Xamarin credentials:
+1. Click **Log In** and enter your Xamarin credentials.
 
     ![Xamarin Login in Visual Studio](Images/vs-xamarin-account-login.png "Xamarin Login in Visual Studio")
 
     _Xamarin Login in Visual Studio_  
 
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press **Login**:
+1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press **Login**.
 
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
 
-    Once activated, you should see your account has been logged in. You can close the dialog.
+1. Once activated, you should see your account has been logged in. You can close the dialog.
 
     ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
 
@@ -128,13 +126,13 @@ In this exercise, you will explore Xamarin projects in Visual Studio.
 
 In this task you will learn about different types of Xamarin projects.
 
-1. In Visual Studio, click **File->New->Project** to launch the new project dialog. Click the **Cross Platform** node to see the cross-platform project templates:
+1. In Visual Studio, click **File->New->Project** to launch the new project dialog. Click the **Cross Platform** node to see the cross-platform project templates.
 
     ![Visual Studio Cross Platform Project Templates](Images/vs-new-project-xplat.png "Visual Studio Cross Platform Project Templates")
 
     _Visual Studio Cross Platform Project Templates_
 
-    Here are some of the project templates:
+    Here are some of the project templates.
 
     - Native Portable - use this to share binaries between native projects.
     - Native Shared - use this to share source code between native projects.
@@ -149,7 +147,7 @@ In this task you will learn about different types of Xamarin projects.
 
     > **Note**: Portable class libraries allow you to share code - this is typically business logic code, and not UI code. However, Xamarin.Forms allows you to share even UI code. In Xamarin.Forms, you would design a page with controls that have been abstracted. Xamarin.Forms maps the abstracted Forms controls to native controls - so Xamarin.Forms Entry control maps to UITextView on iOS, EditText on Android and TextBox on Windows.
 
-    The [Xamarin.Forms](https://xamarin.com/forms) site describes which Xamarin approach is best for your app:
+    The [Xamarin.Forms](https://xamarin.com/forms) site describes which Xamarin approach is best for your app.
 
     - Xamarin.Forms is best for:
         - Apps that require little platform-specific functionality
@@ -174,7 +172,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
 1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
 
-    Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**:
+1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
 
     ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
 
@@ -182,15 +180,13 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-    You should see 8 projects in the solution:
+1. You should see 8 projects in the solution.
 
     ![Xamarin Projects in the Solution](Images/vs-solution-explorer.png "Xamarin Projects in the Solution")
 
     _Xamarin Projects in the Solution_
 
-1. Click **Build->Build Solution** to build the solution. (You can also use `ctrl-shift-b` or `F6` depending on your Visual Studio Settings).
-
-    The build should fail. The error message will indicate that the project is too large and requires business or higher license.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
 
     ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
 
@@ -216,8 +212,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Ignore the InitializeComponent error_
 
-1. Let's examine the Portable Class Library. The **MyHealth.Client.Core** project is a **Portable Class Library (PCL)**. It contains components that are shared by the Android and iOS applications in this solution as well as the Windows Presentation Foundation (WPF) desktop application and the Windows Universal Platform (UWP) app. This is the bulk of the code for the application.
-    The other projects are more platform specific, and largely consist of wiring up the objects (like ViewModels) from the PCL to the native UI pages.
+1. Let's examine the Portable Class Library. The **MyHealth.Client.Core** project is a **Portable Class Library (PCL)**. It contains components that are shared by the Android and iOS applications in this solution as well as the Windows Presentation Foundation (WPF) desktop application and the Windows Universal Platform (UWP) app. This is the bulk of the code for the application. The other projects are more platform specific, and largely consist of wiring up the objects (like ViewModels) from the PCL to the native UI pages.
 
     In the project you will see:
 
@@ -234,9 +229,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     The advantage of having a PCL is that there is so much reuse of the code. It also makes unit testing simpler, since .NET unit tests can be used to test the logic in the PCL, thereby ensuring quality of the large common base of the code.
 
-1. Examine how the **AppointmentsViewModel** is reused in several projects. Open the following file: **MyHealth.Client.Core\ViewModels\AppointmentsViewModel.cs**
-
-    This class defines the view model for the appointments page in the app. It defines several properties that raise property changed events when they are modified and several list properties that are **Observable** - that is, they also raise events when they are modified. This object can be used for databinding to controls in any UI that understands data binding. Furthermore, the class defines several **Commands** that can be triggered from UI elements such as buttons. Finally, it defines how the data is retrieved from the data store via services.
+1. Examine how the **AppointmentsViewModel** is reused in several projects. Open the following file: **MyHealth.Client.Core\ViewModels\AppointmentsViewModel.cs**. This class defines the view model for the appointments page in the app. It defines several properties that raise property changed events when they are modified and several list properties that are **Observable** - that is, they also raise events when they are modified. This object can be used for databinding to controls in any UI that understands data binding. Furthermore, the class defines several **Commands** that can be triggered from UI elements such as buttons. Finally, it defines how the data is retrieved from the data store via services.
 
 1. Open the following files and see how this **ViewModel** is reused in the other projects:
 
@@ -246,7 +239,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     All of the above files define the **AppointmentsViewModel** as the data binding source for the UI. The remainder of the code in the platform-specific projects is to configure and bind the object correctly to UI elements.
 
-1. Now, let's examine the **ServiceAgents**. The Client applications all call a service to get and update data. The service is an ASP.NET 5 REST API application hosted in an **Azure Mobile App** service. The Service Agents are encapsulations of different "areas" within the API: for example, the `DoctorsService` contains calls to the methods that get Doctor data, while the `PatientsService` gets Patient data.
+1. Now, let's examine the **ServiceAgents**. The Client applications all call a service to get and update data. The service is an ASP.NET 5 REST API application hosted in an **Azure Mobile App** service. The Service Agents are encapsulations of different "areas" within the API: for example, the **DoctorsService** contains calls to the methods that get Doctor data, while the **PatientsService** gets Patient data.
 
     The source code for the service is in the source structure (you can see it if you open the **06_Demos_MobileApp.sln** solution). For this workshop, the service has already been deployed to Azure at this address: [https://healthclinicmobile-build.azurewebsites.net](https://healthclinicmobile-build.azurewebsites.net). Deploying this service is beyond the scope of this workshop.
 
@@ -264,16 +257,15 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
 In this task, you will run the Android and UWP applications in their respective emulators. You will set a breakpoint and confirm that Visual Studio breaks at the code even when it is running in the emulators.
 
-> **Note**: It is also possible to debug iOS applications in exactly the same manner as debugging UWP or Android applications. However, to do so you require a Mac to be
-connected (via the Mac agent).
+> **Note**: It is also possible to debug iOS applications in exactly the same manner as debugging UWP or Android applications. However, to do so you require a Mac to be connected (via the Mac agent).
 
-1. Open **MyHealth.Client.Core\ServiceAgents\PatientsService.cs** and set a breakpoint at the return statement in the `GetAsync(int id)` method. You can do this by clicking the breakpoint gutter on the left or by placing the cursor on the line and pressing **F9**:
+1. Open **MyHealth.Client.Core\ServiceAgents\PatientsService.cs** and set a breakpoint at the return statement in the `GetAsync(int id)` method. You can do this by clicking the breakpoint gutter on the left or by placing the cursor on the line and pressing **F9**.
 
     ![Setting a breakpoint in the PatientsService](Images/vs-set-breakpoint-patientsservice.png "Setting a breakpoint in the PatientsService")
 
     _Setting a breakpoint in the PatientsService_
 
-1. Right-click the **MyHealth.Client.W10.UWP** project and click **Set as Startup Project**. In the Toolbar, click the **Run in Simulator**:
+1. Right-click the **MyHealth.Client.W10.UWP** project and click **Set as Startup Project**. In the Toolbar, click the **Run in Simulator**.
 
     ![The Run UWP Simulator button](Images/vs-toolbar-uwp-simulator.png "The Run UWP Simulator button")
 
@@ -281,7 +273,7 @@ connected (via the Mac agent).
 
     > **Note**: if the button does not say **Simulator** then click the dropdown menu on the right of the button and click **Simulator**. If you do, you can see the other run options you have for UWP applications.
 
-    The application should launch in the simulator.
+1. The application should launch in the simulator.
 
     ![The Patient app running in the UWP Simulator](Images/patient-app-in-windows-simulator.png "The Patient app running in the UWP Simulator")
 
@@ -289,7 +281,7 @@ connected (via the Mac agent).
 
     > **Note**: If the simulator is small, simply drag it to enlarge the view.
 
-1. Now click the **hamburger** menu icon on the top left of the app and then click the **User** menu item:
+1. Now click the **hamburger** menu icon on the top left of the app and then click the **User** menu item.
 
     ![The Patient User menu item](Images/patient-app-uwp-user-menu.png "The Patient User menu item")
 
@@ -307,13 +299,13 @@ connected (via the Mac agent).
 
     _The Stop Debugging button_
 
-1. Now, let's run the Android App in the Android Emulator. Right-click the **MyHealth.Client.Droid** project and click **Set as Startup Project**. In the toolbar, click **Run in Simulator**, which should have a name like **5" KitKat (4.4) XXHDPI Phone (Android 4.4 - API 19)**:
+1. Now, let's run the Android App in the Android Emulator. Right-click the **MyHealth.Client.Droid** project and click **Set as Startup Project**. In the toolbar, click **Run in Simulator**, which should have a name like **5" KitKat (4.4) XXHDPI Phone (Android 4.4 - API 19)**.
 
     ![Click Run Android Emulator](Images/vs-android-emulator-button.png "Click Run Android Emulator")
 
     _Click Run Android Emulator_
 
-    The first time you do so, the emulator is created and configured, so it may take a few moments to start up. Once it starts up, you should see the emulator run the **Patients** app.
+1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. Once it starts up, you should see the emulator run the **Patients** app.
 
     ![App in the Android Emulator](Images/vs-android-emulator-running.png "App in the Android Emulator")
 
@@ -354,7 +346,7 @@ In this task, you will sign up for a free VSTS account.
 
     > **Note**: You can change your email address and region if you want to.    
 
-    Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. Continue to the next task.
+1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. Continue to the next task.
 
 <a name="Ex4Task2"></a>
 #### Task 2 - Create a New Team Project ####
@@ -442,21 +434,19 @@ Since there is more code in the repository than just the solution you have open,
 
 1. Click on the **Changes** tile to navigate to the Changes pane. Expand the **Untracked Files** section to see the files that Git has detected are not yet tracked. In order to track these files, you must first _add_ them to the repo.
 
-1. Right click the top node and click **Add**.
+1. Right-click the top node and click **Add**.
 
     ![Add untracked files in Team Explorer](Images/vs-te-add-untracked.png "Add untracked files in Team Explorer")
 
     _Add untracked files in Team Explorer_
 
-    The files have now been places in the **Included Changes** section. You are now ready to _commit_ the files to the repo.
-
-1. Enter **Initial commit** into the message box and click the **Commit** button:
+1. The files have now been places in the **Included Changes** section. You are now ready to _commit_ the files to the repo. Enter **Initial commit** into the message box and click the **Commit** button.
 
     ![The initial commit](Images/vs-te-initial-commit.png "The initial commit")
 
     _The initial commit_
 
-    This may take a few moments. Once completed, the Changes pane will show no changes pending.
+1. This may take a few moments. Once completed, the **Changes** pane will show no changes pending.
 
     ![No changes in Team Explorer](Images/vs-te-no-changes.png "No changes in Team Explorer")
 
@@ -469,19 +459,19 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
 > **Note**: Repositories can have any number of remotes. Once you have committed to your local repo, you will **push** the changes to a remote (or many remotes).
 
-1. Let's find the Git remote address from the repo in VSTS. Navigate to your VSTS **HealthClinic** Team Project. Click on the **CODE** hub:
+1. Let's find the Git remote address from the repo in VSTS. Navigate to your VSTS **HealthClinic** Team Project. Click on the **CODE** hub.
 
     ![Click on the Code Hub](Images/vsts-code-hub.png "Click on the Code Hub")
 
     _Click on the Code Hub_
 
-1. Find the Clone URL and copy it to the clipboard:
+1. Find the Clone URL and copy it to the clipboard.
 
     ![Getting the Clone URL in VSTS](Images/vsts-git-clone-url.png "Getting the Clone URL in VSTS")
 
     _Getting the Clone URL in VSTS_
 
-1. Configure your **Git Global Settings**. Go back to Visual Studio, open the **Team Explorer** window, connect to the **HealthClinic.biz** repo if you are not already connected. Click on the Pane heading to pull down the navigation menu. Click **Settings**:
+1. Configure your **Git Global Settings**. Go back to Visual Studio, open the **Team Explorer** window, connect to the **HealthClinic.biz** repo if you are not already connected. Click on the Pane heading to pull down the navigation menu. Click **Settings**.
 
     ![Navigating to Settings in Team Explorer](Images/vs-te-settings-menu.png "Navigating to Settings in Team Explorer")
 
@@ -493,27 +483,25 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _Global Git Settings in Team Explorer_
 
-    > **Note**: This is not an authentication setting. The username and email address are text fields that are associated with commits. In order to _push_ your code to
-    a remote, you typically have to authenticate against the remote server. You will see this later.
+    > **Note**: This is not an authentication setting. The username and email address are text fields that are associated with commits. In order to _push_ your code to a remote, you typically have to authenticate against the remote server. You will see this later.
 
-1. Now let's add a Remote. Again click on the Pane heading to pull down the navigation menu and click **Settings**. Then click **Repository Settings**. Under **Remotes**, click the **Add** link:
+1. Now let's add a Remote. Again click on the Pane heading to pull down the navigation menu and click **Settings**. Then click **Repository Settings**. Under **Remotes**, click the **Add** link.
 
     ![Click Add Remote in the Repo Settings Pane](Images/vs-te-add-remote.png "Click Add Remote in the Repo Settings Pane")
 
     _Click Add Remote in the Repo Settings Pane_
 
-1. Enter **origin** as the name of the remote and then paste the clone URL you copied from VSTS into the **Fetch** text box. Make sure that **Push matches fetch** is selected. Click **Save**:
+1. Enter **origin** as the name of the remote and then paste the clone URL you copied from VSTS into the **Fetch** text box. Make sure that **Push matches fetch** is selected. Click **Save**.
 
     ![Configure the origin remote](Images/vs-te-add-origin.png "Configure the origin remote")
 
     _Configure the origin remote_
 
-    > **Note**: The name `origin` is again a convention that is very commonly used. The remotes can be named whatever you want, but typically if you only have one remote
-    the name of that remote is `origin`.
+    > **Note**: The name `origin` is again a convention that is very commonly used. The remotes can be named whatever you want, but typically if you only have one remote the name of that remote is `origin`.
 
 1. Now push the code to VSTS. In **Team Explorer**, click on the Pane heading to pull down the navigation menu and click **Sync** to open the Sync pane.
 
-1. Under **Outgoing Commits**, click the **Publish** link:
+1. Under **Outgoing Commits**, click the **Publish** link.
 
     ![Publish to the remote](Images/vs-te-publish-link.png "Publish to the remote")
 
@@ -561,39 +549,38 @@ In this task, you will run the unit tests.
 
     _Tests discovered in the Test Explorer_
 
-1. Click the **Group by** pulldown menu and select **Project** to group the tests by project:
+1. Click the **Group by** pulldown menu and select **Project** to group the tests by project.
 
     ![Group Tests by Project](Images/vs-tex-group-by-proj.png "Group Tests by Project")
 
     _Group Tests by Project_
 
-    You will see that there are two test projects: a unit test project which contains unit tests and a UITests project that contains UI tests:
+1. You will see that there are two test projects: a unit test project which contains unit tests and a UITests project that contains UI tests.
 
     ![Tests grouped by project](Images/vs-tex-tests-by-proj.png "Tests grouped by project")
 
     _Tests grouped by project_
 
-1. Right click the **MyHealth.Client.Core.UnitTests** project and select **Run Selected Tests**. This will just run the unit tests.
+1. Right-click the **MyHealth.Client.Core.UnitTests** project and select **Run Selected Tests**. This will just run the unit tests.
 
     ![Run the unit tests](Images/vs-tex-run-unit-tests.png "Run the unit tests")
 
     _Run the unit tests_
 
-    You should see a test failure - you will fix this later.
+	> **Note:** You should see a test failure - you will fix this later.
+	> 
+	> ![Test Results with a failure](Images/vs-tex-test-failure.png "Test Results with a failure")
+	>
+	> _Test Results with a failure_
 
-    ![Test Results with a failure](Images/vs-tex-test-failure.png "Test Results with a failure")
-
-    _Test Results with a failure_
-
-1. Right click the **TBC**
+1. Right-click the **TBC**
 
 <a name="Ex6Task2"></a>
 #### Task 2 - Run Tests with Code Coverage ####
 
 In this task you will analyze the code coverage for the unit tests.
 
-1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyze Code Coverage for Selected Tests**.
-    This runs the unit tests again, but this time calculates how much of the code is touched while the tests are running.
+1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyze Code Coverage for Selected Tests**. This runs the unit tests again, but this time calculates how much of the code is touched while the tests are running.
 
     When the run is complete, you will see the Code Coverage Results window pop up. If it does not, you can open it by clicking **Test->Windows->Code Coverage Results**.
 
@@ -610,14 +597,11 @@ In this task you will analyze the code coverage for the unit tests.
 
 In this task, you will run UI tests.
 
-1. In the **Test Explorer** window, expand the **MyHealth.Client.Core.UITests** project, right click the **Test_SwitchBetweenMeds** test and click **Run Selected Tests**.
-    This test should launch the emulator and run tests against the emulated device. The test should succeed.
+1. In the **Test Explorer** window, expand the **MyHealth.Client.Core.UITests** project, right-click the **Test_SwitchBetweenMeds** test and click **Run Selected Tests**. This test should launch the emulator and run tests against the emulated device. The test should succeed.
 
-    >**Note**: If the emulator starts and shows a padlock (the phone is locked) just click and drag the lock off to the right to unlock the emulator.
+    > **Note**: If the emulator starts and shows a padlock (the phone is locked) just click and drag the lock off to the right to unlock the emulator.
 
-1. Examine the Test_SwithBetweenMeds Test.
-
-    In the Test Explorer window, expand the **MyHealth.Client.Core.UITests** project and double-click the **Test_SwitchBetweenMeds** test to open it.
+1. In the **Test Explorer** window, expand the **MyHealth.Client.Core.UITests** project and double-click the **Test_SwitchBetweenMeds** test to open it.
 
     This code uses the `IApp` interface from the **Xamarin.UITest** framework. This interface abstracts away the actual hardware (or emulator) so it can be used to run iOS UI tests as well. The `TestFixture` attribute at the top of the class specifies which platform(s) to run tests against. Since we don't have any Mac hardware, the iOS test platform has been commented out.
 
@@ -637,7 +621,7 @@ In this task, you will run UI tests.
     }
     ````
 
-    Examine the `Test_SwitchBetweenMeds` method:
+1. Examine the **Test_SwitchBetweenMeds** method.
 
     ````C#
     [Test]
@@ -751,15 +735,15 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
 1. Debug the Test to see the Fake working
 
-    In the **Test Explorer** window, right-click the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the `DayOfTimeHelper.GetTimeOffsetForNextPill` method.
+    In the **Test Explorer** window, right-click the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the `DayOfTimeHelper.GetTimeOffsetForNextPill` method.
 
-1. Press **F11** to step into the call. You should be brought back to the `Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect` method into the lambda supplied for the `NowGet`:
+1. Press **F11** to step into the call. You should be brought back to the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method into the lambda supplied for the **NowGet**.
 
     ![Breaking at the Fakes lambda](Images/vs-test-debug-lambda.png "Breaking at the Fakes lambda")
 
     _Breaking at the Fakes lambda_
 
-1. Press **F10** to return the `time` object. Back in the `GetTimeOffsetForNextPill` method, click **F10** again. Mouse over the `currentDateTime` variable and confirm that the value is `2/25/2016 4:00:00 PM` - the value that was set in the `Shim`:
+1. Press **F10** to return the `time` object. Back in the `GetTimeOffsetForNextPill` method, click **F10** again. Mouse over the `currentDateTime` variable and confirm that the value is `2/25/2016 4:00:00 PM` - the value that was set in the `Shim`.
 
     ![The DateTime.Now value set by a Fake](Images/vs-debug-value-datetime.png "The DateTime.Now value set by a Fake")
 
@@ -771,7 +755,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
     The **ShimDateTime** is created when a Fakes assembly is created for a real assembly. To see how to create a Fakes assembly, open the **Solution explorer** and expand the **MyHealth.Client.Core.UnitTests** project in the **Tests** folder. Then expand the **References** node.
 
-1. Right click the reference to **System** to see the **Add Fakes** menu item. This has already been done, so do not press it.
+1. Right-click the reference to **System** to see the **Add Fakes** menu item. This has already been done, so do not press it.
 
     ![Creating a Fakes assembly](Images/vs-se-fakes.png "Creating a Fakes assembly")
 
@@ -812,7 +796,7 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
 1. Open the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method again by clicking the **Navigate Back** button once in the toolbar, or double-clicking the test in the **Test Explorer** window.
 
-1. Examine the `arrange` section of this test (if it is folder, click the `+` icon on the left to open the folded section):
+1. Examine the `arrange` section of this test (if it is folder, click the `+` icon on the left to open the folded section).
 
     ````C#
     #region arrange
@@ -825,7 +809,7 @@ In this task, you will examine how mocks are used to isolate the unit tests from
     #endregion
     ````    
 
-    >**Note**: This test project uses [Moq](https://github.com/Moq/moq4/wiki/Quickstart) to create mocks. There are other mocking frameworks such as [Rhino Mocks](https://www.hibernatingrhinos.com/oss/rhino-mocks).
+    > **Note**: This test project uses [Moq](https://github.com/Moq/moq4/wiki/Quickstart) to create mocks. There are other mocking frameworks such as [Rhino Mocks](https://www.hibernatingrhinos.com/oss/rhino-mocks).
 
     The test first creates a **Mock** of type `MedicinesService` by calling the helper method `GetMockMedicineService`. Put your cursor onto the `GetMockMedicineService` call and press **F12** to navigate to its definition.
 
@@ -874,7 +858,7 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
     > **Note**: It is possible to test if a method on a mock that has been `Setup` has been called (or how many times it was called, or with what arguments it was called) using the Moq `Validate<T>` method. It is not necessary for this test.
 
-1. Right click the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in `HomeViewModel`, press **F10** to step over the call to `_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync`. Then hover over the `medicines` object to see its value.
+1. Right-click the `Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly` test in the Test Explorer window and click **Debug Selected Test**. When the breakpoint is hit in `HomeViewModel`, press **F10** to step over the call to `_myHealthClient.MedicinesService.GetMedicinesWithDosesAsync`. Then hover over the `medicines` object to see its value.
 
     ![The results of the call to the Mock method](Images/vs-debug-medicines.png "The results of the call to the Mock method")
 
