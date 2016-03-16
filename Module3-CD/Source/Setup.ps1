@@ -143,19 +143,6 @@ $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/j
 $buildDefId = $response.Id
 
 ############################################################################
-Write-Host "Queuing Team build $buildName" -ForegroundColor Yellow
-$uri = "$vstsUrl/$queueBuildUri"
-
-$body = @{
-    definition = @{
-        id = $buildDefId
-    }
-}
-
-Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
-                               -Headers $headers -Body (ConvertTo-Json $body)
-                              
-############################################################################
 #                        END OF SCRIPT                                     #
 ############################################################################
 Write-Host "Done!" -ForegroundColor Green

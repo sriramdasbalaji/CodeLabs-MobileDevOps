@@ -198,7 +198,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 <a name="SetupTask6"></a>
 #### Setup Task 6 - Run the Setup Script ####
 
-In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1, skip this section**.
+In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
 
 1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
 
@@ -225,6 +225,100 @@ where:
 
 	_The Setup script completed successfully_
 
+<a name="SetupTask7"></a>
+#### Setup Task 7 - Configure a Private Build Agent ####
+
+In this task, you will install a private build agent on your local machine. **If you have completed Module 1 or 2, skip this task**.
+
+> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you need to use a _private_ build agent only because the Xamarin trial license does not work on the Hosted build agent.
+
+1. Navigate to the Agent Pools configuration in VSTS
+    Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
+    
+    ![Click the gear icon](Images/vsts-click-gear.png "Click the gear icon")
+    
+    _Click the gear icon_
+    
+    In the top left of the navigation, click the **Control Panel** link:
+    
+    ![Click Control Panel](Images/vsts-click-controlpanel.png "Click Control Panel")
+    
+    _Click Control Panel_
+    
+    Click on the **Agent pools** tab.
+    
+1. Download the agent
+    In the left menu, click the **Download agent** button.
+    
+    ![Click Download agent](Images/vsts-download-agent.png "Click Download agent")
+    
+    _Click Download agent_
+    
+    Enter `c:\buildworkshop` as the destination folder for the download. Make sure that popups are allowed from the site if nothing happens when you click the button.
+
+1. Unlock and extract the agent.zip file
+    In the File Explorer, navigate to `c:\buildworkshop'. Right click the **agent.zip** file and click **Properties**. Check the **Unblock** checkbox and click **Apply**.
+    
+    ![Unblock the agent zip file](Images/vsts-agent-unblock.png "Unblock the agent zip file")
+    
+    _Unblock the agent zip file_
+    
+    Close the properties window.
+    
+    Right click the **agent.zip** file and select "Extract All...". Keep the default path and click **Extract**.
+    
+    ![Extract the agent zip file](Images/vsts-agent-extract.png "Extract the agent zip file")
+    
+    _Extract the agent zip file_
+    
+1. Install the agent
+    Once you have extracted the file, open a **Windows PowerShell** window and `cd` to `c:\buildworkshop\agent`. Then type `.\ConfigureAgent` to launch the agent configuration wizard.
+    
+    Enter the following information for each question:
+    - **Enter the name for this agent**: press enter (accept the default)
+    - **Enter the URL for the Team Foundation Server**: enter your VSTS URL: (e.g. https://myaccount.visualstudio.com)
+    - **Configure this agent against which agent pool?**: press enter (accept the default)
+    - **Enter the path of the work folder for this agent**: press enter (accept the default)
+    - **Would you like to install the agent as a Windows Service (Y/N)**: type **Y** and press enter
+    - **Enter the name of the user account to use for the service**: press enter (accept the default)
+    
+    At this point you will be asked to sign into your VSTS account using your VSTS credentials.
+    
+    ![Sign in to your VSTS account](Images/vsts-signin.png "Sign in to your VSTS account")
+    
+    _Sign in to your VSTS account_
+    
+    Make sure that the install completes successfully.
+    
+    ![Successful install of the build agent](Images/vsts-agent-install-success.png "Successful install of the build agent")
+    
+    _Successful install of the build agent_
+    
+1. Check the agent in the Default Pool on VSTS
+    Go back to the **Agent Pool** page in the configuration window of your VSTS account. Click on the **Default** pool in the left menu. Make sure that the build agent is showing and is green.
+    
+    ![Agent waiting for builds](Images/vsts-agent-ready.png "Agent waiting for builds")
+    
+    _Agent waiting for builds_
+
+<a name="SetupTask8"></a>
+#### Setup Task 8 - Queue the Build ####
+
+In Module 2, a Continuous Integration (CI) build is created that creates a compiled Android App (an **apk** file). However, since you have only just installed the build agent, the build has not yet run. You will now queue the build so that you have a binary ready for distribution using Release Management.
+
+1. Open the HealthClinic BUILD Hub
+    Log in to the `HealthClinic` team project in VSTS. Click the BUILD link.
+    
+    Click on the `Xamarin CI` build definition - this definition was created by the Setup script you ran earlier. Click the **Queue build..." button in the toolbar.
+    
+    Accept the defaults for the Queue build dialog and press OK.
+    
+    ![Queue the Xamarin CI build](Images/vsts-build-queue.png "Queue the Xamarin CI build")
+    
+    _Queue the Xamarin CI build_
+    
+    > **Note**: Subsequent builds will automatically be triggered when you push code to the source repo.
+    
 ---
 
 <a name="Exercises" ></a>
@@ -678,7 +772,7 @@ In this task you will obtain the app's unique HockeyApp ID from the HockeyApp da
     
     _A new version in HockeyApp_
     
-    >**Note**: If you created the build in Module 2, the build definition includes a versioning task that versions the `apk` files incrementally for each build. However,
+    >**Note**: If you created the build in Module 2, the build definition includes a versioning task that versions the **apk** files incrementally for each build. However,
     if you ran the setup script (you did not do Module 2) then the version number will not increment. You will still see new versions as they become available - the numbers
     will be the same though.
     

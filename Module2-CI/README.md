@@ -329,7 +329,83 @@ In this task, you will remove the iOS applications from the solution.
 In this exercise, you will create a Team Build to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
 <a name="Ex2Task1"></a>
-#### Task 1 - Create the Build Definition ####
+#### Task 2 - Configure a Private Build Agent ####
+
+In this task, you will install a private build agent on your local machine.
+
+> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you need to use a _private_ build agent only because the Xamarin trial license does not work on the Hosted build agent.
+
+1. Navigate to the Agent Pools configuration in VSTS
+    Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
+    
+    ![Click the gear icon](Images/vsts-click-gear.png "Click the gear icon")
+    
+    _Click the gear icon_
+    
+    In the top left of the navigation, click the **Control Panel** link:
+    
+    ![Click Control Panel](Images/vsts-click-controlpanel.png "Click Control Panel")
+    
+    _Click Control Panel_
+    
+    Click on the **Agent pools** tab.
+    
+1. Download the agent
+    In the left menu, click the **Download agent** button.
+    
+    ![Click Download agent](Images/vsts-download-agent.png "Click Download agent")
+    
+    _Click Download agent_
+    
+    Enter `c:\buildworkshop` as the destination folder for the download. Make sure that popups are allowed from the site if nothing happens when you click the button.
+
+1. Unlock and extract the agent.zip file
+    In the File Explorer, navigate to `c:\buildworkshop'. Right click the **agent.zip** file and click **Properties**. Check the **Unblock** checkbox and click **Apply**.
+    
+    ![Unblock the agent zip file](Images/vsts-agent-unblock.png "Unblock the agent zip file")
+    
+    _Unblock the agent zip file_
+    
+    Close the properties window.
+    
+    Right click the **agent.zip** file and select "Extract All...". Keep the default path and click **Extract**.
+    
+    ![Extract the agent zip file](Images/vsts-agent-extract.png "Extract the agent zip file")
+    
+    _Extract the agent zip file_
+    
+1. Install the agent
+    Once you have extracted the file, open a **Windows PowerShell** window and `cd` to `c:\buildworkshop\agent`. Then type `.\ConfigureAgent` to launch the agent configuration wizard.
+    
+    Enter the following information for each question:
+    - **Enter the name for this agent**: press enter (accept the default)
+    - **Enter the URL for the Team Foundation Server**: enter your VSTS URL: (e.g. https://myaccount.visualstudio.com)
+    - **Configure this agent against which agent pool?**: press enter (accept the default)
+    - **Enter the path of the work folder for this agent**: press enter (accept the default)
+    - **Would you like to install the agent as a Windows Service (Y/N)**: type **Y** and press enter
+    - **Enter the name of the user account to use for the service**: press enter (accept the default)
+    
+    At this point you will be asked to sign into your VSTS account using your VSTS credentials.
+    
+    ![Sign in to your VSTS account](Images/vsts-signin.png "Sign in to your VSTS account")
+    
+    _Sign in to your VSTS account_
+    
+    Make sure that the install completes successfully.
+    
+    ![Successful install of the build agent](Images/vsts-agent-install-success.png "Successful install of the build agent")
+    
+    _Successful install of the build agent_
+    
+1. Check the agent in the Default Pool on VSTS
+    Go back to the **Agent Pool** page in the configuration window of your VSTS account. Click on the **Default** pool in the left menu. Make sure that the build agent is showing and is green.
+    
+    ![Agent waiting for builds](Images/vsts-agent-ready.png "Agent waiting for builds")
+    
+    _Agent waiting for builds_
+    
+<a name="Ex2Task2"></a>
+#### Task 2 - Create the Build Definition ####
 
 In this task, you will log in to VSTS and create a build from the `master` branch in the repo.
 
@@ -357,7 +433,7 @@ In this task, you will log in to VSTS and create a build from the `master` branc
     including the Portable Class Library (PCL) and the unit test project. For this reason, the Visual Studio build template is a better choice. Feel free
     to come back later and select the Xamarin templates to see how the task orchestration differs for those templates.
 
-1. Make sure that the repo settings are correct (it should be the `master` branch on the `HealthClinic` repo). Check the **Continuous Integration** checkbox and ensure that the `Default agent queue` is set to `Hosted` and click **Create**.
+1. Make sure that the repo settings are correct (it should be the `master` branch on the `HealthClinic` repo). Check the **Continuous Integration** checkbox and ensure that the `Default agent queue` is set to `Hosted` and that the default queue is set to **Default** and click **Create**.
 
     ![Build Repo and Trigger](Images/vsts-build-wiz-repo.png "Build Repo and Trigger")
 
@@ -365,16 +441,10 @@ In this task, you will log in to VSTS and create a build from the `master` branc
 
     >**Note**: The `Continuous Integration` trigger tells VSTS to trigger this build to run each time that code is pushed to the `master` branch.
 
-    >**Note**: The `Hosted Agent` is an agent that is hosted by VSTS. You can also install agents onto your own datacenter (or machine). These are known as
-    _private agents_. When builds are queued onto the hosted agent, a VM is spun up to execute the build. The VM is then torn down again once the build
-    completed. This means that you do not have to maintain your own build infrastructure. However, the hosted build VM image is maintained by VSTS and is
-    preconfigured with software like Visual Studio, npm and other build requirements. If you require software that is not on the hosted agent, you will
-    have to use a private agent. Fortunately for Xamarin projects, the hosted agent has everything required to build and package Xamarin projects. Once again
-    iOS builds are the exception, requiring Mac hardware. You can integrate the hosted build into [MacInCloud](http://www.macincloud.com/) in order to build
-    iOS packages.
+    >**Note**: In order to build iOS projects, the build requires Mac hardware. You can integrate the your builds into [MacInCloud](http://www.macincloud.com/) to get access to Mac hardware during a build.
 
-<a name="Ex2Task2"></a>
-#### Task 2 - Configure the Build Tasks ####
+<a name="Ex2Task3"></a>
+#### Task 3 - Configure the Build Tasks ####
 
 In this task, you will configure the Build tasks.
 

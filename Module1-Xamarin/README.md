@@ -733,7 +733,7 @@ In this task, you will examine how Fakes are used to test hard to test code in t
 
     This makes testing any code that calls **DateTime.Now** much easier, since the test knows the value that this call is going to return. This only works within the context of the **ShimsContext**.
 
-1.  In the **Test Explorer** window, right-click the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the **DayOfTimeHelper.GetTimeOffsetForNextPill** method.
+1. In the **Test Explorer** window, right-click the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method and click **Debug Selected Tests**. The test should start and then break on the breakpoint you set earlier in the **DayOfTimeHelper.GetTimeOffsetForNextPill** method.
 
 1. Press **F11** to step into the call. You should be brought back to the **Test_CalcCountDownForMed_Pref_Breakfast_IsCorrect** method into the lambda supplied for the **NowGet**.
 

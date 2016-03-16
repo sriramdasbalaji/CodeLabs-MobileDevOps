@@ -270,11 +270,11 @@
     "quality":  "definition",
     "queue":  {
                   "pool":  {
-                               "id":  2,
-                               "name":  "Hosted"
+                               "id":  1,
+                               "name":  "Default"
                            },
-                  "id":  2,
-                  "name":  "Hosted"
+                  "id":  1,
+                  "name":  "Default"
               },
     "type":  "build",
     "name":  "Xamarin CI"
