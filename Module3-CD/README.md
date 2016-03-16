@@ -91,13 +91,13 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
 
     _Accessing My Profile page_
 
-1. Click the Security menu on the left. In the Personal Access Tokens section, click the **Add** button.
+1. Click the **Security** menu on the left. In the Personal Access Tokens section, click the **Add** button.
 
     ![Click Add in the Personal Access Token section](Images/vsts-add-pat.png "Click Add in the Personal Access Token section")
 
     _Click Add in the Personal Access Token section_
 
-1. In the form, enter the name BuildWorkshop. Leave all the defaults and click Create:
+1. In the form, enter the name _BuildWorkshop_. Leave all the defaults and click **Create**:
 
     ![Creating a PAT](Images/vsts-create-pat-form.png "Creating a PAT")
 
@@ -116,13 +116,13 @@ In this task, you will create a Xamarin account.
 
 > **Note**: If you have a Xamarin business license you can use it and skip this task.
 
-1. Open a browser to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
+1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login") and click **Create a new account**.
 
 	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
 
 	_Xamarin Store Login screen_
 
-1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click the **Register** button.
+1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
 
     ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
 
@@ -147,26 +147,25 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
     _Xamarin Login in Visual Studio_  
 
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press the **Login** button.
+1. Enter the email address and password that you used for creating your Xamarin account in [Task 3](#SetupTask3) and press **Login**.
 
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
 
-1. Once activated, you should see your account has been logged in.
+1. Once activated, you should see your account has been logged in. You can close the dialog.
 
     ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
 
     _Logged in to Xamarin in Visual Studio_
 
-1. You can close the dialog.
 
 <a name="SetupTask5"></a>
 #### Setup Task 5 - Activate a Xamarin Business Trial ####
 
-In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
+In this task, you will open the Xamarin solution for cross-mobile apps for **HealthClinic.biz** and activate your Xamarin Business trial license.
 
-1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
+1. In Visual Studio, open the **04_Demos_NativeXamarinApps.sln** located at **Source / Setup / HealthClinic.biz**.
 
 1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
 
@@ -219,7 +218,7 @@ In order to run the exercises in this module, you will need to set up your envir
 	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
 	> ```
 
-1. Wait until you see a green `Done!` before continuing.
+1. Wait until you see a green **Done!** before continuing.
 
 	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
 
