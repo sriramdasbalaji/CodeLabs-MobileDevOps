@@ -167,7 +167,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **ctrl-shift-b** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
 
     ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
 
@@ -192,17 +192,23 @@ In order to run the exercises in this module, you will need to set up your envir
 
 1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
 
-1. Enter the following command, where `{youraccount}` is the VSTS account name you created earlier and `{yourPAT}` is the VSTS PAT you created earlier.
+1. Enter the following command.
 
-	````PowerShell
-	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT}
-	````
+	```powershell
+	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
+	```
+
+	where:
+	- `{youraccount}` is the VSTS account name you created earlier 
+	- `{yourPAT}` is the VSTS PAT you created earlier.
+	- `{xamarinEmail}` is the email address for your Xamarin account
+	- `{xamarinPassword}` is the password for your Xamarin account
 
 	> **Note**: For example, the command should look something like:
-
-	> ````PowerShell
-	 .\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
-	 ````
+	> 
+	> ```powershell
+	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
+	> ```
 
 1. Wait until you see a green `Done!` before continuing.
 
