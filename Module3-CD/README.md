@@ -51,7 +51,7 @@ Before continuing, you must sign up for a free VSTS account.
 > **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
 
 <a name="SetupTask1"></a>
-#### Setup Task 1 - Create a New VSTS Account ####
+#### Setup Task 1 - Creating a New VSTS Account ####
 
 In this setup task, you will create a new VSTS account.
 
@@ -79,7 +79,7 @@ In this setup task, you will create a new VSTS account.
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. The setup script will do this for you, so you can just go on to the next task.
 
 <a name="SetupTask2"></a>
-#### Setup Task 2 - Generate a Personal Access Token (PAT) ####
+#### Setup Task 2 - Generating a Personal Access Token (PAT) ####
 
 In this setup task, you will generate a Personal Access Token (PAT) which is required to run the setup script.
 
@@ -110,7 +110,7 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
     _Copying the PAT_
 
 <a name="SetupTask3"></a>
-#### Setup Task 3 - Create a Xamarin Account ####
+#### Setup Task 3 - Creating a Xamarin Account ####
 
 In this task, you will create a Xamarin account.
 
@@ -131,7 +131,7 @@ In this task, you will create a Xamarin account.
 	> **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
 
 <a name="SetupTask4"></a>
-#### Setup Task 4 - Activate your Xamarin Account in Visual Studio ####
+#### Setup Task 4 - Activating your Xamarin Account in Visual Studio ####
 
 In this setup task, you will activate your Xamarin Account in Visual Studio.
 
@@ -161,7 +161,7 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
 
 <a name="SetupTask5"></a>
-#### Setup Task 5 - Activate a Xamarin Business Trial ####
+#### Setup Task 5 - Activating a Xamarin Business Trial ####
 
 In this task, you will open the Xamarin solution for cross-mobile apps for **HealthClinic.biz** and activate your Xamarin Business trial license.
 
@@ -194,7 +194,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for **Hea
     _Xamarin Business Trail confirmation_
 
 <a name="SetupTask6"></a>
-#### Setup Task 6 - Run the Setup Script ####
+#### Setup Task 6 - Running the Setup Script ####
 
 In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1, skip this section**.
 
@@ -248,7 +248,7 @@ HockeyApp and your VSTS account so that you can later log bugs in HockeyApp and 
 > **Note**: Even though this workshop will focus on releasing an Android app through HockeyApp, the same principles apply for releasing iOS and Windows applications through HockeyApp.
 
 <a name="Ex1Task1" ></a>
-#### Task 1 - Create a HockeyApp Account ####
+#### Task 1 - Creating a HockeyApp Account ####
 
 In this task, you will create a new HockeyApp account.
 
@@ -285,7 +285,7 @@ In this task, you will create a new HockeyApp account.
 1. Once the token is created, make a note of it. You will need this in the next task.
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Install the HockeyApp Extension into your VSTS Account ####
+#### Task 2 - Installing the HockeyApp Extension into your VSTS Account ####
 
 In this task, you will install the HockeyApp extension into your VSTS account.
 
@@ -442,7 +442,7 @@ In this exercise, you will create a Release definition. The Release defines how 
 The Release definition lets you track where in a release pipeline a particular build is, how it moves and is configured, and who approves it at each stage. The release takes one or more _artifacts_ as source packages - in your case, the artifact is the CI build you created in Module 2.
 
 <a name="Ex2Task1" ></a>
-#### Task 1 - Create a Release Definition ####
+#### Task 1 - Creating a Release Definition ####
 
 In this task, you will create a new Release Definition to release the Android application through HockeyApp.
 
@@ -458,7 +458,7 @@ In this task, you will create a new Release Definition to release the Android ap
 
     _Select the empty template_
 
-1. Enter **Xamarin Android** in the Definition name textbox.
+1. Enter **Xamarin Android** in the **Definition** name textbox.
 
 1. Link the CI Build to the Release. Then click **Artifacts**. Click **Link to an artifact source**. The dialog should show **Build** for **Type**, **HealthClinic** for **Project** and **Xamarin CI** for **Source (Build definition)**. Press **Link** to link the CI build to this release.
 
@@ -476,7 +476,7 @@ In this task, you will create a new Release Definition to release the Android ap
 
 1. Under the **Deploy** group, find the **HockeyApp** task and press **Add**. Then, click **Close**.
 
-1. Configure the HockeyApp task. In the **HockeyApp Connection** dropdown, you should see a single connection called `HockeyApp`.
+1. Configure the HockeyApp task. In the **HockeyApp Connection** dropdown, you should see a single connection called **HockeyApp**.
 
     > **Note**: If you do not see it, then make sure you have completed [Exercise 1 Task 2](#Ex1Task2). You can click the **Manage** link and go to the second step in the task before coming back here.
 
@@ -508,13 +508,13 @@ In this task, you will create a new Release Definition to release the Android ap
 
 1. Leave the Pre-deployment approver as automatic. This means that the tasks will start executing immediately when the release reaches this environment.
 
-1. Click **Specific Users** on the **Post-deployment approver** and set yourself as the approver. Also check the **Send an email** option to send an email when an approval is pending.
+1. Click **Specific Users** on the **Post-deployment approver** and set yourself as the approver. Also check **Send an email** to send an email when an approval is pending.
 
     ![Configure Approvers](Images/vsts-rm-configure-approvers.png "Configure Approvers")
 
     _Configure Approvers_
 
-1. Click on the **Deployment conditions** tab. Configure the conditions as follows.
+1. Click the **Deployment conditions** tab. Configure the conditions as follows.
 
     ![Configure the Deployment conditions](Images/vsts-rm-deployment-conditions.png "Configure the Deployment conditions")
 
@@ -565,7 +565,7 @@ In this task, you will trigger the release manually to see how the app gets depl
 
     _Patients App in HockeyApp_
 
-1. You will have to uninstall the debug version of the app that Visual Studio installed into the emulator when debugging. This is necessary because the key used to sign the app is different in Visual Studio builds than in VSTS builds. In the emulator, click the home icon and then the apps icon. Click **Settings**.
+1. You will have to uninstall the debug version of the app that Visual Studio installed into the emulator when debugging. This is necessary because the key used to sign the app is different in Visual Studio builds than in VSTS builds. In the emulator, click the **Home** icon and then the **Apps** icon. Click **Settings**.
 
     ![Click Settings](Images/emulator-click-settings.png "Click Settings")
 
@@ -621,7 +621,7 @@ In this task, you will trigger the release manually to see how the app gets depl
 In this exercise, you will learn how to track user feedback from the app back to HockeyApp. In order to do so, you must set a unique HockeyApp App ID in the app settings of the app. Once you have done this, you will push the change to VSTS, which will trigger the CI build. When complete, the CI build will trigger the Release. After confirming an update to the app, you will log feedback from within the app.
 
 <a name="Ex3Task1" ></a>
-#### Task 1 - Enter the unique HockeyApp App ID into the code ####
+#### Task 1 - Entering the unique HockeyApp App ID into the code ####
 
 In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp dashboard. You will then update the code with this ID and redeploy the app.
 
@@ -645,7 +645,7 @@ In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp d
 
     _Set the HockeyApp App ID in AppSettings.cs_
 
-1. In **Team Explorer**, navigate to the **Changes** pane and enter **Entering the HockeyApp ID** into the commit message box. Then click the dropdown of the Commit button and select **Commit and Push** to commit and then push your change to VSTS.
+1. In **Team Explorer**, navigate to the **Changes** pane and enter **Entering the HockeyApp ID** into the commit message box. Then click the **Commit** dropdown and select **Commit and Push** to commit and then push your change to VSTS.
 
     ![Commit the HockeyApp ID change](Images/vs-commit-hockeyappid.png "Commit the HockeyApp ID change")
 
@@ -665,7 +665,7 @@ In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp d
 
 1. When configuring the Release, you configured the release to only allow a single release into the pipeline at any time. Since no-one as approved the previous Release, the new release will not start. Click the **Post-deployment approval** icon next to the previous release in the **Environments** column.
 
-1. Enter **Release worked fine** and click **Approve**.
+1. Enter a message like _Release worked fine_ and click **Approve**.
 
     ![Approve the previous release](Images/vsts-rm-approve-release.png "Approve the previous release")
 
@@ -681,24 +681,18 @@ In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp d
     if you ran the setup script (you did not do Module 2) then the version number will not increment. You will still see new versions as they become available - the numbers
     will be the same though.
 
-1. Install the latest App Manually
-    In the emulator, open up HockeyApp. Click the refresh button and click on the `Patients` app. You will see two versions listed: the current one and the new build.
+1. Install the App Manually. In the emulator, open up HockeyApp. Click the refresh button and click on the **Patients** app. You will see two versions listed: the current one and the new build.
 
-    You will have to uninstall the app manually before installing it from HockeyApp.
+    > **Note**: You will have to uninstall the app manually before installing it from HockeyApp. Later you will update the app to enable updates from within the app without having to uninstall it first.
 
-1. Install the App Manually
-    In the emulator, open up HockeyApp. Click the refresh button and click on the **Patients** app. You will see two versions listed: the current one and the new build.
-
-    > **Note**: Later you will update the app to enable updates from within the app without having to uninstall it first.
-
-    Once the app is uninstalled, start HockeyApp. Click on the **Patients** app and click the install button. Confirm the install once the download is complete. Once installed, run the app.
+1. Once the app is uninstalled, start HockeyApp. Click on the **Patients** app and click the install button. Confirm the install once the download is complete. Once installed, run the app.
 
 <a name="Ex3Task2"></a>
-#### Task 2 - Submit Feedback from within the App ####
+#### Task 2 - Submitting Feedback from within the App ####
 
 In this task, you will use the HockeyApp feedback form to see how users can provide feedback from an app into HockeyApp.
 
-1. In the upper left menu, click the "hamburger" icon to open the Settings.
+1. In the upper left menu, click the "hamburger" icon to open the **Settings**.
 
     ![Click the hamburger icon](Images/emulator-hamburger.png "Click the hamburger icon")
 
@@ -716,7 +710,7 @@ In this task, you will use the HockeyApp feedback form to see how users can prov
 
     _Click Send Feedback_
 
-1. In the Feedback Form, supply a name and email address (if you want to) and then type **Testing feedback** for the subject. Write a note in the **Message** box.
+1. In the **Feedback** form, supply a name and email address (if you want to) and then type _Testing feedback_ for the subject. Write a note in the **Message** box.
 
     ![Providing feedback](Images/emulator-feedback-form.png "Providing feedback")
 
@@ -742,7 +736,7 @@ In this task, you will use the HockeyApp feedback form to see how users can prov
 
     _Entering a comment on a Feedback item_
 
-1. Back in the emulator, click the **REFRESH** button to see the comments that you just added in HockeyApp:
+1. Back in the emulator, click the **REFRESH** button to see the comments that you just added in HockeyApp.
 
     ![Feedback discussion in HockeyApp in the emulator](Images/emulator-feedback-discussion.png "Feedback discussion in HockeyApp in the emulator")
 
@@ -756,9 +750,9 @@ In this task, you will use the HockeyApp feedback form to see how users can prov
 In this exercise, you will learn how to track app crashes using HockeyApp. You will enable update and crash tracking and create a new release by pushing the code. Then you will perform an operation that crashes the app and then see the crash information in HockeyApp. You will log a Bug to track the crash and fix it. Pushing the fix will again release a new version. You will then confirm that the crash is fixed.
 
 <a name="Ex4Task1"></a>
-#### Task 1 - Enable Update and Crash Management ####
+#### Task 1 - Enabling Update and Crash Management ####
 
-In this task, you will enable crash and update management using the HockeyApp SDK.
+In this task, you will enable crash and update management using the **HockeyApp SDK**.
 
 1. Open the solution in Visual Studio and in the Solution Explorer, navigate to **MyHealth.Client.Droid\Activities\MainActivity.cs**. Find the **RegisterHockeyApp** method and uncomment the first two lines of this method to enable Update and Crash Management.
 
@@ -768,7 +762,7 @@ In this task, you will enable crash and update management using the HockeyApp SD
 
     > **Note**: The HockeyApp SDK is installed into the project via both a Component and a NuGet package. The **RegisterHockeyApp** method is all that is required to track app crashes and updates within the app.
 
-1. In **Team Explorer**, navigate to the **Changes** pane. Enter **Enabling update and crash management** in the message box and click **Commit and Push**. This will trigger a CI build which will in turn trigger a CD release.
+1. In **Team Explorer**, navigate to the **Changes** pane. Enter _Enabling update and crash management_ in the message box and click **Commit and Push**. This will trigger a CI build which will in turn trigger a CD release.
 
     ![Commit and Push](Images/vs-push-crash-changes.png "Commit and Push")
 
@@ -785,7 +779,7 @@ In this task, you will enable crash and update management using the HockeyApp SD
 1. Once the build completes, a new release will be triggered. Wait for the release to complete (to the point where it is paused for post-deployment approval).
 
 <a name="Ex4Task2"></a>
-#### Task 2 - Crash the App ####
+#### Task 2 - Crashing the App ####
 
 In this task, you will perform an action that crashes the app. You will then look at the crash details in HockeyApp.
 
@@ -793,7 +787,7 @@ In this task, you will perform an action that crashes the app. You will then loo
 
     > **Note**: This would normally be the last time you have to manually uninstall the app. Now that update management has been enabled, the app will prompt you when a new version is available.
 
-1. Now open HockeyApp on the emulator and click on **Patients**. Click install to install the latest build.
+1. Now open HockeyApp on the emulator and click on **Patients**. Click **install** to install the latest build.
 
     ![Install the latest build](Images/emulator-hockeyapp-new-build.png "Install the latest build")
 
@@ -807,7 +801,7 @@ In this task, you will perform an action that crashes the app. You will then loo
 
     _Click on the second appointment_
 
-1. Log the crash. To do this, click the home button and then the apps icon and start the **Patients** app again.
+1. Log the crash. To do this, click the **Home** button and then the **Apps** icon and start the **Patients** app again.
 
 1. The app will now prompt the user to send the app crash report. Click **OK** to send the report.
 
@@ -828,17 +822,17 @@ In this task, you will perform an action that crashes the app. You will then loo
     _Crash details_
 
 <a name="Ex4Task3"></a>
-#### Task 3 - Configure Bug Tracking to VSTS ####
+#### Task 3 - Configuring Bug Tracking to VSTS ####
 
 In this task, you will configure Bug Tracking to VSTS from HockeyApp.
 
-1. Once you have looked at the stack trace, the histogram, the crash logs and app traces, click on **Bug Tracker**. Click on the **Configure Tracker** button.
+1. Once you have looked at the stack trace, the histogram, the crash logs and app traces, click **Bug Tracker**. Then, click **Configure Tracker**.
 
     ![Click Configure Tracker](Images/hockeyapp-click-configure-tracker.png "Click Configure Tracker")
 
     _Click Configure Tracker_
 
-1. In the list scroll down to **Visual Studio Team Services** and click **Configure**.
+1. In the list scroll down and select **Visual Studio Team Services** and click **Configure**.
 
     ![Select VSTS](Images/hockeyapp-select-vsts.png "Select VSTS")
 
@@ -868,7 +862,7 @@ In this task, you will configure Bug Tracking to VSTS from HockeyApp.
 
     _New Ticket in HockeyApp_
 
-1. Click the **View** button to open the Bug in VSTS.
+1. Click **View** to open the Bug in VSTS.
 
     ![View the ticket in VSTS](Images/hockeyapp-view-ticket.png "View the ticket in VSTS")
 
@@ -883,11 +877,11 @@ In this task, you will configure Bug Tracking to VSTS from HockeyApp.
 1. Make a note of the ID of the bug.
 
 <a name="Ex4Task4"></a>
-#### Task 4 - Fix the Bug ####
+#### Task 4 - Fixing the Bug ####
 
 In this task, you will fix the bug and release a new version simply by pushing the bug fix.
 
-1. Fix the Bug In Visual Studio, open the solution and in the Solution Explorer navigate to **MyHealth.Client.Core\ViewModels\HomeViewModel.cs**. Double click it to open it.
+1. Fix the Bug In Visual Studio, open the solution and in the **Solution Explorer** navigate to **MyHealth.Client.Core\ViewModels\HomeViewModel.cs**. Double click it to open it.
 
     > **Note**: If you look at the Bug in VSTS or the ticket in HockeyApp, you will see that the crash occurred in the **ShowAppointment** method of the **HomeViewModel**.
 
@@ -905,7 +899,7 @@ In this task, you will fix the bug and release a new version simply by pushing t
     }
     ````
 
-1. In the Team Explorer navigate to the changes Window. Enter **Fixing ArgumentOutOfRangeException #2** in the comment and click **Commit and Push**.
+1. In the **Team Explorer** navigate to the **Changes** window. Enter _Fixing ArgumentOutOfRangeException #2_ in the comment and click **Commit and Push**.
 
     >**Note**: Your bug ID may not be 2 - use #x where x is the number of your bug. The #id notation tells VSTS to associate the work item with the id to this commit.
 
@@ -913,7 +907,7 @@ In this task, you will fix the bug and release a new version simply by pushing t
 
     _Fixing the ArgumentOutOfRangeException_
 
-1. In VSTS, you can reject the latest release (since it caused an app crash). Navigate to the releases in the **RELEASE** hub and reject the latest release.
+1. In VSTS, you can reject the latest release (since it caused an app crash). Navigate to the releases in the **RELEASE** hub and **Reject** the latest release.
 
     ![Reject the release](Images/vsts-rm-reject-release.png "Reject the release")
 
