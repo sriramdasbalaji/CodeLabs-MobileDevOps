@@ -14,7 +14,7 @@ However, using [Xamarin](https://xamarin.com/) developers can build and debug na
 The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
 been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
 Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
-response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the 
+response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the
 [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
 
 <a name="Objectives"></a>
@@ -47,19 +47,19 @@ In order to run the exercises in this module, you will need to set up your envir
 ## Exercises ##
 This module includes the following exercises:
 
-1. [Sign up for a Xamarin Account](#Exercise1)
-1. [Explore Xamarin Projects in Visual Studio](#Exercise2)
-1. [Open the HealthClinic.Biz Xamarin Solution](#Exercise3)
-1. [Create a VSTS Team Project](#Exercise4)
-1. [Push the Source Code to the VSTS Team Project](#Exercise5)
-1. [Run and Examine Unit Tests](#Exercise6)
+1. [Signing up for a Xamarin Account](#Exercise1)
+1. [Exploring Xamarin Projects in Visual Studio](#Exercise2)
+1. [Compiling the HealthClinic.Biz Xamarin Solution](#Exercise3)
+1. [Creating a VSTS Team Project](#Exercise4)
+1. [Pushing the Source Code to the VSTS Team Project](#Exercise5)
+1. [Running Unit Tests](#Exercise6)
 
 Estimated time to complete this module: **60 minutes**
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. It is recommended that you use the **General Development Settings** collection.
 
 <a name="Exercise1"></a>
-### Exercise 1: Sign up for a Xamarin Account ###
+### Exercise 1: Signing up for a Xamarin Account ###
 
 Xamarin provides developers with tools to manage cross-platform applications. Xamarin is not free - though you can use a trial account for this workshop. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
 
@@ -75,7 +75,7 @@ Xamarin provides many benefits:
 In this exercise, you will create a Xamarin account that you will use for the remainder of this workshop. You will then open the source code, enter your Xamarin credentials and compile the projects.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Create a Xamarin Account ####
+#### Task 1 - Creating a Xamarin Account ####
 
 In this task, you will create a Xamarin account.
 
@@ -95,7 +95,7 @@ In this task, you will create a Xamarin account.
     > **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Activate your Xamarin Account in Visual Studio ####
+#### Task 2 - Activating your Xamarin Account in Visual Studio ####
 
 In this task, you will activate your Xamarin Account in Visual Studio.
 
@@ -124,7 +124,7 @@ In this task, you will activate your Xamarin Account in Visual Studio.
     _Logged in to Xamarin in Visual Studio_
 
 <a name="Exercise2"></a>
-### Exercise 2: Explore Xamarin Projects in Visual Studio ###
+### Exercise 2: Exploring Xamarin Projects in Visual Studio ###
 
 In this exercise, you will explore Xamarin projects in Visual Studio.
 
@@ -166,14 +166,14 @@ In this task you will learn about different types of Xamarin projects.
         - Apps where custom UI is more important than code sharing
 
 <a name="Exercise3"></a>
-### Exercise 3: Open and Compile the HealthClinic.Biz Xamarin Solution ###
+### Exercise 3: Compiling the HealthClinic.Biz Xamarin Solution ###
 
 In this exercise, you will open the cross-platform mobile apps for the [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) project. You will examine the project structure and compile the solution. You will run the application in the UWP simulator and the Android emulator.
 
 > **Note**: While most of the code is the same for this workshop as the code in the GitHub repo, there are some differences. You will not see exactly the same code if you open the GitHub repo yourself after the workshop.
 
 <a name="Ex3Task1"></a>
-#### Task 1 - Open the HealthClinic.Biz Xamarin Solution ####
+#### Task 1 - Opening the HealthClinic.Biz Xamarin Solution ####
 
 In this task you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
 
@@ -251,7 +251,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
     The source code for the service is in the source structure (you can see it if you open the **06_Demos_MobileApp.sln** solution). For this workshop, the service has already been deployed to Azure at this address: [https://healthclinicmobile-build.azurewebsites.net](https://healthclinicmobile-build.azurewebsites.net). Deploying this service is beyond the scope of this workshop.
 
     > **Note**: [Azure Mobile Apps](https://azure.microsoft.com/en-us/services/app-service/mobile/) can be used for:
-    > 
+    >
     > - Broadcasting push with customer segmentation
     > - Enterprise single sign-on with Active Directory
     > - Autoscaling to support millions of devices
@@ -261,7 +261,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
     In later tasks, you will mock the services so that unit tests do not have any dependency on the services. However, when you run the applications in the emulators, they will connect to the service in Azure.
 
 <a name="Ex3Task2"></a>
-#### Task 2 - Run the UWP and Android Emulators ####
+#### Task 2 - Running the UWP and Android Emulators ####
 
 In this task, you will run the Android and UWP applications in their respective emulators. You will set a breakpoint and confirm that Visual Studio breaks at the code even when it is running in the emulators.
 
@@ -322,12 +322,12 @@ In this task, you will run the Android and UWP applications in their respective 
 1. Confirm that the debugger breaks in the **PatientsService.cs** file as it did in the UWP emulator. Press **F5** to continue running the app. When you are done, click **Stop** to stop debugging.
 
 <a name="Exercise4"></a>
-### Exercise 4: Create a VSTS Team Project ###
+### Exercise 4: Creating a VSTS Team Project ###
 
 In this exercise, you sign up for a VSTS account and create a new Team Project. Later you will push the source code to this Team Project. You will also use the Team Project in later modules to create an automated build that runs unit tests and produces binaries, create a release definition to manage releases of your builds and track work items like bugs.
 
 <a name="Ex4Task1"></a>
-#### Task 1 - Sign up for a VSTS Account ####
+#### Task 1 - Signing up for a VSTS Account ####
 
 In this task, you will sign up for a free VSTS account.
 
@@ -357,7 +357,7 @@ In this task, you will sign up for a free VSTS account.
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. Continue to the next task.
 
 <a name="Ex4Task2"></a>
-#### Task 2 - Create a New Team Project ####
+#### Task 2 - Creating a New Team Project ####
 
 In this task, you will create a new Team Project.
 
@@ -381,12 +381,12 @@ In this task, you will create a new Team Project.
     _The Team Project Dashboard_
 
 <a name="Exercise5"></a>
-### Exercise 5: Push the Source Code to the VSTS Team Project ###
+### Exercise 5: Pushing the Source Code to the VSTS Team Project ###
 
 In this exercise, you will push the source code to your VSTS Team Project. Once the code is in the team project, you will branch it.
 
 <a name="Ex5Task1"></a>
-#### Task 1 - Initialize the Local Repo ####
+#### Task 1 - Initializing the Local Repo ####
 
 In this task, you will initialize a local Git repo for your source code. Since there is more code in the repository than just the solution you have open, you will use the command line to initialize the repo.
 
@@ -459,7 +459,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
     _No changes in Team Explorer_
 
 <a name="Ex5Task2"></a>
-#### Task 2 - Push the Code to the VSTS Repo ####
+#### Task 2 - Pushing the Code to the VSTS Repo ####
 
 In this task, you will add the **remote** - that is, a repo that other developers (and processes like builds) can **pull** code from. While the entire source history lives in your local Git repo, you will have to share your code somehow for others to read and change it. The _unit of sharing_ (if you will) is the **remote** repo.
 
@@ -540,12 +540,12 @@ In this task, you will add the **remote** - that is, a repo that other developer
     _The code pushed to VSTS_
 
 <a name="Exercise6"></a>
-### Exercise 6: Run and Examine Unit Tests ###
+### Exercise 6: Running Unit Tests ###
 
 In this exercise, you will run unit tests against the **Client.Core** library. You will explore the architecture of the unit tests and how to write tests against hard-to-test code. You will also learn how to mock service references for unit testing. You will also see how to calculate code coverage for a solution.
 
 <a name="Ex6Task1"></a>
-#### Task 1 - Run Unit Tests ####
+#### Task 1 - Running Unit Tests ####
 
 In this task, you will run the unit tests.
 
@@ -572,15 +572,15 @@ In this task, you will run the unit tests.
     ![Run the unit tests](Images/vs-tex-run-unit-tests.png "Run the unit tests")
 
     _Run the unit tests_
-    
+
     You should see a test failure - you will fix this later.
-    
+
     ![Test Results with a failure](Images/vs-tex-test-failure.png "Test Results with a failure")
-    
+
     _Test Results with a failure_
-    
+
 <a name="Ex6Task2"></a>
-#### Task 2 - Run Tests with Code Coverage ####
+#### Task 2 - Running Tests with Code Coverage ####
 
 In this task you will analyze the code coverage for the unit tests.
 
@@ -595,7 +595,7 @@ In this task you will analyze the code coverage for the unit tests.
 1. Expand **myhealth.client.core.dll** and examine the coverage results. You will examine the unit tests in more detail later.
 
 <a name="Ex6Task3"></a>
-#### Task 3 - Run UI Tests ####
+#### Task 3 - Running UI Tests ####
 
 In this task, you will run UI tests.
 
