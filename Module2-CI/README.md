@@ -39,10 +39,10 @@ The following is required to complete this module:
 
 Before continuing, you must sign up for a free VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Task 2](#Ex4Task2).
+> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
 
 <a name="SetupTask1"></a>
-#### Setup Task 1 - Create a New VSTS Account ####
+#### Setup Task 1 - Creating a New VSTS Account ####
 
 In this setup task, you will create a new VSTS account.
 
@@ -70,7 +70,7 @@ In this setup task, you will create a new VSTS account.
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. The setup script will do this for you, so you can just go on to the next task.
 
 <a name="SetupTask2"></a>
-#### Setup Task 2 - Generate a Personal Access Token (PAT) ####
+#### Setup Task 2 - Generating a Personal Access Token (PAT) ####
 
 In this setup task, you will generate a Personal Access Token (PAT) which is required to run the setup script.
 
@@ -82,13 +82,13 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
 
     _Accessing My Profile page_
 
-1. Click the Security menu on the left. In the Personal Access Tokens section, click the **Add** button.
+1. Click the **Security** tab on the left. In the **Personal Access Tokens** section, click **Add**.
 
     ![Click Add in the Personal Access Token section](Images/vsts-add-pat.png "Click Add in the Personal Access Token section")
 
     _Click Add in the Personal Access Token section_
 
-1. In the form, enter the name BuildWorkshop. Leave all the defaults and click Create:
+1. In the form, enter the name _BuildWorkshop_. Leave all the defaults and click **Create**:
 
     ![Creating a PAT](Images/vsts-create-pat-form.png "Creating a PAT")
 
@@ -99,15 +99,15 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
     ![Copying the PAT](Images/vsts-note-pat.png "Copying the PAT")
 
     _Copying the PAT_
- 
+
 <a name="SetupTask3"></a>
-#### Setup Task 3 - Create a Xamarin Account ####
+#### Setup Task 3 - Creating a Xamarin Account ####
 
 In this task, you will create a Xamarin account.
 
 > **Note**: If you have a Xamarin business license you can use it and skip this task.
 
-1. Open a browser to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
+1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
 
 	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
 
@@ -122,7 +122,7 @@ In this task, you will create a Xamarin account.
 	> **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
 
 <a name="SetupTask4"></a>
-#### Setup Task 4 - Activate your Xamarin Account in Visual Studio ####
+#### Setup Task 4 - Activating your Xamarin Account in Visual Studio ####
 
 In this setup task, you will activate your Xamarin Account in Visual Studio.
 
@@ -132,28 +132,26 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
     _Xamarin Account in the Tools Menu_
 
-1. Click the **Log In** button.
+1. Click **Log In**.
 
     ![Xamarin Login in Visual Studio](Images/vs-xamarin-account-login.png "Xamarin Login in Visual Studio")
 
     _Xamarin Login in Visual Studio_  
 
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press the **Login** button.
+1. Enter the email address and password that you used for creating your Xamarin account in [Task 3](#SetupTask3) and press **Login**.
 
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
 
-1. Once activated, you should see your account has been logged in.
+1. Once activated, you should see your account has been logged in. You can close the dialog.
 
     ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
 
     _Logged in to Xamarin in Visual Studio_
 
-1. You can close the dialog.
-
 <a name="SetupTask5"></a>
-#### Setup Task 5 - Activate a Xamarin Business Trial ####
+#### Setup Task 5 - Activating a Xamarin Business Trial ####
 
 In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
 
@@ -184,9 +182,9 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
     ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
 
     _Xamarin Business Trail confirmation_
-    
+
 <a name="SetupTask6"></a>
-#### Setup Task 6 - Run the Setup Script ####
+#### Setup Task 6 - Running the Setup Script ####
 
 In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1, skip this section**.
 
@@ -199,18 +197,18 @@ In order to run the exercises in this module, you will need to set up your envir
 	```
 
 	where:
-	- `{youraccount}` is the VSTS account name you created earlier 
+	- `{youraccount}` is the VSTS account name you created earlier
 	- `{yourPAT}` is the VSTS PAT you created earlier.
 	- `{xamarinEmail}` is the email address for your Xamarin account
 	- `{xamarinPassword}` is the password for your Xamarin account
 
 	> **Note**: For example, the command should look something like:
-	> 
+	>
 	> ```powershell
 	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
 	> ```
 
-1. Wait until you see a green `Done!` before continuing.
+1. Wait until you see a green **Done!** before continuing.
 
 	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
 
@@ -222,30 +220,30 @@ In order to run the exercises in this module, you will need to set up your envir
 ## Exercises ##
 This module includes the following exercises:
 
-1. [Remove the iOS Projects from the Solution](#Exercise1)
-1. [Create a Team Build](#Exercise2)
-1. [Queue the Build and Fix the Bug](#Exercise3)
-1. [Improve Package Versioning](#Exercise4)
+1. [Removing the iOS Projects from the Solution](#Exercise1)
+1. [Creating a Team Build](#Exercise2)
+1. [Queueing the Build and Fix the Bug](#Exercise3)
+1. [Improving Package Versioning](#Exercise4)
 
 Estimated time to complete this module: **60 minutes**
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this module describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" ></a>
-### Exercise 1: Remove the iOS Projects from the Solution ###
+### Exercise 1: Removing the iOS Projects from the Solution ###
 
 In this exercise, you will remove the iOS applications from the solution. Module 1 covered in detail how Xamarin allows you to code iOS applications using C# on Windows! However, compiling the iOS projects requires Mac hardware, which you do not have for this lab.
 
 > **Note**: You could use easily a service like [MacInCloud](http://www.macincloud.com/) to "rent" Mac hardware for your builds. The VSTS cross-platform agent is itself cross-platform, so it can run on any Mac servers you have as well.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Open the HealthClinic.Biz Xamarin Solution ####
+#### Task 1 - Opening the HealthClinic.Biz Xamarin Solution ####
 
 > **Note**: You can skip this task if you have completed Module 1.
 
 In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
 
-1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
+1. In Visual Studio, open the **04_Demos_NativeXamarinApps.sln** solution located at **Source / Setup / HealthClinic.biz**.
 
 1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
 
@@ -253,7 +251,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     _The Xamarin Mac Agent Dialog_
 
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog. 
+    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
 1. You should see 8 projects in the solution.
 
@@ -288,19 +286,13 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
     _Ignore the InitializeComponent error_
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Remove the iOS Projects from the Solution ####
+#### Task 2 - Removing the iOS Projects from the Solution ####
 
 In this task, you will remove the iOS applications from the solution.
 
 > **Note**: If did not complete Module 1, take a few moments to browse the iOS projects before you remove them.
 
-1. Make sure the solution is open. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
-
-    > **Note**: If you have the **04_Demos_NativeXamarinApps.sln** open, then go to the next step.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the "Don't show this again" checkbox and click **OK**.
-
-1. Remove the iOS projects from the solution. To do this, in **Team Explorer**, right-click each project ending with iOS and click **Remove**.
+1. In order to remove the iOS projects, make sure the solution from the previous task is opened. Then, in **Team Explorer**, right-click each project ending with iOS and click **Remove**.
 
     ![Remove the iOS projects from the solution](Images/vs-remove-ios-projects.png "Remove the iOS projects from the solution")
 
@@ -314,21 +306,21 @@ In this task, you will remove the iOS applications from the solution.
 
 1. In the **Solution Explorer**, right-click the solution node (the top-most node) and click **Commit**. The only change should be the solution file.
 
-1. Enter `Removing iOS projects` as the commit message. Then, click the drop-down next to the **Commit** button and click  **Commit and Push**.
+1. Enter _Removing iOS projects_ as the commit message. Then, click the drop-down next to the **Commit** button and click  **Commit and Push**.
 
     ![Commit the Solution changes](Images/vs-commit-solution-change.png "Commit the Solution changes")
 
     _Commit the Solution changes_
 
 <a name="Exercise2" ></a>
-### Exercise 2: Create a Team Build ###
+### Exercise 2: Creating a Team Build ###
 
 In this exercise, you will create a Team Build to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
 <a name="Ex2Task1"></a>
-#### Task 1 - Create the Build Definition ####
+#### Task 1 - Creating the Build Definition ####
 
-In this task, you will log in to VSTS and create a build from the `master` branch in the repo.
+In this task, you will log in to VSTS and create a build from the **master** branch in the repo.
 
 1. Log in to the **HealthClinic** team project in VSTS. In order to do this, open a browser and navigate to your VSTS account (something like _https://buildworkshop.visualstudio.com_). Once you are logged in, you may see a list of recently accessed Team Projects. If **HealthClinic** is listed, click the link. If it is not listed, then click the **Browse** link and select the **HealthClinic** team project.
 
@@ -361,13 +353,13 @@ In this task, you will log in to VSTS and create a build from the `master` branc
     >**Note**: The **Hosted Agent** is an agent that is hosted by VSTS. You can also install agents onto your own datacenter (or machine). These are known as _private agents_. When builds are queued onto the hosted agent, a VM is spun up to execute the build. The VM is then torn down again once the build completed. This means that you do not have to maintain your own build infrastructure. However, the hosted build VM image is maintained by VSTS and is preconfigured with software like Visual Studio, npm and other build requirements. If you require software that is not on the hosted agent, you will have to use a private agent. Fortunately for Xamarin projects, the hosted agent has everything required to build and package Xamarin projects. Once again iOS builds are the exception, requiring Mac hardware. You can integrate the hosted build into [MacInCloud](http://www.macincloud.com/) in order to build iOS packages.
 
 <a name="Ex2Task2"></a>
-#### Task 2 - Configure the Build Tasks ####
+#### Task 2 - Configuring the Build Tasks ####
 
 In this task, you will configure the Build tasks.
 
 1. The solution requires several NuGet packages. Typically, the packages are not committed into the source repo. Therefore, the build must _restore_ the list of packages, pulling the packages from a NuGet feed. The NuGet installer task does exactly this.
 
-    Since there are multiple solutions in the repo, you need to configure which solution NuGet should use to get the list of required packages. Click on the NuGet installer task. Click the **...** button to the right of the **Path to Solution** parameter.
+    Since there are multiple solutions in the repo, you need to configure which solution NuGet should use to get the list of required packages. Click the **NuGet Installer** task. Click the **...** button to the right of the **Path to Solution** parameter.
 
     ![Browse to the Solution for NuGet](Images/vsts-build-nuget-browse.png "Browse to the Solution for NuGet")
 
@@ -419,7 +411,7 @@ In this task, you will configure the Build tasks.
 
     _Configure Test Run_
 
-1. Add a Visual Studio Build task to build the Android Package. When the solution builds with the existing **Visual Studio Build** task, it will only compile the Android project. In order to deploy the Android application, an **apk** file must be produced and signed. The **Xamarin.Android** projects can do this if instructed to do so. Click **Add build step...** to add a new task to the build. In the **Build** tab, find the **Visual Studio Build** task and click the Add button. Close the dialog.
+1. Add a **Visual Studio Build** task to build the Android Package. When the solution builds with the existing **Visual Studio Build** task, it will only compile the Android project. In order to deploy the Android application, an **apk** file must be produced and signed. The **Xamarin.Android** projects can do this if instructed to do so. Click **Add build step...** to add a new task to the build. In the **Build** tab, find the **Visual Studio Build** task and click the Add button. Close the dialog.
 
 1. Again the task is added at the bottom of the task list, so drag it so that it is just below the **Visual Studio Test** task.
 
@@ -435,7 +427,7 @@ In this task, you will configure the Build tasks.
 
     > **Note**: In real life scenarios, you would create a private keystore for signing your Android packages securely. You can read more about this process in this [MSDN article](https://msdn.microsoft.com/en-us/library/vs/alm/build/apps/secure-certs).
 
-1. Configure the Copy Files Task. Click the **Copy Files** task. This task will copy files that we want as outputs of this build to the build artifacts staging directory. Any files in this directory will be published in the **Publish Build Artifacts** step.
+1. Configure the **Copy Files** Task. Click the **Copy Files** task. This task will copy files that we want as outputs of this build to the build artifacts staging directory. Any files in this directory will be published in the **Publish Build Artifacts** step.
 
 1. Change the **Source Folder** parameter to be **src/MyHealth.Client.Droid**. Change the **Contents** parameter to be `**\*-signed.apk`. The **Contents** parameter supports a minimatch filter, so this value tells the task to copy any file ending with `-signed.apk` in any subdirectory of the **Source Folder** to the **Target Folder**. Your task should look as follows.
 
@@ -460,13 +452,13 @@ In this task, you will configure the Build tasks.
     _Save the Build Definition_
 
 <a name="Exercise3" ></a>
-### Exercise 3: Queue the Build and Fix the Bug ###
+### Exercise 3: Queueing the Build and Fix the Bug ###
 
 In this exercise, you will manually queue the build and analyze the build report. The build will fail, and you will log a bug to fix the problem. You will then
 fix the bug and push the fix to the VSTS repo - this will automatically trigger the CI build.
 
 <a name="Ex3Task1"></a>
-#### Task 1 - Queue the Build and Analyze the Build Report ####
+#### Task 1 - Queueing the Build and Analyzing the Build Report ####
 
 In this task, you will queue a build, and once complete, examine the build report and log a bug for the failing test.
 
@@ -496,7 +488,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
     _The build report for the failed build_
 
-1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build). Under Code Coverage you will see the code coverage results.
+1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build). Under **Code Coverage** you will see the code coverage results.
 
     >**Note**: If you click **Download Code Coverage results** the results will open in Visual Studio and you will be able to drill down into coverage details.
 
@@ -535,7 +527,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 1. Close the form.
 
 <a name="Ex3Task2"></a>
-#### Task 2 - Fix the Bug in Visual Studio ####
+#### Task 2 - Fixing the Bug in Visual Studio ####
 
 In this task, you will open the failing test in Visual Studio and fix the bug.
 
@@ -661,7 +653,7 @@ In this task, you will open the failing test in Visual Studio and fix the bug.
 1. Close the Artifacts Explorer.
 
 <a name="Exercise4" ></a>
-### Exercise 4: Improve Package Versioning ###
+### Exercise 4: Improving Package Versioning ###
 
 In this exercise, you will improve the versioning of the Android package by installing a custom build task from the VSTS Marketplace.
 
@@ -674,7 +666,7 @@ In this task, you will examine the **AndroidManifest.xml** file to see where the
 
 1. Open Visual Studio and open the **04_Demos_NativeXamarinApps.sln** solution if it not already open.
 
-1. In the Solution Explorer, expand the **MyHealth.Client.Droid** project, then expand the **Properties** folder and double click **AndroidManifest.xml** to open it
+1. In the Solution Explorer, expand the **MyHealth.Client.Droid** project, then expand the **Properties** folder and double click **AndroidManifest.xml** to open it.
 
     ![Open the Android Manifest file](Images/vs-open-android-manifest.png "Open the Android Manifest file")
 
@@ -687,27 +679,27 @@ In this task, you will examine the **AndroidManifest.xml** file to see where the
     Now that you know where to set the version code for the **apk**, you can configure the build to set it during the build.
 
 <a name="Ex4Task2"></a>
-#### Task 2 - Install an Extension from the VSTS Marketplace ####
+#### Task 2 - Installing an Extension from the VSTS Marketplace ####
 
 In this task, you will install a VSTS extension that contains some custom build tasks that will help you set the **android:versionCode** during the build.
 
 > **Note**: You could do this many ways, including writing a PowerShell or bat script. However, it is always a good idea to search the Marketplace to see if someone has created a Task that solves a problem you are facing before you reinvent the wheel.
 
-1. In the browser, open the **HealthClinic** Team Project in your VSTS account. In the upper right corner, click the Basket icon and select **Browse Marketplace**
+1. In the browser, open the **HealthClinic** Team Project in your VSTS account. In the upper right corner, click the Basket icon and select **Browse Marketplace**.
 
     ![Browse to the Marketplace](Images/vsts-open-marketplace.png "Browse to the Marketplace")
 
     _Browse to the Marketplace_
 
-1. In the toolbar at the top, click the magnifying glass icon. Enter the term `version assemblies` and press enter. Click the tile **Colin's ALM Corner Build Tasks**
+1. In the toolbar at the top, click the magnifying glass icon. Enter the term `version assemblies` and press enter. Click the tile **Colin's ALM Corner Build Tasks**.
 
     ![Search for Version Assemblies in the Marketplace](Images/vsts-marketplace-search.png "Search for Version Assemblies in the Marketplace")
 
     _Search for Version Assemblies in the Marketplace_
 
-1. This extension contains several build tasks. One of them is **VersionAssemblies** and will allow you to version the **apk** file via the Android manifest file during the build. Click the **Install** button.
+1. This extension contains several build tasks. One of them is **VersionAssemblies** and will allow you to version the **apk** file via the Android manifest file during the build. Click **Install**.
 
-1. In the confirmation window, ensure that the correct VSTS account is selected and click the **Continue** button. Once permission has been verified, click the **Confirm** button.
+1. In the confirmation window, ensure that the correct VSTS account is selected and click **Continue**. Once permission has been verified, click **Confirm**.
 
     ![Confirm the install](Images/vsts-install-col-tasks.png "Confirm the install")
 
