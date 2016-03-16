@@ -34,8 +34,6 @@ $createProjectUri = "defaultcollection/_apis/projects?api-version=2.0-preview"
 $queryProjectUri = "defaultcollection/_apis/projects/$projectName?&api-version=1.0"
 $createBuildUri = "defaultcollection/$projectName/_apis/build/definitions?api-version=2.0"
 $queueBuildUri = "defaultcollection/$projectName/_apis/build/builds?api-version=2.0"
-$queryConnectionUri = "_apis/connectionData"
-$installExtensionsUri = "https://marketplace.visualstudio.com/_apis/gallery/acquisitionrequests?api=version2.2-preview.1"
 
 # create headers
 $headers = @{
@@ -127,26 +125,6 @@ if (!$projectExists) {
 
     Pop-Location
 }
-
-############################################################################
-Write-Host "Installing 'ColinsALMCorner Build Extensions' from Martkaplace" -ForegroundColor Yellow
-
-# TODO: this section is not working
-
-Write-Host "Getting connection data" -ForegroundColor Cyan
-$uri = "$vstsUrl/$queryConnectionUri"
-$response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-$instanceId = $response.instanceId
-
-Write-Host "Installing extension" -ForegroundColor Cyan
-$body = @{
-    targets = @($instanceId)
-    itemId = $extensionId
-    operationType = "install"
-}
-
-$response = Invoke-RestMethod -Method Post -Uri $installExtensionsUri -ContentType "application/json" `
-                              -Body (ConvertTo-Json $body)
 
 ############################################################################
 Write-Host "Creating Team build $buildName" -ForegroundColor Yellow

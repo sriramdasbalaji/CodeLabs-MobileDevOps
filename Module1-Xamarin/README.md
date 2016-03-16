@@ -13,6 +13,13 @@ However, using [Xamarin](https://xamarin.com/) developers can build and debug na
 [Visual Studio Team Services (VSTS)](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) for source code, work item mangement, CI and CD for
 mobile applications.
 
+### A Note About HealthClinic.Biz ###
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
+been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
+response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the 
+[Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
+
 <a name="Objectives"></a>
 ### Objectives ###
 In this module, you will see how to:
@@ -688,8 +695,6 @@ In this task you will run the unit tests.
     
     _Test Results with a failure_
     
-    Right click the 
-
 <a name="Ex6Task2"></a>
 #### Task 2 - Run Tests with Code Coverage ####
 

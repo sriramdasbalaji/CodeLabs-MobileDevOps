@@ -13,12 +13,19 @@ manage the target infrastructure - that is, the modile devices of the users. Get
 In Module 1, you covered developing cross platform mobile apps using Xamarin. You learned about the project structure and Portable Class Libraries and saw
 how to unit test the core of the application. You then created a Visual Studio Team Services (VSTS) Team Project and committed the code into it.
 
-In Module 1, you covered how to create a Continuous Integration Build in VSTS that queues a build to compile, test and package code for deployment every time
+In Module 2, you covered how to create a Continuous Integration Build in VSTS that queues a build to compile, test and package code for deployment every time
 a developer pushes code to the VSTS repo.
 
 In this module, you will learn how to create a Release to automatically release a new version of the app to users. To do this you will release the Android
 app through [HockeyApp](http://hockeyapp.net/) and Release Management in VSTS. HockeyApp is a service that allows you to manage releases of your apps, gather
 feedback and diagnose crash reports from your apps.
+
+### A Note About HealthClinic.Biz ###
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
+been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
+response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the 
+[Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -217,15 +224,19 @@ In order to run the exercises in this module, you will need to set up your envir
 1. Enter the following command:
 
 ```powershell
-.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT}
+.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
 ```
 
-where `{youraccount}` is the VSTS account name you created earlier and `{yourPAT}` is the VSTS PAT you created earlier.
+where:
+- `{youraccount}` is the VSTS account name you created earlier 
+- `{yourPAT}` is the VSTS PAT you created earlier.
+- `{xamarinEmail}` is the email address for your Xamarin account
+- `{xamarinPassword}` is the password for your Xamarin account
 
 For example, the command should look something like:
 
 ```powershell
-.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
+.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
 ```
 
 Wait until you see a green `Done!` before continuing.
@@ -737,6 +748,10 @@ In this task you will obtain the app's unique HockeyApp ID from the HockeyApp da
     ![A new version in HockeyApp](Images/hockeyapp-app-update.png "A new version in HockeyApp")
     
     _A new version in HockeyApp_
+    
+    >**Note**: If you created the build in Module 2, the build definition includes a versioning task that versions the `apk` files incrementally for each build. However,
+    if you ran the setup script (you did not do Module 2) then the version number will not increment. You will still see new versions as they become available - the numbers
+    will be the same though.
     
 1. Install the latest App Manually
     In the emulator, open up HockeyApp. Click the refresh button and click on the `Patients` app. You will see two versions listed: the current one and the new build. 

@@ -38,25 +38,6 @@
                       "enabled":  true,
                       "continueOnError":  false,
                       "alwaysRun":  false,
-                      "displayName":  "Version Assemblies using AndroidManifest.xml",
-                      "task":  {
-                                   "id":  "5b4d14d0-3868-11e4-a31d-3f0a2d8202f4",
-                                   "versionSpec":  "*"
-                               },
-                      "inputs":  {
-                                     "sourcePath":  "src/MyHealth.Client.Droid",
-                                     "filePattern":  "AndroidManifest.xml",
-                                     "buildRegex":  "(?:\\d+\\.\\d+\\.)(\\d+)",
-                                     "failIfNoMatchFound":  "true",
-                                     "replaceRegex":  "versionCode=\"\\d+",
-                                     "replacePrefix":  "versionCode=\"",
-                                     "buildRegexIndex":  "1"
-                                 }
-                  },
-                  {
-                      "enabled":  true,
-                      "continueOnError":  false,
-                      "alwaysRun":  false,
                       "displayName":  "Build solution 04_Demos_NativeXamarinApps.sln",
                       "task":  {
                                    "id":  "71a9a2d3-a98a-4caa-96ab-affca411ecda",

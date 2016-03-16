@@ -13,6 +13,13 @@ quality of the code just committed. The CI build can even package the code so th
 In Module 1, you covered developing cross platform mobile apps using Xamarin. You learned about the project structure and Portable Class Libraries and saw
 how to unit test the core of the application. You then created a Visual Studio Team Services (VSTS) Team Project and committed the code into it.
 
+### A Note About HealthClinic.Biz ###
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
+been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
+response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the 
+[Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
+
 <a name="Objectives" ></a>
 ### Objectives ###
 In this module, you will see how to:
