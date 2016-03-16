@@ -48,7 +48,7 @@ The following is required to complete this module:
 
 Before continuing, you must sign up for a free VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#Ex4Task2).
+> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
 
 <a name="SetupTask1"></a>
 #### Setup Task 1 - Create a New VSTS Account ####
@@ -208,13 +208,13 @@ In order to run the exercises in this module, you will need to set up your envir
 	```
 
 	where:
-	- `{youraccount}` is the VSTS account name you created earlier 
+	- `{youraccount}` is the VSTS account name you created earlier
 	- `{yourPAT}` is the VSTS PAT you created earlier.
 	- `{xamarinEmail}` is the email address for your Xamarin account
 	- `{xamarinPassword}` is the password for your Xamarin account
 
 	> **Note**: For example, the command should look something like:
-	> 
+	>
 	> ```powershell
 	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
 	> ```
@@ -256,10 +256,10 @@ In this task you will create a new HockeyApp account.
 
 1. Open a browser and navigate to [http://hockeyapp.net](http://hockeyapp.net). On the upper right, click the **SIGN UP FOR FREE** link.
 
-    
+
     ![Sign up for free on HockeyApp](Images/hockeyapp-signup.png "Sign up for free on HockeyApp")
 
-    
+
     _Sign up for free on HockeyApp_
 
 1. Fill in your name, email address and password. Make sure **I'm a developer** is checked. You can fill in your company and opt in to notification via email if you choose to. Click **Register**.
