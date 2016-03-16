@@ -8,7 +8,7 @@
 
 Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, good DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) are also challenging.
 
-However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services (VSTS)](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) for source code, work item management, CI and CD for mobile applications.
+However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, CI and CD for mobile applications.
 
 ### A Note About HealthClinic.Biz ###
 The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
