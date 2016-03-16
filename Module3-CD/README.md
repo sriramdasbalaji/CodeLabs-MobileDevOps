@@ -201,22 +201,23 @@ In order to run the exercises in this module, you will need to set up your envir
 
 1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
 
-1. Enter the following command:
+1. Enter the following command.
 
-```powershell
-.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
-```
+	```powershell
+	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
+	```
 
-where:
-- `{youraccount}` is the VSTS account name you created earlier
-- `{yourPAT}` is the VSTS PAT you created earlier.
-- `{xamarinEmail}` is the email address for your Xamarin account
-- `{xamarinPassword}` is the password for your Xamarin account
+	where:
+	- `{youraccount}` is the VSTS account name you created earlier 
+	- `{yourPAT}` is the VSTS PAT you created earlier.
+	- `{xamarinEmail}` is the email address for your Xamarin account
+	- `{xamarinPassword}` is the password for your Xamarin account
 
-> **Note**: For example, the command should look something like:
-```powershell
-.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
-```
+	> **Note**: For example, the command should look something like:
+	> 
+	> ```powershell
+	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
+	> ```
 
 1. Wait until you see a green `Done!` before continuing.
 
@@ -255,8 +256,10 @@ In this task you will create a new HockeyApp account.
 
 1. Open a browser and navigate to [http://hockeyapp.net](http://hockeyapp.net). On the upper right, click the **SIGN UP FOR FREE** link.
 
+    
     ![Sign up for free on HockeyApp](Images/hockeyapp-signup.png "Sign up for free on HockeyApp")
 
+    
     _Sign up for free on HockeyApp_
 
 1. Fill in your name, email address and password. Make sure **I'm a developer** is checked. You can fill in your company and opt in to notification via email if you choose to. Click **Register**.

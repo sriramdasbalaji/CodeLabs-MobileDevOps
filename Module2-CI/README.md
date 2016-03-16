@@ -167,7 +167,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **ctrl-shift-b** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
 
     ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
 
@@ -192,17 +192,23 @@ In order to run the exercises in this module, you will need to set up your envir
 
 1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
 
-1. Enter the following command, where `{youraccount}` is the VSTS account name you created earlier and `{yourPAT}` is the VSTS PAT you created earlier.
+1. Enter the following command.
 
-	````PowerShell
-	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT}
-	````
+	```powershell
+	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
+	```
+
+	where:
+	- `{youraccount}` is the VSTS account name you created earlier 
+	- `{yourPAT}` is the VSTS PAT you created earlier.
+	- `{xamarinEmail}` is the email address for your Xamarin account
+	- `{xamarinPassword}` is the password for your Xamarin account
 
 	> **Note**: For example, the command should look something like:
-
-	> ````PowerShell
-	 .\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
-	 ````
+	> 
+	> ```powershell
+	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
+	> ```
 
 1. Wait until you see a green `Done!` before continuing.
 
@@ -288,11 +294,9 @@ In this task, you will remove the iOS applications from the solution.
 
 > **Note**: If did not complete Module 1, take a few moments to browse the iOS projects before you remove them.
 
-1. Make sure the solution is open.
+1. Make sure the solution is open. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
 
-    > **Note**: If you have the `04_Demos_NativeXamarinApps.sln` open, then go to the next step.
-
-    In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
+    > **Note**: If you have the **04_Demos_NativeXamarinApps.sln** open, then go to the next step.
 
 1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the "Don't show this again" checkbox and click **OK**.
 
@@ -443,7 +447,7 @@ In this task, you will configure the Build tasks.
 
 1. Deactivate the Xamarin License. Click the **Add build step...** button. Under **Utility**, find the **Xamarin License** task and click **Add**. Then close the dialog.
 
-1. Drag this new task above the **Publish Build Artifacts** task. Change the **Action** parameter to **Deactivate**. Enter `$(XamarinEmail)` and `$(XamarinPassword` for the email and password parameters respectively. Finally, make sure that you check the **Always Run** checkbox. This will ensure that the Xamarin license is always deactivated, even if a previous step fails (like unit tests for example).
+1. Drag this new task above the **Publish Build Artifacts** task. Change the **Action** parameter to **Deactivate**. Enter `$(XamarinEmail)` and `$(XamarinPassword)` for the email and password parameters respectively. Finally, make sure that you check the **Always Run** checkbox. This will ensure that the Xamarin license is always deactivated, even if a previous step fails (like unit tests for example).
 
     ![Deactivate the Xamarin License](Images/vsts-build-xamarin-deactivate.png "Deactivate the Xamarin License")
 
@@ -502,7 +506,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
     _Open the Test Results page_
 
-1. In the test list, click the failed test. On the right you will see the Error message (`Assert.IsNotNull` failed) as well as the full stack trace.
+1. In the test list, click the failed test. On the right, you will see the Error message (i.e. _Assert.IsNotNull failed_) as well as the full stack trace.
 
 1. Logging a bug. Logging a bug to track the fix is optional - but can be useful if you're going to defer the bug fix. It is best practice to fix CI build failures as soon as possible, since a failing CI build is signaling that there is a quality issue in the code.
 
@@ -636,7 +640,7 @@ In this task, you will open the failing test in Visual Studio and fix the bug.
 
     > **Note**: In the example image, the `Xamarin CI` build will be queued every time a pull request into `master` is initiated. The Pull Request will be blocked unless there is a valid build. The policy also requires that work items be associated with the commits and blocks if there are none. Finally, the policy enforces that at least 2 reviewers must approve the Pull Request before it can be merged.
 
- 1. Viewing the Build Artifacts. Go back to the **BUILD** hub. At the top of the build report for the CI build, click the **Artifacts** link.
+1. Viewing the Build Artifacts. Go back to the **BUILD** hub. At the top of the build report for the CI build, click the **Artifacts** link.
 
     ![View the artifacts](Images/vsts-build-artifacts.png "View the artifacts")
 
