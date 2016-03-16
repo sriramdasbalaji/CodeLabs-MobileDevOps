@@ -79,7 +79,7 @@ In this exercise, you will create a Xamarin account that you will use for the re
 
 In this task, you will create a Xamarin account.
 
-1. Navigate to the [Xamarin Store](https://store.xamarin.com/login "Xamarin Store login") and click the **Create a new account** link:.
+1. Navigate to the [Xamarin Store](https://store.xamarin.com/login "Xamarin Store login") and click the **Create a new account** link.
   > **Note**: If you have a Xamarin business license you can use it and skip this exercise.
 
 	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
@@ -238,7 +238,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
 1. Examine how the **AppointmentsViewModel** is reused in several projects. Open the following file: **MyHealth.Client.Core\ViewModels\AppointmentsViewModel.cs**. This class defines the view model for the appointments page in the app. It defines several properties that raise property changed events when they are modified and several list properties that are **Observable** - that is, they also raise events when they are modified. This object can be used for databinding to controls in any UI that understands data binding. Furthermore, the class defines several **Commands** that can be triggered from UI elements such as buttons. Finally, it defines how the data is retrieved from the data store via services.
 
-1. Open the following files and see how this **ViewModel** is reused in the other projects:
+1. Open the following files and see how this **ViewModel** is reused in the other projects.
 
     - **MyHealth.Client.Droid\Views\AppointmentsFragment.cs**
     - **MyHealth.Client.iOS\Views\AppointmentsView.cs**
