@@ -232,9 +232,8 @@ This module includes the following exercises:
 
 1. [Create a HockeyApp Account](#Exercise1)
 1. [Create a VSTS Release Definition](#Exercise2)
-1. [Queue the Release](#Exercise3)
-1. [Track User Feedback](#Exercise4)
-1. [Track App Crashes](#Exercise5)
+1. [Track User Feedback](#Exercise3)
+1. [Track App Crashes](#Exercise4)
 
 Estimated time to complete this module: **60 minutes**
 
@@ -248,7 +247,7 @@ HockeyApp and your VSTS account so that you can later log bugs in HockeyApp and 
 
 > **Note**: Even though this workshop will focus on releasing an Android app through HockeyApp, the same principles apply for releasing iOS and Windows applications through HockeyApp.
 
-<a name="Ex1Task1"></a>
+<a name="Ex1Task1" ></a>
 #### Task 1 - Create a HockeyApp Account ####
 
 In this task you will create a new HockeyApp account.
@@ -338,7 +337,7 @@ In this task you will install the HockeyApp extension into your VSTS account.
 
 1. You can now close the settings tab.
 
-<a name="Ex1Task3"></a>
+<a name="Ex1Task3" ></a>
 #### Task 3 - Install HockeyApp in the Emulator ####
 
 In this task you will install HockeyApp on a device for testing the HealthClinic Patients app which is being produced by the CI build. The device you are going to use is the Android
@@ -443,7 +442,7 @@ In this exercise you will create a Release definition. The Release defines how p
 
 The Release definition lets you track where in a release pipeline a particular build is, how it moves and is configured, and who approves it at each stage. The release takes one or more _artifacts_ as source packages - in your case, the artifact is the CI build you created in Module 2.
 
-<a name="Ex2Task1"></a>
+<a name="Ex2Task1" ></a>
 #### Task 1 - Create a Release Definition ####
 
 In this task you will create a new Release Definition to release the Android application through HockeyApp.
@@ -536,7 +535,7 @@ In this task you will create a new Release Definition to release the Android app
 
 1. Click **Save** to save the release.
 
-<a name="Ex2Task3"></a>
+<a name="Ex2Task3" ></a>
 #### Task 3 - Trigger the Release Manually ####
 
 In this task you will trigger the release manually to see how the app gets deployed through HockeyApp to the emulator.
@@ -617,12 +616,12 @@ In this task you will trigger the release manually to see how the app gets deplo
 
     _Emulator running the Patients app_
 
-<a name="Exercise4"></a>
-### Exercise 4 - Track User Feedback ###
+<a name="Exercise3" ></a>
+### Exercise 3 - Track User Feedback ###
 
 In this exercise you will learn how to track user feedback from the app back to HockeyApp. In order to do so, you must set a unique HockeyApp App ID in the app settings of the app. Once you have done this, you will push the change to VSTS, which will trigger the CI build. When complete, the CI build will trigger the Release. After confirming an update to the app, you will log feedback from within the app.
 
-<a name="Ex4Task1"></a>
+<a name="Ex3Task1" ></a>
 #### Task 1 - Enter the unique HockeyApp App ID into the code ####
 
 In this task you will obtain the app's unique HockeyApp ID from the HockeyApp dashboard. You will then update the code with this ID and redeploy the app.
@@ -695,7 +694,7 @@ In this task you will obtain the app's unique HockeyApp ID from the HockeyApp da
 
     Once the app is uninstalled, start HockeyApp. Click on the **Patients** app and click the install button. Confirm the install once the download is complete. Once installed, run the app.
 
-<a name="Ex4Task2"></a>
+<a name="Ex3Task2"></a>
 #### Task 2 - Submit Feedback from within the App ####
 
 In this task you will use the HockeyApp feedback form to see how users can provide feedback from an app into HockeyApp.
@@ -752,12 +751,12 @@ In this task you will use the HockeyApp feedback form to see how users can provi
 
 1. Click back to get back to the Settings page of the app.
 
-<a name="Exercise5"></a>
-### Exercise 5 - Track App Crashes ###
+<a name="Exercise4" ></a>
+### Exercise 4 - Track App Crashes ###
 
 In this exercise you will learn how to track app crashes using HockeyApp. You will enable update and crash tracking and create a new release by pushing the code. Then you will perform an operation that crashes the app and then see the crash information in HockeyApp. You will log a Bug to track the crash and fix it. Pushing the fix will again release a new version. You will then confirm that the crash is fixed.
 
-<a name="Ex5Task1"></a>
+<a name="Ex4Task1"></a>
 #### Task 1 - Enable Update and Crash Management ####
 
 In this task you will enable crash and update management using the HockeyApp SDK.
@@ -786,7 +785,7 @@ In this task you will enable crash and update management using the HockeyApp SDK
 
 1. Once the build completes, a new release will be triggered. Wait for the release to complete (to the point where it is paused for post-deployment approval).
 
-<a name="Ex5Task2"></a>
+<a name="Ex4Task2"></a>
 #### Task 2 - Crash the App ####
 
 In this task you will perform an action that crashes the app. You will then look at the crash details in HockeyApp.
@@ -829,7 +828,7 @@ In this task you will perform an action that crashes the app. You will then look
 
     _Crash details_
 
-<a name="Ex5Task3"></a>
+<a name="Ex4Task3"></a>
 #### Task 3 - Configure Bug Tracking to VSTS ####
 
 In this task you will configure Bug Tracking to VSTS from HockeyApp.
@@ -884,7 +883,7 @@ In this task you will configure Bug Tracking to VSTS from HockeyApp.
 
 1. Make a note of the ID of the bug.
 
-<a name="Ex5Task4"></a>
+<a name="Ex4Task4"></a>
 #### Task 4 - Fix the Bug ####
 
 In this task you will fix the bug and release a new version simply by pushing the bug fix.
