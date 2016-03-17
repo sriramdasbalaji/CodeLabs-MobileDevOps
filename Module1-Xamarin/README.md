@@ -6,13 +6,13 @@
 <a name="Overview"></a>
 ## Overview ##
 
-Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, good DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) are also challenging.
+Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, implementing DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD)for mobile solutions is also difficult.
 
 However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, CI and CD for mobile applications.
 
 ### A Note About HealthClinic.Biz ###
-The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has
-been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample from Microsoft. The code has
+been modified slightly for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
 Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
 response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the
 [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
@@ -40,7 +40,7 @@ The following is required to complete this module:
 In order to run the exercises in this module, you will need to set up your environment first.
 
 1. Open Windows Explorer and browse to the module's **Source** folder.
-1. Right-click **Setup.ps1** and select **Run as administrator** to launch the setup process that will configure your environment and install the Source Code for this module.
+1. Right-click **Setup.ps1** and select **Run with PowerShell** to launch the setup process that will configure your environment and install the Source Code for this module.
 1. If the User Account Control dialog box is shown, confirm the action to proceed.
 
 <a name="Exercises"></a>
@@ -61,7 +61,7 @@ Estimated time to complete this module: **60 minutes**
 <a name="Exercise1"></a>
 ### Exercise 1: Signing up for a Xamarin Account ###
 
-Xamarin provides developers with tools to manage cross-platform applications. Xamarin is not free - though you can use a trial account for this workshop. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
+Xamarin provides developers with tools to manage cross-platform applications. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
 
 In this workshop you will be using Xamarin Visual Studio Tools, though the concepts work just as well in Xamarin Studio.
 
@@ -78,15 +78,16 @@ In this exercise, you will create a Xamarin account that you will use for the re
 #### Task 1 - Creating a Xamarin Account ####
 
 In this task, you will create a Xamarin account.
-
-1. Navigate to the [Xamarin Store](https://store.xamarin.com/login "Xamarin Store login") and click the **Create a new account** link.
   > **Note**: If you have a Xamarin business license you can use it and skip this exercise.
+  
+1. Navigate to the [Xamarin Store](https://store.xamarin.com/login "Xamarin Store login") and click the **Create a new account** link.
+
 
 	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
 
 	_Xamarin Store Login screen_
 
-1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
+1. Fill in a name, email address and password. Make a note of the email and password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
 
     ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
 
@@ -281,7 +282,7 @@ In this task, you will run the Android and UWP applications in their respective 
 
     > **Note**: if the button does not say **Simulator** then click the dropdown menu on the right of the button and click **Simulator**. If you do, you can see the other run options you have for UWP applications.
 
-1. The application should launch in the simulator.
+1. The application should launch in the simulator after a few seconds.
 
     ![The Patient app running in the UWP Simulator](Images/patient-app-in-windows-simulator.png "The Patient app running in the UWP Simulator")
 
@@ -301,7 +302,7 @@ In this task, you will run the Android and UWP applications in their respective 
 
     _The Visual Studio debugger breaking_
 
-1. When you want to stop debugging, you can click the Stop button in the toolbar.
+1. Now click the Stop button in the toolbar to stop debugging.
 
     ![The Stop Debugging button](Images/vs-toolbar-stop-debugging.png "The Stop Debugging button")
 
@@ -313,7 +314,8 @@ In this task, you will run the Android and UWP applications in their respective 
 
     _Click Run Android Emulator_
 
-1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. Once it starts up, you should see the emulator run the **Patients** app.
+1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. You may also be asked if you want it to be configured for internet access, and if you click **Yes**.  
+Once it starts up, you should see the emulator run the **Patients** app.
 
     ![App in the Android Emulator](Images/vs-android-emulator-running.png "App in the Android Emulator")
 
@@ -527,13 +529,13 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _Successful push to the remote_
 
-1. If you open the **Solution Explorer**, you will see padlock icons next to all the files. The **Solution Explorer** understands source control, and at present all the files are unchanged in the repo.
+1. If you open the **Solution Explorer**, you will see blue padlock icons to the left of all the files. The **Solution Explorer** understands source control, and at present all the files are unchanged in the repo.
 
     ![Source Control icons in Solution Explorer](Images/vs-source-icons-in-se.png "Source Control icons in Solution Explorer")
 
     _Source Control icons in Solution Explorer_
 
-1. View the **CODE** Hub in VSTS. Navigate to your VSTS **HealthClinic** Team Project. Click on the **CODE** hub (or refresh the page if you are already there). You should see the code on the master branch.
+1. View the **CODE** Hub in VSTS. Navigate to your VSTS **HealthClinic** Team Project that you created. Click on the **CODE** hub (or refresh the page if you are already there). You should see the code on the master branch.
 
     ![The code pushed to VSTS](Images/vsts-code-in-repo.png "The code pushed to VSTS")
 
