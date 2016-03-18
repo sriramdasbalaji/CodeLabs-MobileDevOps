@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.QualityTools.Testing.Fakes;
-using System.Fakes;
 using MyHealth.Client.Core.Model;
 
 namespace MyHealth.Client.Core.UnitTests.Helpers
@@ -12,73 +10,43 @@ namespace MyHealth.Client.Core.UnitTests.Helpers
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Breakfast_BeforeBreakfast_IsTodayBfast()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 7, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Breakfast);
-                Assert.AreEqual(1, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Breakfast, () => new DateTime(2016, 2, 25, 7, 0, 0));
+            Assert.AreEqual(1, ts.TotalHours);
         }
 
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Breakfast_AfterBreakfast_IsTomorrowBfast()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 10, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Breakfast);
-                Assert.AreEqual(22, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Breakfast, () => new DateTime(2016, 2, 25, 10, 0, 0));
+            Assert.AreEqual(22, ts.TotalHours);
         }
 
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Lunch_BeforeLunch_IsLunch()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 10, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Lunch);
-                Assert.AreEqual(4, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Lunch, () => new DateTime(2016, 2, 25, 10, 0, 0));
+            Assert.AreEqual(4, ts.TotalHours);
         }
 
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Lunch_AfterLunch_IsTomorrowLunch()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 15, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Lunch);
-                Assert.AreEqual(23, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Lunch, () => new DateTime(2016, 2, 25, 15, 0, 0));
+            Assert.AreEqual(23, ts.TotalHours);
         }
 
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Dinner_BeforeDinner_IsDinner()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 16, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Dinner);
-                Assert.AreEqual(4, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Dinner, () => new DateTime(2016, 2, 25, 16, 0, 0));
+            Assert.AreEqual(4, ts.TotalHours);
         }
 
         [TestMethod]
         public void Test_GetTimeOffsetForNextPill_Dinner_AfterDinner_IsTomorrowDinner()
         {
-            using (ShimsContext.Create())
-            {
-                ShimDateTime.NowGet = () => new DateTime(2016, 2, 25, 22, 0, 0);
-
-                var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Dinner);
-                Assert.AreEqual(22, ts.TotalHours);
-            }
+            var ts = TimeOfDayHelper.GetTimeOffsetForNextPill(TimeOfDay.Dinner, () => new DateTime(2016, 2, 25, 22, 0, 0));
+            Assert.AreEqual(22, ts.TotalHours);
         }
 
         [TestMethod]

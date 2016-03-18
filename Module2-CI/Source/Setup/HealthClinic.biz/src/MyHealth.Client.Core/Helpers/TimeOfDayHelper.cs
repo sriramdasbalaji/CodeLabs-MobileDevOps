@@ -7,15 +7,22 @@ namespace MyHealth.Client.Core
 {
 	public static class TimeOfDayHelper
 	{
-		public static readonly int DefaultHourGapBetweenTakes = 6;
+        private static readonly Func<DateTime> _dateTimeProvider = () => DateTime.Now;
+
+        public static readonly int DefaultHourGapBetweenTakes = 6;
 
 		static readonly int BreakfastHour = 8;
 		static readonly int LunchHour = BreakfastHour + DefaultHourGapBetweenTakes;
 		static readonly int DinnerHour = LunchHour + DefaultHourGapBetweenTakes;
 
 		public static TimeSpan GetTimeOffsetForNextPill (TimeOfDay timeOfDay)
+        {
+            return GetTimeOffsetForNextPill(timeOfDay, _dateTimeProvider);
+        }
+
+		public static TimeSpan GetTimeOffsetForNextPill (TimeOfDay timeOfDay, Func<DateTime> dateTimeProvider)
 		{
-			var currentDateTime = DateTime.Now;
+            var currentDateTime = dateTimeProvider();
 			var breakfastForToday = new DateTime(
 				currentDateTime.Year, currentDateTime.Month, currentDateTime.Day,
 				BreakfastHour, 0, 0);
