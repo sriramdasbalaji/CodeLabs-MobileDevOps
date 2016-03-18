@@ -6,7 +6,7 @@
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Integration (CI) is a foundational pillar of good DevOps. Once set up, each time code is committed to the source repo, a build is triggered. The build not only compiles the code, but ideally runs code analysis, unit (and sometimes even integration) tests. This provides the team with rapid feedback on the quality of the code just committed. The CI build can even package the code so that it is ready for deployment to test, QA or even Production environments.
+Continuous Integration (CI) is a foundational pillar of DevOps. Once set up, each time code is committed to the source repo, a build is triggered. The build not only compiles the code, but ideally runs code analysis, unit (and sometimes even integration) tests. This provides the team with rapid feedback on the quality of the code just committed. The CI build can even package the code so that it is ready for deployment to test, QA or even Production environments.
 
 In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
 
