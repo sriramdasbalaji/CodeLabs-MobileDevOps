@@ -318,7 +318,7 @@ In this task, you will remove the iOS applications from the solution.
 In this exercise, you will create a Team Build to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
 <a name="Ex2Task1"></a>
-#### Task 2 - Configure a Private Build Agent ####
+#### Task 1 - Configure a Private Build Agent ####
 
 In this task, you will install a private build agent on your local machine.
 
@@ -452,6 +452,8 @@ In this task, you will configure the Build tasks.
     ![Add the Xamarin License task](Images/vsts-build-add-xamarin.png "Add the Xamarin License task")
 
     _Add the Xamarin License task_
+    
+    > **Note**: This is not strictly necessary in this case since the build agent is on your machine which already has a Xamarin license on it (the one you activated in Visual Studio). However, in real life the activation/deactivation of the Xamarin license on the build agent is typically necessary.
 
 1. This adds the **Xamarin License** task at the bottom of the definition. Click and drag the task so that it is just below the **NuGet Installer** task.
 

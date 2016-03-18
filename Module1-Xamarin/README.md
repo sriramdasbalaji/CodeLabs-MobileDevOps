@@ -422,7 +422,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
 1. You'll connect to the newly initialized repo in Visual Studio. Click **View->Team Explorer** and then, **Connect** (it looks like a little plug).
 
-    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the command line. Then skip to the [next task](Ex5Task3).
+    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the command line. Then skip to the [next task](Ex5Task2).
 
     ![The Connect button in Team Explorer](Images/vs-te-connect.png "The Connect button in Team Explorer")
 
