@@ -6,15 +6,15 @@
 <a name="Overview"></a>
 ## Overview ##
 
-Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, implementing DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD)for mobile solutions is also difficult.
+Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, implementing DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) for mobile solutions is also difficult.
 
-However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, CI and CD for mobile applications.
+However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, Continuous Integration and Continuous Delivery for mobile applications.
 
 ### A Note About HealthClinic.Biz ###
 The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample from Microsoft. The code has
 been modified slightly for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
-Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
-response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the
+Azure Mobile App service and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
+response but will not modify any data in the database. If you wish to host these services yourself after the workshop, then please refer to the
 [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
 
 <a name="Objectives"></a>
@@ -69,7 +69,7 @@ Xamarin provides many benefits:
 - A single tool to manage mobile apps across iOS, Android and Windows
 - Share application logic across all platforms
 - Leverage existing C# skills
-- 100% coverage of all APIs across all platforms - anything you can do in Objective-C, Swift or Java can be done in C# with Xamarin
+- 100% coverage of all APIs across all platforms - anything you can do in Objective-C, Swift or Java can be done in C# with Xamarin for mobile applications
 - Native performance as Xamarin compiles C# code to native apps
 
 In this exercise, you will create a Xamarin account that you will use for the remainder of this workshop. You will then open the source code, enter your Xamarin credentials and compile the projects.
@@ -106,19 +106,13 @@ In this task, you will activate your Xamarin Account in Visual Studio.
 
     _Xamarin Account in the Tools Menu_
 
-1. Click **Log In** and enter your Xamarin credentials.
-
-    ![Xamarin Login in Visual Studio](Images/vs-xamarin-account-login.png "Xamarin Login in Visual Studio")
-
-    _Xamarin Login in Visual Studio_  
-
 1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press **Login**.
 
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
 
-1. Once activated, you should see your account has been logged in. You can close the dialog.
+1. Once activated, the dialog will close. You can open the dialog from Tools menu, and **Xamarin Account...** again if you want to see that your account has been logged in. You can now close the dialog.
 
     ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
 
@@ -149,7 +143,7 @@ In this task you will learn about different types of Xamarin projects.
     - Xamarin.Forms class library - use this to create a Xamarin Forms class library
     - Xamarin UI Test App (Cross Platform) - use this to create a cross-platform UI test project
 
-    Under the iOS and Android nodes, you'll see a UI Test App template for iOS and Android respectively. These are used to create Xamarin platform-specific UI test projects.
+    Under the Android, iPhone, iPad and Apple Watch nodes, you'll see other types of applications that Xamarin allows you to create, like Games, Apple Watch, Android Wear, and UI Test apps.
 
     > **Note**: The difference between a shared project and a portable project is the unit of sharing. Portable projects share compile code (binaries) while shared projects share source code.
 
@@ -188,17 +182,23 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-1. You should see 8 projects in the solution.
+1. You should see 6 projects in the solution.
 
     ![Xamarin Projects in the Solution](Images/vs-solution-explorer.png "Xamarin Projects in the Solution")
 
     _Xamarin Projects in the Solution_
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
+    > **Note**: The original HealthClinic.biz sample also includes other projects, including Apple Watch and WPF clients.
 
-    ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building from the progress bar at the bottom right of Visual Studio. The build should fail. This is a current issue that is easily fixed by restarting Visual Studio.
 
-    _Build failure requiring Xamarin Business Edition_
+    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
+
+    _Build failures_
+    
+1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
+
+    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
 
 1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
 
@@ -212,7 +212,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Xamarin Business Trail confirmation_
 
-1. Now clean and rebuild the solution. Ensure that the solution builds without errors. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require.
+1. Now clean and rebuild the solution as we did above. Ensure that the solution builds without errors. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require.
 
     > **Note**: If you see the error `The name 'InitializeComponent' does not exist in the current context` you may safely ignore it.
 
