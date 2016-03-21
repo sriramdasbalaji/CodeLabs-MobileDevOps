@@ -188,9 +188,9 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Xamarin Projects in the Solution_
 
-    > **Note**: The original HealthClinic.biz sample also includes other projects, including Apple Watch and WPF clients.
+    > **Note**: The original [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) sample also includes other projects, including Apple Watch and WPF clients, and the service side code as well.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building from the progress bar at the bottom right of Visual Studio. The build should fail. This is a current issue that is easily fixed by restarting Visual Studio.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
 
     ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
 
@@ -276,11 +276,11 @@ In this task, you will run the Android and UWP applications in their respective 
 
 1. Right-click the **MyHealth.Client.W10.UWP** project and click **Set as Startup Project**. In the Toolbar, click the **Run in Simulator**.
 
+    > **Note**: if the button does not say **Simulator** then click the dropdown menu on the right of the button and click **Simulator**. If you do, you can see the other run options you have for UWP applications.
+
     ![The Run UWP Simulator button](Images/vs-toolbar-uwp-simulator.png "The Run UWP Simulator button")
 
     _The Run UWP Simulator button_
-
-    > **Note**: if the button does not say **Simulator** then click the dropdown menu on the right of the button and click **Simulator**. If you do, you can see the other run options you have for UWP applications.
 
 1. The application should launch in the simulator after a few seconds.
 
@@ -288,7 +288,7 @@ In this task, you will run the Android and UWP applications in their respective 
 
     _The Patient app running in the UWP Simulator_
 
-    > **Note**: If the simulator is small, simply drag it to enlarge the view.
+    > **Note**: If the simulator is small, simply drag it to enlarge the view. You can also maximize the app.
 
 1. Now click the **hamburger** menu icon on the top left of the app and then click the **User** menu item.
 
@@ -321,7 +321,7 @@ Once it starts up, you should see the emulator run the **Patients** app.
 
     _App in the Android Emulator_
 
-1. Confirm that the debugger breaks in the **PatientsService.cs** file as it did in the UWP emulator. Press **F5** to continue running the app. When you are done, click **Stop** to stop debugging.
+1. Confirm that the debugger breaks in the **PatientsService.cs** file. This is the same code breakpoint as it did in the UWP emulator! Press **F5** to continue running the app. When you are done, click **Stop** to stop debugging.
 
 <a name="Exercise4"></a>
 ### Exercise 4: Creating a VSTS Team Project ###
@@ -333,7 +333,7 @@ In this exercise, you sign up for a VSTS account and create a new Team Project. 
 
 In this task, you will sign up for a free VSTS account.
 
-> **Note**: You can skip this step if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Task 2](#Ex4Task2).
+> **Note**: You can skip this step if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you created a previous VSTS account  with build credits yourself, you can skip this step and just sign into your account. However, if you are just a member of someone else's VSTS account and added you to the account, then you will need to create your own as per these steps. Once you have signed into your existing account, then create a new Team Project as specified in [Task 2](#Ex4Task2).
 
 1. Sign into [visualstudio.com](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
@@ -354,7 +354,7 @@ In this task, you will sign up for a free VSTS account.
 
     _Creating a New VSTS Account_
 
-    > **Note**: You can change your email address and region if you want to.    
+    > **Note**: The instructions might be different and only ask you for your chosen account URL.    
 
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. Continue to the next task.
 
@@ -362,6 +362,8 @@ In this task, you will sign up for a free VSTS account.
 #### Task 2 - Creating a New Team Project ####
 
 In this task, you will create a new Team Project.
+
+    > **Note**: VSTS might not prompt you to create a new Project but create one for you already. If so, you don't need ot create the new project as described in the next step.
 
 1. On the **New Team Project** page, enter the following information:
 
@@ -448,13 +450,23 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
     _Add untracked files in Team Explorer_
 
-1. The files have now been places in the **Included Changes** section. You are now ready to _commit_ the files to the repo. Enter **Initial commit** into the message box and click the **Commit** button.
+1. Configure your **Git Global Settings**. Click on the **Configure** link. 
+
+1. Enter your name and email address. Leave the other settings as their defaults. Then click **Update**.
+
+    ![Global Git Settings in Team Explorer](Images/vs-te-global-git-settings.png "Global Git Settings in Team Explorer")
+
+    _Global Git Settings in Team Explorer_
+
+    > **Note**: This is not an authentication setting. The username and email address are text fields that are associated with commits. In order to _push_ your code to a remote, you typically have to authenticate against the remote server. You will see this later.
+
+1. Click the back button at the top of the Team Explorer panel to return to the commit action. The files have now been placed in the **Included Changes** section, and now you are now ready to _commit_ the files to the repo. Enter **Initial commit** into the message box and click the **Commit** button.
 
     ![The initial commit](Images/vs-te-initial-commit.png "The initial commit")
 
     _The initial commit_
 
-1. This may take a few moments. Once completed, the **Changes** pane will show no changes pending.
+1. This may take a few moments. Once completed, the **Changes** pane will show no changes pending. This means you have commited your changes to your local git.
 
     ![No changes in Team Explorer](Images/vs-te-no-changes.png "No changes in Team Explorer")
 
@@ -478,20 +490,6 @@ In this task, you will add the **remote** - that is, a repo that other developer
     ![Getting the Clone URL in VSTS](Images/vsts-git-clone-url.png "Getting the Clone URL in VSTS")
 
     _Getting the Clone URL in VSTS_
-
-1. Configure your **Git Global Settings**. Go back to Visual Studio, open the **Team Explorer** window, connect to the **HealthClinic.biz** repo if you are not already connected. Click on the Pane heading to pull down the navigation menu. Click **Settings**.
-
-    ![Navigating to Settings in Team Explorer](Images/vs-te-settings-menu.png "Navigating to Settings in Team Explorer")
-
-    _Navigating to Settings in Team Explorer_
-
-1. Click **Global Settings**. Enter your name and email address. Leave the other settings as their defaults.
-
-    ![Global Git Settings in Team Explorer](Images/vs-te-global-git-settings.png "Global Git Settings in Team Explorer")
-
-    _Global Git Settings in Team Explorer_
-
-    > **Note**: This is not an authentication setting. The username and email address are text fields that are associated with commits. In order to _push_ your code to a remote, you typically have to authenticate against the remote server. You will see this later.
 
 1. Now let's add a Remote. Again click on the Pane heading to pull down the navigation menu and click **Settings**. Then click **Repository Settings**. Under **Remotes**, click the **Add** link.
 
@@ -529,13 +527,13 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _Successful push to the remote_
 
-1. If you open the **Solution Explorer**, you will see blue padlock icons to the left of all the files. The **Solution Explorer** understands source control, and at present all the files are unchanged in the repo.
+1. If you switch to **Solution Explorer**, you will see blue padlock icons to the left of all the files. The **Solution Explorer** understands source control, and at present all the files are unchanged in the repo.
 
     ![Source Control icons in Solution Explorer](Images/vs-source-icons-in-se.png "Source Control icons in Solution Explorer")
 
     _Source Control icons in Solution Explorer_
 
-1. View the **CODE** Hub in VSTS. Navigate to your VSTS **HealthClinic** Team Project that you created. Click on the **CODE** hub (or refresh the page if you are already there). You should see the code on the master branch.
+1. On the browser, refresh the **CODE** Hub in VSTS. Navigate to your VSTS Team Project that you created, and click on the **CODE** hub (or refresh the page if you are already there). You should see the code on the master branch.
 
     ![The code pushed to VSTS](Images/vsts-code-in-repo.png "The code pushed to VSTS")
 
@@ -551,7 +549,7 @@ In this exercise, you will run unit tests against the **Client.Core** library. Y
 
 In this task, you will run the unit tests.
 
-1. Open the **Test Explorer** window by clicking **Test->Windows->Test Explorer**. When the Test Explorer Window is open, build your solution by pressing **ctrl-shift-b** or pressing **F6**. As the solution builds, the Test Explorer window will discover tests in the solution.
+1. In Visual Studio, open the **Test Explorer** window by clicking **Test->Windows->Test Explorer**. When the Test Explorer Window is open, build your solution by pressing **ctrl-shift-b** or pressing **F6**. As the solution builds, the Test Explorer window will discover tests in the solution.
 
     ![Tests discovered in the Test Explorer](Images/vs-tex-discovery.png "Tests discovered in the Test Explorer")
 
@@ -569,7 +567,7 @@ In this task, you will run the unit tests.
 
     _Tests grouped by project_
 
-1. Right-click the **MyHealth.Client.Core.UnitTests** project and select **Run Selected Tests**. This will just run the unit tests.
+1. Right-click the **MyHealth.Client.Core.UnitTests** project and select **Run Selected Tests**. This will just run the unit tests, but you will examine the unit tests in more detail later.
 
     ![Run the unit tests](Images/vs-tex-run-unit-tests.png "Run the unit tests")
 
@@ -577,33 +575,20 @@ In this task, you will run the unit tests.
 
     You should see a test failure - you will fix this later.
 
+    >**Note** With Visual Studio Enterprise you also have access to Microsoft Fakes (Unit Test Isolation), IntelliTest, Code Coverage and a host of other testing tools for your team.
+    
     ![Test Results with a failure](Images/vs-tex-test-failure.png "Test Results with a failure")
 
     _Test Results with a failure_
 
 <a name="Ex6Task2"></a>
-#### Task 2 - Running Tests with Code Coverage ####
-
-In this task you will analyze the code coverage for the unit tests.
-
-1. In the **Test Explorer** window, click the **MyHealth.Client.Core.UnitTests** project and select **Analyze Code Coverage for Selected Tests**. This runs the unit tests again, but this time calculates how much of the code is touched while the tests are running.
-
-1. When the run is complete, you will see the Code Coverage Results window pop up. If it does not, you can open it by clicking **Test->Windows->Code Coverage Results**.
-
-    ![Code Coverage results](Images/vs-tex-coverage-results.png "Code Coverage results")
-
-    _Code Coverage results_
-
-1. Expand **myhealth.client.core.dll** and examine the coverage results. You will examine the unit tests in more detail later.
-
-<a name="Ex6Task3"></a>
-#### Task 3 - Running UI Tests ####
+#### Task 2 - Running UI Tests ####
 
 In this task, you will run UI tests.
 
 1. In the **Test Explorer** window, expand the **MyHealth.Client.Core.UITests** project, right-click the **Test_SwitchBetweenMeds** test and click **Run Selected Tests**. This test should launch the emulator and run tests against the emulated device. The test should succeed.
 
-    > **Note**: If the emulator starts and shows a padlock (the phone is locked) just click and drag the lock off to the right to unlock the emulator.
+    > **Note**: Like before, the emulator might take a moment to start if you had closed it earlier. If the emulator starts and shows a padlock (the phone is locked) just click and drag the lock off to the right to unlock the emulator, then wait for the app to start and the two tests to run.
 
 1. In the **Test Explorer** window, expand the **MyHealth.Client.Core.UITests** project and double-click the **Test_SwitchBetweenMeds** test to open it.
 
@@ -652,12 +637,12 @@ In this task, you will run UI tests.
     - `Flash` uses an `AppQuery` lambda to find a control and make it blink (or flash) in the UI. If you watch the test running, you will see the medicine names flash as this method finds the controls
     - `Tap` is used to tap a control or point - specified by another `AppQuery` lambda
 
-<a name="Ex6Task4"></a>
-#### Task 4 - Mocks ####
+<a name="Ex6Task3"></a>
+#### Task 3 - Mocks ####
 
 In this task, you will examine how mocks are used to isolate the unit tests from dependencies - like services.
 
-1. In the **Test Explorer** window, find the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** test and double click it to open it.
+1. In the **Test Explorer** window, find the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** test under the **MyHealth.Client.Core.UnitTests** project and double click it to open it.
 
 1. Have a look at the _act_ section of this test.
 
