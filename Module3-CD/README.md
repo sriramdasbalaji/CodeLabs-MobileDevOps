@@ -6,13 +6,13 @@
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Delivery is the next step to good DevOps after Continuous Integration. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not manage the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
+Continuous Delivery is the next step to good DevOps after Continuous Integration. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not always manage or have access to the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
 
 In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and Portable Class Libraries and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
 
 In [Module 2](../Module2-CI), you covered how to create a [Continuous Integration Build](https://www.visualstudio.com/features/continuous-integration-vs) in VSTS that queues a build to compile, test and package code for deployment every time a developer pushes code to the VSTS repo.
 
-In this module, you will learn how to create a Release to automatically release a new version of the app to users. To do this you will release the Android app through [HockeyApp](http://hockeyapp.net/) and Release Management in VSTS. HockeyApp is a service that allows you to manage releases of your apps, gather feedback and diagnose crash reports from your apps.
+In this module, you will learn how to create a Release to automatically release a new version of the app to users. To do this you will release the Android app through [HockeyApp](http://hockeyapp.net/) and Release Management in VSTS. HockeyApp is a Microsoft service that allows you to manage releases of your apps to beta testers, gather feedback and diagnose crash reports from your apps.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -55,7 +55,7 @@ Before continuing, you must sign up for a free VSTS account.
 
 In this setup task, you will create a new VSTS account.
 
-1. Browse to [https://go.microsoft.com/fwlink/?LinkId=307137](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
+1. Sign into [visualstudio.com](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
     ![Signing in to visualstudio.com](Images/vsts-signin-no-account.png "Signing into visualstudio.com")
 
@@ -74,7 +74,7 @@ In this setup task, you will create a new VSTS account.
 
     _Creating a New VSTS Account_
 
-    > **Note**: You can change your email address and region if you want to.    
+    > **Note**: You can change your email address and region if you want to. Sometimes these steps might differ.
 
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. The setup script will do this for you, so you can just go on to the next task.
 
@@ -159,42 +159,8 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
     _Logged in to Xamarin in Visual Studio_
 
-
 <a name="SetupTask5"></a>
-#### Setup Task 5 - Activating a Xamarin Business Trial ####
-
-In this task, you will open the Xamarin solution for cross-mobile apps for **HealthClinic.biz** and activate your Xamarin Business trial license.
-
-1. In Visual Studio, open the **04_Demos_NativeXamarinApps.sln** located at **Source / Setup / HealthClinic.biz**.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
-
-    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
-
-    _The Xamarin Mac Agent Dialog_
-
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
-
-1. Click **Build->Build Solution** to build the solution. (You can also use **ctrl-shift-b** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
-
-    ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
-
-    _Build failure requiring Xamarin Business Edition_
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click on **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-    
-<a name="SetupTask6"></a>
-#### Setup Task 6 - Running the Setup Script ####
+#### Setup Task 5 - Running the Setup Script ####
 
 In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
 
@@ -223,6 +189,45 @@ where:
 	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
 
 	_The Setup script completed successfully_
+
+<a name="SetupTask6"></a>
+#### Setup Task 6 - Activating a Xamarin Business Trial ####
+
+> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
+
+In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
+
+1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
+
+1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
+
+    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
+
+    _The Xamarin Mac Agent Dialog_
+
+    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
+
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
+
+    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
+
+    _Build failures_
+    
+1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** from **c:\buildworkshop\HealthClinic.biz** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
+
+    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
+
+1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
+
+    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
+
+    _Select Begin a Trial_
+
+1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
+
+    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
+
+    _Xamarin Business Trail confirmation_
 
 <a name="SetupTask7"></a>
 #### Setup Task 7 - Configure a Private Build Agent ####
@@ -436,7 +441,7 @@ In this task, you will install the HockeyApp extension into your VSTS account.
 
 In this task, you will install HockeyApp on a device for testing the HealthClinic Patients app which is being produced by the CI build. The device you are going to use is the Android emulator.
 
-1. If the solution is not open in Visual Studio, open the open **04_Demos_NativeXamarinApps.sln** located at **Source / Setup / HealthClinic.biz**.
+1. If the solution is not open in Visual Studio, open the open **04_Demos_NativeXamarinApps.sln** located at **c:\buildworkshop\HealthClinic.biz**.
     
 1. Right-click **MyHealth.Client.Droid** project and select **Set as Startup Project**.
 
@@ -582,7 +587,7 @@ In this task, you will create a new Release Definition to release the Android ap
     
 1. You can leave all the other fields as they are defaulted. Mouse over the blue information icons next to each field to get help on what the field is for.
     
-    > **Note**: It is possible to create Teams in HockeyApp. You could create a small team of beta testers and create a release that only goes to this team (using the **Team(s)** parameter).
+    > **Note**: It is possible to create Teams in HockeyApp. You could create a small team of beta testers and create a release that only goes to this team (using the **Team(s)** parameter). The HockeyApp task has several other settings, for example, you can also specify **App ID** in case you have multiple apps defined in HockeyApp for the same solution, or the **Notify Users?** mark it so users are notified by HockeyApp that there is a new version for them to test.
     > 
     > When the beta testers have approved the app, you could duplicate the environment, using the same task but this time removing the restriction so that the app is available to all your users.
     
@@ -645,7 +650,7 @@ In this task, you will trigger the release manually to see how the app gets depl
     
     _Click the Release link_
 
-1. You should see the release succeed. At the top of the Summary page, a yellow notification bar is asking for approval.
+1. You should see the release succeed - click the refresh button to refresh the Release information. At the top of the Summary page, a yellow notification bar is asking for approval.
     
 1.  Click on the **Patients** link in the **HockeyApp** section to open the app in HockeyApp.
     
@@ -731,7 +736,7 @@ In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp d
     
     _Get the App ID in HockeyApp_
     
-1. Open the **04_Demos_NativeXamarinApps.sln** solution in Visual Studio if it is not already open. In the Solution Explorer, navigate to **MyHealth.Client.Core\AppSettings.cs** and double click it to open it.
+1. Open the **04_Demos_NativeXamarinApps.sln** solution in Visual Studio from **c:\buildworkshop\HealthClinic.biz** if it is not already open. In the Solution Explorer, navigate to **MyHealth.Client.Core\AppSettings.cs** and double click it to open it.
     
 1. Near the bottom of the file you will see a `static string HockeyAppID`. Set the value of the string to the **App ID** you just obtained from HockeyApp.
     
@@ -765,7 +770,7 @@ In this task, you will obtain the app's unique HockeyApp ID from the HockeyApp d
     
     _Approve the previous release_
     
-1. As soon as you approve the release, the new release will deploy the new build to HockeyApp. Double click the latest release to open the summary page. Then click on the **Patients** link in the HockeyApp section again. You should see a new version of the App has been created.
+1. As soon as you approve the release, the new release will be marked as completed. Double click the latest release to open the summary page. Then click on the **Patients** link in the HockeyApp section again. You should see a new version of the App has been created.
     
     ![A new version in HockeyApp](Images/hockeyapp-app-update.png "A new version in HockeyApp")
     
