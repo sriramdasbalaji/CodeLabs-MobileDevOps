@@ -803,7 +803,7 @@ In this task, you will install a VSTS extension that contains some custom build 
 
 1. You can close the Marketplace tab once the install is complete.
 
-1. Add Version Assembly Task to the Build Definition. Click **CODE** to open the code hub. In the left menu, find the **Xamarin CI** build and click it. Then click the **Edit** link in the main view to open the definition.
+1. Add Version Assembly Task to the Build Definition. Click **BUILD** to open the build hub. In the left menu, find the **Xamarin CI** build and click it. Then click the **Edit** link in the main view to open the definition.
 
 1. Click **Add build step...** and scroll down in the Build tasks to the **Version Assembly** task. This task was installed when you installed the Marketplace extension. Click the **Add** button to add it to the definition before closing the Add Task dialog.
 
@@ -812,7 +812,7 @@ In this task, you will install a VSTS extension that contains some custom build 
     _Add the Version Assembly task_
 
 1. Drag the **Version Assembly** task so that it is just below the first **Xamarin License** task. Expand the **Advanced** group and set the parameters as follows:
-    - **Source Path**: `src/MyHealth.Client.Droid` (you can type this or browse to the folder)
+    - **Source Path**: `src/MyHealth.Client.Droid/Properties` (you can type this or browse to the folder)
     - **File Pattern**: `AndroidManifest.xml`
     - **Build Regex Pattern**: `(?:\d+\.\d+\.)(\d+)`
     - **Fail If No Match Found**: check this checkbox
@@ -825,13 +825,13 @@ In this task, you will install a VSTS extension that contains some custom build 
     _Version Assembly task settings_
 
     Let's examine these parameters:
-    - **Source Path**: this is the path in which to find files to replace the version number. In your case, it's the **MyHealth.Client.Droid** project folder.
+    - **Source Path**: this is the path in which to find files to replace the version number. In your case, it's the **MyHealth.Client.Droid** project's Properties folder.
     - **File Pattern**: this specifies the file pattern for files in which to replace the version number - you set it to the Android manifest file.
     - **Build Regex Pattern**: This is going to extract the last number of a 3-digit version string. So if the version is **1.0.5**, then this Regex will extract the **5**.
+    - **Build Regex Index**: The Build Regex Pattern uses group notation. The 0th group ends up being the entire version number, while the 1st group is the actual number that should be used in the replacement - so you set this to 1.
     - **Fail If No Match Found**: If there is no match for the replacement Regex, then fail this task. This ensures that you know if the version number could not be successfully replaced.
     - **Regex Replace Pattern**: You set this to `versionCode="\d+`. The task will find `versionCode="1` in the target file (note that the ending `"` is not part of the pattern).
     - **Prefix for Replacements**: You set this to `versionCode="` since the replacement pattern will include the string `versionCode="` which we need to prefix to the  version number so that we retain the `versionCode="` string.
-    - **Build Regex Index**: The Build Regex Pattern uses group notation. The 0th group ends up being the entire version number, while the 1st group is the actual number that should be used in the replacement - so you set this to 1.
 
 1. The **Version Assembly** task assumes that the build number is of the form `1.0.1` - i.e. 3 digits separated by periods. However, the default format (as you will have seen in the builds that have run so far) is `yyyymmdd.r` where `r` is an incrementing integer. Click on the **General** tab. Change the **Build number format** field to `1.0$(rev:.r)`. This will produce the correct format for the version number.
 
