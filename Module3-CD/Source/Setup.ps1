@@ -31,7 +31,7 @@ $extensionId = "colinsalmcorner.colinsalmcorner-buildtasks"
 # do not change these
 $agileTemplateId = "adcc42ab-9882-485e-a3ed-7678f01f66bc"
 $createProjectUri = "defaultcollection/_apis/projects?api-version=2.0-preview"
-$queryProjectUri = "defaultcollection/_apis/projects/$projectName?&api-version=1.0"
+$queryProjectUri = "defaultcollection/_apis/projects/$projectName" + "?api-version=1.0"
 $createBuildUri = "defaultcollection/$projectName/_apis/build/definitions?api-version=2.0"
 $queueBuildUri = "defaultcollection/$projectName/_apis/build/builds?api-version=2.0"
 
