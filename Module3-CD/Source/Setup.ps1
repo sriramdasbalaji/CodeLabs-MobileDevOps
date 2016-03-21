@@ -24,7 +24,7 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "HealthClinic"
 $workshopPath = "c:\buildworkshop"
-$buildName = "Xamarin CI testing"
+$buildName = "Xamarin CI"
 $buildDefinitionFilePath = "buildDefinition.json"
 $extensionId = "colinsalmcorner.colinsalmcorner-buildtasks"
 
