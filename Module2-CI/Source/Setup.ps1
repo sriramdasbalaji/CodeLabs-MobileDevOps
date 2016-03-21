@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory=$true, HelpMessage="Your VSTS account (e.g. https://buildworkshop.visualstudio.com)")]
     [ValidateNotNullOrEmpty()]
     [string]$vstsUrl,
-    
+       
     [Parameter(Mandatory=$true, HelpMessage="Your VSTS PAT")]
     [ValidateNotNullOrEmpty()]
     [string]$vstsPat    

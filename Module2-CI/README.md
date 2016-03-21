@@ -11,14 +11,18 @@ Continuous Integration (CI) is a foundational pillar of DevOps. Once set up, eac
 In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
 
 ### A Note About HealthClinic.Biz ###
-The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample repo that Microsoft created. The code has been modified slightly for this workshop, so if you go to the GitHub repo you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an Azure Mobile App and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful response but will not modify any data in the backing database. If you wish to host these services yourself after the workshop, then please refer to the [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample from Microsoft. The code has
+been modified slightly for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+Azure Mobile App service and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
+response but will not modify any data in the database. If you wish to host these services yourself after the workshop, then please refer to the
+[Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
 
 <a name="Objectives" ></a>
 ### Objectives ###
 In this module, you will see how to:
 
-- Create a (CI) build for the application in VSTS
-- Analyze test results and code coverage for a build
+- Create a CI build for the application in VSTS
+- Analyze test results for a build
 - Log rich bugs from test failures
 - Trigger a build by committing code to the repo
 - Improve the versioning of the compiled app
@@ -39,12 +43,12 @@ The following is required to complete this module:
 
 Before continuing, you must sign up for a free VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
-
 <a name="SetupTask1"></a>
 #### Setup Task 1 - Creating a New VSTS Account ####
 
 In this setup task, you will create a new VSTS account.
+
+> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account and then go to Setup Task 2. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
 
 1. Browse to [https://go.microsoft.com/fwlink/?LinkId=307137](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
@@ -99,13 +103,49 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
     ![Copying the PAT](Images/vsts-note-pat.png "Copying the PAT")
 
     _Copying the PAT_
- 
+
 <a name="SetupTask3"></a>
-#### Setup Task 3 - Creating a Xamarin Account ####
+#### Setup Task 3 - Running the Setup Script ####
+
+In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1, skip this section**.
+
+1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
+
+1. Enter the following command, pressing Y when prompted.
+
+	```powershell
+	Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+    ```
+
+1. And then the following command.
+	```powershell
+    .\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT}
+	```
+
+	Where:
+	- `{youraccount}` is the VSTS account name you created earlier
+	- `{yourPAT}` is the VSTS PAT you created earlier.
+
+	> **Note**: For example, the command should look something like:
+	>
+	> ```powershell
+	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
+	> ```
+
+> **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password.
+
+1. Wait until you see a green **Done!** before continuing.
+
+	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
+
+	_The Setup script completed successfully_
+
+<a name="SetupTask4"></a>
+#### Setup Task 4 - Creating a Xamarin Account ####
 
 In this task, you will create a Xamarin account.
 
-> **Note**: If you have a Xamarin business license you can use it and skip this task.
+> **Note**: If you have a Xamarin business license or created a trial as part of Module 1 you can use it and skip this task.
 
 1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
 
@@ -121,8 +161,10 @@ In this task, you will create a Xamarin account.
 
 	> **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
 
-<a name="SetupTask4"></a>
-#### Setup Task 4 - Activating your Xamarin Account in Visual Studio ####
+<a name="SetupTask5"></a>
+#### Setup Task 5 - Activating your Xamarin Account in Visual Studio ####
+
+> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
 
 In this setup task, you will activate your Xamarin Account in Visual Studio.
 
@@ -150,8 +192,10 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
     _Logged in to Xamarin in Visual Studio_
 
-<a name="SetupTask5"></a>
-#### Setup Task 5 - Activating a Xamarin Business Trial ####
+<a name="SetupTask6"></a>
+#### Setup Task 6 - Activating a Xamarin Business Trial ####
+
+> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
 
 In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
 
@@ -165,54 +209,27 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
 
-    ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
+    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
 
-    _Build failure requiring Xamarin Business Edition_
+    _Build failures_
+    
+1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
 
-1. **Double click the error**. This will launch the Xamarin license dialog. Click on **Begin a Trial** to begin a trial of the Business edition of Xamarin.
+    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
+
+1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
 
     ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
 
     _Select Begin a Trial_
 
-1. Once the trial has been activated, you will see a confirmation dialog.
+1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
 
     ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
 
     _Xamarin Business Trail confirmation_
-    
-<a name="SetupTask6"></a>
-#### Setup Task 6 - Running the Setup Script ####
-
-In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1, skip this section**.
-
-1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
-
-1. Enter the following command.
-
-	```powershell
-	.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
-	```
-
-	where:
-	- `{youraccount}` is the VSTS account name you created earlier
-	- `{yourPAT}` is the VSTS PAT you created earlier.
-	- `{xamarinEmail}` is the email address for your Xamarin account
-	- `{xamarinPassword}` is the password for your Xamarin account
-
-	> **Note**: For example, the command should look something like:
-	>
-	> ```powershell
-	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
-	> ```
-
-1. Wait until you see a green **Done!** before continuing.
-
-	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
-
-	_The Setup script completed successfully_
 
 ---
 
@@ -221,7 +238,7 @@ In order to run the exercises in this module, you will need to set up your envir
 This module includes the following exercises:
 
 1. [Removing the iOS Projects from the Solution](#Exercise1)
-1. [Creating a Team Build](#Exercise2)
+1. [Creating a Build Definition](#Exercise2)
 1. [Queueing the Build and Fix the Bug](#Exercise3)
 1. [Improving Package Versioning](#Exercise4)
 
@@ -253,7 +270,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
-1. You should see 8 projects in the solution.
+1. You should see 6 projects in the solution.
 
     ![Xamarin Projects in the Solution](Images/vs-solution-explorer.png "Xamarin Projects in the Solution")
 
@@ -286,23 +303,23 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
     _Ignore the InitializeComponent error_
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Removing the iOS Projects from the Solution ####
+#### Task 2 - Removing the iOS Project from the Solution ####
 
-In this task, you will remove the iOS applications from the solution.
+In this task, you will remove the iOS applications from the solution, as we will only automate the build of the Android and UWP apps in this workshop. You can also automate iOS builds by using a [Mac computer or a solution like MacInCloud](http://i1.blogs.msdn.com/b/visualstudioalm/archive/2015/11/18/macincloud-visual-studio-team-services-build-and-improvements-to-ios-build-support.aspx).
 
-> **Note**: If did not complete Module 1, take a few moments to browse the iOS projects before you remove them.
+> **Note**: If you did not complete Module 1, take a few moments to browse the iOS project before you remove them.
 
-1. In order to remove the iOS projects, make sure the solution from the previous task is opened. Then, in **Team Explorer**, right-click each project ending with iOS and click **Remove**.
+1. In order to remove the iOS project, make sure the solution from the previous task is opened in Visual Studio. Then, in **Team Explorer**, right-click MyHealth.Client.iOS and click **Remove**.
 
-    ![Remove the iOS projects from the solution](Images/vs-remove-ios-projects.png "Remove the iOS projects from the solution")
+    ![Remove the iOS project from the solution](Images/vs-remove-ios-projects.png "Remove the iOS project from the solution")
 
-    _Remove the iOS projects from the solution_
+    _Remove the iOS project from the solution_
 
-1. Once the 3 iOS projects are removed, your solution should look like the following.
+1. Once the iOS project are removed, your solution should look like the following.
 
-    ![Solution Structure without iOS projects](Images/vs-project-structure.png "Solution Structure without iOS projects")
+    ![Solution Structure without iOS project](Images/vs-project-structure.png "Solution Structure without iOS project")
 
-    _Solution Structure without iOS projects_
+    _Solution Structure without iOS project_
 
 1. In the **Solution Explorer**, right-click the solution node (the top-most node) and click **Commit**. The only change should be the solution file.
 
@@ -313,16 +330,16 @@ In this task, you will remove the iOS applications from the solution.
     _Commit the Solution changes_
 
 <a name="Exercise2" ></a>
-### Exercise 2: Creating a Team Build ###
+### Exercise 2: Creating a Build Definition ###
 
-In this exercise, you will create a Team Build to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
+In this exercise, you will create a Build definition to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Configure a Private Build Agent ####
 
 In this task, you will install a private build agent on your local machine.
 
-> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you need to use a _private_ build agent only because the Xamarin trial license does not work on the Hosted build agent.
+> **Note**: You can also use the Hosted build agent provided by VSTS. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop we are using a _private_ build agent because the Xamarin trial license activation does not work on the Hosted build agent.
 
 1. Navigate to the Agent Pools configuration in VSTS
     Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
@@ -347,9 +364,12 @@ In this task, you will install a private build agent on your local machine.
     _Click Download agent_
     
     Enter `c:\buildworkshop` as the destination folder for the download. Make sure that popups are allowed from the site if nothing happens when you click the button.
+    
+    > **Note** If the browser mentions it blocked a popup, select always allow and click the Download agent link again. 
 
 1. Unlock and extract the agent.zip file
-    In the File Explorer, navigate to `c:\buildworkshop'. Right click the **agent.zip** file and click **Properties**. Check the **Unblock** checkbox and click **Apply**.
+
+    In File Explorer, navigate to `c:\buildworkshop'. Right click the **agent.zip** file and click **Properties**. Check the **Unblock** checkbox and click **Apply**.
     
     ![Unblock the agent zip file](Images/vsts-agent-unblock.png "Unblock the agent zip file")
     
@@ -483,7 +503,7 @@ In this task, you will configure the Build tasks.
 
     >**Note**: It is possible to run the UI tests using either [Xamarin Test Cloud](https://xamarin.com/test-cloud) or [Perfecto Mobile](http://www.perfectomobile.com/integrations/continuous-quality-integrated-visual-studio).  These services allow you to run the tests against a myriad of devices, recording results of runs against each device. Perfecto Mobile also provides user conditions testing, private cloud options, and the ability to execute one script (Java or C#) to test desktop and mobile browsers in parallel.  If you click **Add new task** and browse to the **Test** tasks, you will see a Xamarin Test Cloud task. You can install the Perfecto task to your account through the [VSTS Marketplace](https://marketplace.visualstudio.com/items?itemName=Perfecto.PerfectoCQ). For this lab, you will not run tests against either Xamarin Test Cloud or Perfecto’s Continuous Quality Lab, but it is possible to do so.  
 
-1. In the **Test Assembly** parameter, change the word `test` to `unittest`. Check the **Code Coverage Enabled** checkbox. Your task should look as follows:
+1. In the **Test Assembly** parameter, change the word `test` to `unittest`. Your task should look as follows:
 
     ![Configure Test Run](Images/vsts-build-test-run.png "Configure Test Run")
 
@@ -552,7 +572,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
     _The build log_
 
-1. The build should fail. Looking at the tasks in the left of the log will show you that the **Test Assemblies...** task failed. In Module 1, you have seen that one of the unit tests was failing - the test is failing in the build as well.
+1. After about 3 minutes, the build should fail. Looking at the tasks in the left of the log will show you that the **Test Assemblies...** task failed. In Module 1, you have seen that one of the unit tests was failing - the test is failing in the build as well.
 
 1. In the toolbar, click the build number (this will be of the format `Build yyyymmdd.1`). This is the build number that VSTS assigned to the build when it was queued.
 
@@ -566,9 +586,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
     _The build report for the failed build_
 
-1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build). Under **Code Coverage** you will see the code coverage results.
-
-    >**Note**: If you click **Download Code Coverage results** the results will open in Visual Studio and you will be able to drill down into coverage details.
+1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build). 
 
 1. Analyzing the Test Failure. To get more detail about the test failure, click the **Tests** tab at the top of the report.
 
@@ -588,7 +606,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
 1. Take a moment to view the information that VSTS automatically fills in on the Bug form. The **Repro Steps** field contains the name of the test, the name of the machine on which the test was running, the build that the test was running in, the error message and the stack trace. This is a rich bug - and it required a single button click to create!
 
-    > **Note**: The stack trace shows the line that the `Assert.IsNotNull failed` on (83). Make a note of this for the next exercise.
+    > **Note**: The stack trace shows the line that the `Assert.IsNotNull failed` on (83) of HomeViewModelTests.cs. Make a note of this for the next exercise.
 
 1. You can change any of the fields if you need to - for now, just click **Unassingned** at the top of the form and assign the bug to yourself. Click the **Save** button in the toolbar on the upper right.
 
@@ -615,7 +633,7 @@ In this task, you will open the failing test in Visual Studio and fix the bug.
 
 1. In the Test Window, double-click the **Test_RetrieveAppointments_WhenMoreThanOneAppointments_InitsCorrectly** to open it.
 
-1. In the previous exercise, the stack trace of the failing test showed you that the `Assert.IsNotNull` on line 83 failed. Go to line 83 by pressing **Ctrl+G**, entering **83** and pressing enter. This takes you to the following failing assertion.
+1. In the previous exercise, the stack trace of the failing test showed you that the `Assert.IsNotNull` on line 83 of HomeViewModelTests.cs failed. Go to line 83 by pressing **Ctrl+G**, entering **83** and pressing enter. This takes you to the following failing assertion.
 
     ```csharp
     Assert.IsNotNull(homeviewModel.Appointments);
@@ -862,7 +880,7 @@ In this task, you will install a VSTS extension that contains some custom build 
 By completing this module, you should have:
 
 - Created a Team Build with a CI trigger for the Xamarin solution
-- Analyzed test results and code coverage for the build
+- Analyzed test results for the build
 - Logged a rich bug from test failure
 - Triggered a build by committing the bug fix to the repo
 - Improved the package versioning via a custom build task from the Marketplace
