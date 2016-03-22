@@ -178,7 +178,7 @@ where:
 - `{xamarinEmail}` is the email address for your Xamarin account
 - `{xamarinPassword}` is the password for your Xamarin account
 
-> **Note**: For example, the command should look something like:
+> **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password. For example, the command should look something like:
 	>
 	> ```powershell
 .\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
