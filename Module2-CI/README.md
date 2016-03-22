@@ -6,9 +6,9 @@
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Integration (CI) is a foundational pillar of DevOps. Once set up, each time code is committed to the source repo, a build is triggered. The build not only compiles the code, but ideally runs code analysis, unit (and sometimes even integration) tests. This provides the team with rapid feedback on the quality of the code just committed. The CI build can even package the code so that it is ready for deployment to test, QA or even Production environments.
+Continuous Integration (CI) is one of the key practices of DevOps. It requires the team to have a mindset to merge all working copies of developers’ code with a shared mainline, producing a new build upon code commit. The build not only compiles the code, but ideally runs code analysis, unit (and sometimes even integration) tests. This provides the team with rapid feedback on the quality of the code just committed. The CI build can even package the code so that it is ready for continuous deployment to test, QA or even Production environments. This module covers how to do that for the cross platform mobile applications used  in [Module 1](../Module1-Xamarin).
 
-In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
+In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it. Now let's see how to build and test it in an automated way. 
 
 ### A Note About HealthClinic.Biz ###
 The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz), an end-to-end sample from Microsoft. The code has
@@ -21,7 +21,7 @@ response but will not modify any data in the database. If you wish to host these
 ### Objectives ###
 In this module, you will see how to:
 
-- Create a CI build for the application in VSTS
+- Create a CI build for the Xamarin cross platform application in VSTS
 - Analyze test results for a build
 - Log rich bugs from test failures
 - Trigger a build by committing code to the repo
@@ -37,7 +37,7 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
-> **Note**: If you have completed Module 1, then you can skip this section and go straight to [Exercise 1](#Exercise1)
+> **Note**: If you have completed Module 1, then you need to only complete [Setup Task 2 - Generating a Personal Access Token (PAT)](#SetupTask2), and then go straight to [Exercise 1](#Exercise1)
 
 #### Sign up for a VSTS Account ####
 
@@ -48,7 +48,7 @@ Before continuing, you must sign up for a free VSTS account.
 
 In this setup task, you will create a new VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account and then go to Setup Task 2. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
+> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account and then go to [Setup Task 2](#SetupTask2). Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#Ex4Task2).
 
 1. Browse to [https://go.microsoft.com/fwlink/?LinkId=307137](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
@@ -237,104 +237,20 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 ## Exercises ##
 This module includes the following exercises:
 
-1. [Removing the iOS Projects from the Solution](#Exercise1)
-1. [Creating a Build Definition](#Exercise2)
-1. [Queueing the Build and Fix the Bug](#Exercise3)
-1. [Improving Package Versioning](#Exercise4)
+1. [Creating a Build Definition](#Exercise1)
+1. [Queueing the Build and Fix the Bug](#Exercise2)
+1. [Improving Package Versioning](#Exercise3)
 
 Estimated time to complete this module: **60 minutes**
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this module describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" ></a>
-### Exercise 1: Removing the iOS Projects from the Solution ###
-
-In this exercise, you will remove the iOS applications from the solution. Module 1 covered in detail how Xamarin allows you to code iOS applications using C# on Windows! However, compiling the iOS projects requires Mac hardware, which you do not have for this lab.
-
-> **Note**: You could use easily a service like [MacInCloud](http://www.macincloud.com/) to "rent" Mac hardware for your builds. The VSTS cross-platform agent is itself cross-platform, so it can run on any Mac servers you have as well.
-
-<a name="Ex1Task1"></a>
-#### Task 1 - Opening the HealthClinic.Biz Xamarin Solution ####
-
-> **Note**: You can skip this task if you have completed Module 1.
-
-In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
-
-1. In Visual Studio, open the **04_Demos_NativeXamarinApps.sln** solution located at **Source / Setup / HealthClinic.biz**.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
-
-    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
-
-    _The Xamarin Mac Agent Dialog_
-
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
-
-1. You should see 6 projects in the solution.
-
-    ![Xamarin Projects in the Solution](Images/vs-solution-explorer.png "Xamarin Projects in the Solution")
-
-    _Xamarin Projects in the Solution_
-
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). The build should fail. The error message will indicate that the project is too large and requires business or higher license.
-
-    ![Build failure requiring Xamarin Business Edition](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin Business Edition")
-
-    _Build failure requiring Xamarin Business Edition_
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click on **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-
-1. Now clean and rebuild the solution. Ensure that the solution builds without errors. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require.
-
-    > **Note**: If you see the error `The name 'InitializeComponent' does not exist in the current context` you may safely ignore it.
-
-    ![Ignore the InitializeComponent error](Images/vs-ignore-error.png "Ignore the InitializeComponent error")
-
-    _Ignore the InitializeComponent error_
-
-<a name="Ex1Task2"></a>
-#### Task 2 - Removing the iOS Project from the Solution ####
-
-In this task, you will remove the iOS applications from the solution, as we will only automate the build of the Android and UWP apps in this workshop. You can also automate iOS builds by using a [Mac computer or a solution like MacInCloud](http://i1.blogs.msdn.com/b/visualstudioalm/archive/2015/11/18/macincloud-visual-studio-team-services-build-and-improvements-to-ios-build-support.aspx).
-
-> **Note**: If you did not complete Module 1, take a few moments to browse the iOS project before you remove them.
-
-1. In order to remove the iOS project, make sure the solution from the previous task is opened in Visual Studio. Then, in **Team Explorer**, right-click MyHealth.Client.iOS and click **Remove**.
-
-    ![Remove the iOS project from the solution](Images/vs-remove-ios-projects.png "Remove the iOS project from the solution")
-
-    _Remove the iOS project from the solution_
-
-1. Once the iOS project are removed, your solution should look like the following.
-
-    ![Solution Structure without iOS project](Images/vs-project-structure.png "Solution Structure without iOS project")
-
-    _Solution Structure without iOS project_
-
-1. In the **Solution Explorer**, right-click the solution node (the top-most node) and click **Commit**. The only change should be the solution file.
-
-1. Enter _Removing iOS projects_ as the commit message. Then, click the drop-down next to the **Commit** button and click  **Commit and Push**.
-
-    ![Commit the Solution changes](Images/vs-commit-solution-change.png "Commit the Solution changes")
-
-    _Commit the Solution changes_
-
-<a name="Exercise2" ></a>
-### Exercise 2: Creating a Build Definition ###
+### Exercise 1: Creating a Build Definition ###
 
 In this exercise, you will create a Build definition to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
-<a name="Ex2Task1"></a>
+<a name="Ex1Task1"></a>
 #### Task 1 - Configure a Private Build Agent ####
 
 In this task, you will install a private build agent on your local machine.
@@ -413,7 +329,7 @@ In this task, you will install a private build agent on your local machine.
     
     _Agent waiting for builds_
     
-<a name="Ex2Task2"></a>
+<a name="Ex1Task2"></a>
 #### Task 2 - Create the Build Definition ####
 
 In this task, you will log in to VSTS and create a build from the **master** branch in the repo.
@@ -448,7 +364,7 @@ In this task, you will log in to VSTS and create a build from the **master** bra
 
     >**Note**: In order to build iOS projects, the build requires Mac hardware. You can integrate the your builds into [MacInCloud](http://www.macincloud.com/) to get access to Mac hardware during a build.
 
-<a name="Ex2Task3"></a>
+<a name="Ex1Task3"></a>
 #### Task 3 - Configure the Build Tasks ####
 
 In this task, you will configure the Build tasks.
@@ -549,13 +465,13 @@ In this task, you will configure the Build tasks.
 
     _Save the Build Definition_
 
-<a name="Exercise3" ></a>
-### Exercise 3: Queueing the Build and Fix the Bug ###
+<a name="Exercise2" ></a>
+### Exercise 2: Queueing the Build and Fix the Bug ###
 
 In this exercise, you will manually queue the build and analyze the build report. The build will fail, and you will log a bug to fix the problem. You will then
 fix the bug and push the fix to the VSTS repo - this will automatically trigger the CI build.
 
-<a name="Ex3Task1"></a>
+<a name="Ex2Task1"></a>
 #### Task 1 - Queueing the Build and Analyzing the Build Report ####
 
 In this task, you will queue a build, and once complete, examine the build report and log a bug for the failing test.
@@ -622,7 +538,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
 1. Close the form.
 
-<a name="Ex3Task2"></a>
+<a name="Ex2Task2"></a>
 #### Task 2 - Fixing the Bug in Visual Studio ####
 
 In this task, you will open the failing test in Visual Studio and fix the bug.
@@ -748,12 +664,12 @@ In this task, you will open the failing test in Visual Studio and fix the bug.
 
 1. Close the Artifacts Explorer.
 
-<a name="Exercise4" ></a>
-### Exercise 4: Improving Package Versioning ###
+<a name="Exercise3" ></a>
+### Exercise 3: Improving Package Versioning ###
 
 In this exercise, you will improve the versioning of the Android package by installing a custom build task from the VSTS Marketplace.
 
-<a name="Ex4Task1"></a>
+<a name="Ex3Task1"></a>
 #### Task 1 - Examine the Android Manifest file  ####
 
 Currently the build produces an **apk** file that has the version code **1.0** for every build. When releasing packages, it is best practice to version the package to match the build number so that you can track which build produced which package. In Module 3, you will learn how to release the package (the **apk** file) that the CI build produces using Release Management. It will be important to have unique version codes for audit purposes during the release pipeline. For now, you will simply configure the build to make the version code of the **apk** match the build number in VSTS.
@@ -774,7 +690,7 @@ In this task, you will examine the **AndroidManifest.xml** file to see where the
 
     Now that you know where to set the version code for the **apk**, you can configure the build to set it during the build.
 
-<a name="Ex4Task2"></a>
+<a name="Ex3Task2"></a>
 #### Task 2 - Installing an Extension from the VSTS Marketplace ####
 
 In this task, you will install a VSTS extension that contains some custom build tasks that will help you set the **android:versionCode** during the build.
