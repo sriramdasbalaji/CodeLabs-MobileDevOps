@@ -1,5 +1,5 @@
 # //build 2016 Workshops - Mobile DevOps
-The Cross-Platform Mobile Development modules instruct attendees about cross-platform mobile development and DevOps practices for mobile solutions. 
+This repo contains the Cross-Platform Mobile Development modules delivered at the Build 2016 conference. It instructs attendees about cross-platform mobile development and DevOps practices for mobile solutions. 
 
 #### [Cross-Platform Mobile Development 1 - Xamarin](https://github.com/Microsoft-Build-2016/CodeLabs-MobileDevOps/tree/master/Module1-Xamarin)
 Learn how you can leverage Visual Studio and Xamarin to develop cross-platform mobile applications across iOS, Android and Windows. In this workshop you will learn best practices from Microsoft and Xamarin for architecting and testing your apps to increase agility and overall quality. You will also create and use a new project in Visual Studio Team Services. 

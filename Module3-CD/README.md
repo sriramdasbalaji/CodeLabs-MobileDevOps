@@ -25,8 +25,8 @@ In this module, you will see how to:
 - Track app crashes from HockeyApp 
 
 ### A Note About HealthClinic.Biz ###
-The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample from Microsoft. The code has
-been modified slightly for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz), an end-to-end sample from Microsoft. The code has
+been modified for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
 Azure Mobile App service and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
 response but will not modify any data in the database. If you wish to host these services yourself after the workshop, then please refer to the
 [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.

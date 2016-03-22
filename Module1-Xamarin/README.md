@@ -6,13 +6,13 @@
 <a name="Overview"></a>
 ## Overview ##
 
-Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, implementing DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) for mobile solutions is also difficult.
+Creating cross-platform mobile applications can be challenging. Besides the platform differences in the code, there are extra considerations for implementing DevOps practices like Continuous Integration (CI) and Continuous Delivery (CD) for mobile solutions.
 
-However, using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, Continuous Integration and Continuous Delivery for mobile applications.
+Using [Xamarin](https://xamarin.com/) developers can build and debug native apps for iOS, Android and Windows from a single, shared C# codebase. Furthermore, developers can leverage [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) for source code, work item management, Continuous Integration and Continuous Delivery for mobile applications.
 
 ### A Note About HealthClinic.Biz ###
-The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz). This is a sample from Microsoft. The code has
-been modified slightly for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
+The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz), an end-to-end sample from Microsoft. The code has
+been modified for this workshop, so you may find differences. The mobile apps in the project connect to two services that are hosted in Azure - an
 Azure Mobile App service and an Azure Web App. The Azure apps have been modified for this workshop so that they are _read only_. Any add, update or delete method will return a successful
 response but will not modify any data in the database. If you wish to host these services yourself after the workshop, then please refer to the
 [Deployment to Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Deployment-to-Azure) page in the wiki.
@@ -56,14 +56,12 @@ This module includes the following exercises:
 
 Estimated time to complete this module: **60 minutes**
 
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. It is recommended that you use the **General Development Settings** collection.
-
 <a name="Exercise1"></a>
 ### Exercise 1: Signing up for a Xamarin Account ###
 
-Xamarin provides developers with tools to manage cross-platform applications. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin Visual Studio Tools](https://xamarin.com/visual-studio).
+Xamarin provides developers with tools to manage cross-platform applications. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin for Visual Studio](https://xamarin.com/visual-studio).
 
-In this workshop you will be using Xamarin Visual Studio Tools, though the concepts work just as well in Xamarin Studio.
+In this workshop you will be using Xamarin for Visual Studio.
 
 Xamarin provides many benefits:
 - A single tool to manage mobile apps across iOS, Android and Windows
@@ -180,7 +178,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _The Xamarin Mac Agent Dialog_
 
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
+    > **Note**: In order to compile Xamarin.iOS projects, you need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
 
 1. You should see 6 projects in the solution.
 
@@ -188,9 +186,9 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Xamarin Projects in the Solution_
 
-    > **Note**: The original [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) sample also includes other projects, including Apple Watch and WPF clients, and the service side code as well.
+    > **Note**: The original [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) sample includes other projects, like Apple Watch and WPF clients, and the service side code as well.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
 
     ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
 
@@ -212,7 +210,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Xamarin Business Trail confirmation_
 
-1. Now clean and rebuild the solution as we did above. Ensure that the solution builds without errors. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require.
+1. Now clean and rebuild the solution as we did above. Ensure that the solution builds without errors. 
 
     > **Note**: If you see the error `The name 'InitializeComponent' does not exist in the current context` you may safely ignore it.
 
@@ -249,7 +247,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
 1. Now, let's examine the **ServiceAgents**. The Client applications all call a service to get and update data. The service is an ASP.NET 5 REST API application hosted in an **Azure Mobile App** service. The Service Agents are encapsulations of different "areas" within the API: for example, the **DoctorsService** contains calls to the methods that get Doctor data, while the **PatientsService** gets Patient data.
 
-    The source code for the service is in the source structure (you can see it if you open the **06_Demos_MobileApp.sln** solution). For this workshop, the service has already been deployed to Azure at this address: [https://healthclinicmobile-build.azurewebsites.net](https://healthclinicmobile-build.azurewebsites.net). Deploying this service is beyond the scope of this workshop.
+    The source code for the service is in the original [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) sample. For this workshop, the service has already been deployed to Azure at this address: [https://healthclinicmobile-build.azurewebsites.net](https://healthclinicmobile-build.azurewebsites.net). Deploying this service is beyond the scope of this workshop.
 
     > **Note**: [Azure Mobile Apps](https://azure.microsoft.com/en-us/services/app-service/mobile/) can be used for:
     >
@@ -314,7 +312,7 @@ In this task, you will run the Android and UWP applications in their respective 
 
     _Click Run Android Emulator_
 
-1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. You may also be asked if you want it to be configured for internet access, and if you click **Yes**.  
+1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. You may also be asked if you want it to be configured for internet access, and if you do, click **Yes**.  
 Once it starts up, you should see the emulator run the **Patients** app.
 
     ![App in the Android Emulator](Images/vs-android-emulator-running.png "App in the Android Emulator")
@@ -326,14 +324,14 @@ Once it starts up, you should see the emulator run the **Patients** app.
 <a name="Exercise4"></a>
 ### Exercise 4: Creating a VSTS Team Project ###
 
-In this exercise, you sign up for a VSTS account and create a new Team Project. Later you will push the source code to this Team Project. You will also use the Team Project in later modules to create an automated build that runs unit tests and produces binaries, create a release definition to manage releases of your builds and track work items like bugs.
+In this exercise, you sign up for a VSTS account and create a new Team Project for your Xamarin projects. In this module you will push toe source code to the team project's Git repository. In later modules you will use it to create an automated build that runs unit tests and produces binaries, and create a release definition to manage releases of your builds and track work items like bugs.
 
 <a name="Ex4Task1"></a>
 #### Task 1 - Signing up for a VSTS Account ####
 
 In this task, you will sign up for a free VSTS account.
 
-> **Note**: You can skip this step if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you created a previous VSTS account  with build credits yourself, you can skip this step and just sign into your account. However, if you are just a member of someone else's VSTS account and added you to the account, then you will need to create your own as per these steps. Once you have signed into your existing account, then create a new Team Project as specified in [Task 2](#Ex4Task2).
+> **Note**: You can skip this step if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you created a previous VSTS account yourself, you can skip this step and just sign into your account. Once you have signed into your existing account, then create a new Team Project as specified in [Task 2](#Ex4Task2).
 
 1. Sign into [visualstudio.com](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
@@ -363,14 +361,14 @@ In this task, you will sign up for a free VSTS account.
 
 In this task, you will create a new Team Project.
 
-    > **Note**: VSTS might not prompt you to create a new Project but create one for you already. If so, you don't need ot create the new project as described in the next step.
-
 1. On the **New Team Project** page, enter the following information:
 
     - A project name - the workshop will use _HealthClinic_, so it is recommended that you use this too
     - Select the **Agile** process template
     - Select **Git** version control
     - Click **Create project** button
+
+    > **Note**: VSTS might not prompt you to create a new Project but create one for you automatically. If so, you don't need ot create the new project.
 
     ![Creating a New Team Project](Images/vsts-new-team-project.png "Creating a New Team Project")
 
@@ -450,7 +448,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
     _Add untracked files in Team Explorer_
 
-1. Configure your **Git Global Settings**. Click on the **Configure** link. 
+1. You will need to configure your **Git Global Settings**. Click on the **Configure** link. 
 
 1. Enter your name and email address. Leave the other settings as their defaults. Then click **Update**.
 
@@ -466,7 +464,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
     _The initial commit_
 
-1. This may take a few moments. Once completed, the **Changes** pane will show no changes pending. This means you have commited your changes to your local git.
+1. This may take a few moments. Once completed, the **Changes** pane will show no changes pending. This means you have commited your changes to your local Git repo, but not yet pushed these changes to VSTS. 
 
     ![No changes in Team Explorer](Images/vs-te-no-changes.png "No changes in Team Explorer")
 
@@ -573,9 +571,9 @@ In this task, you will run the unit tests.
 
     _Run the unit tests_
 
-    You should see a test failure - you will fix this later.
+    You should see most tests pass, with one test failure - you will fix this later.
 
-    >**Note** With Visual Studio Enterprise you also have access to Microsoft Fakes (Unit Test Isolation), IntelliTest, Code Coverage and a host of other testing tools for your team.
+    >**Note** With Visual Studio Enterprise you also have access to Microsoft Fakes (Unit Test Isolation), IntelliTest, Code Coverage and a host of other testing tools.
     
     ![Test Results with a failure](Images/vs-tex-test-failure.png "Test Results with a failure")
 
@@ -664,7 +662,7 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
     > **Note**: The call to the service is asynchronous, so the `await` keyword is used. If you look back at the unit test, you'll see that the unit test is an `async` method so that it can properly test asynchronous code.
 
-1. Calling the actual service during a test would be a bad idea - the returned data could change, and the test would break. It is best proactive to _isolate_ your unit tests from external dependencies - like services or databases. There are several ways to do this, but one good way is to use _mocks_.
+1. Calling the actual service during a test is not ideal - the returned data could change, and the test would break. It is best proactive to _isolate_ your unit tests from external dependencies - like services or databases. There are several ways to do this, but one good way is to use _mocks_.
 
 1. Open the **Test_RetrieveMedicines_WhenTwoMeds_InitsCorrectly** method again by clicking the **Navigate Back** button once in the toolbar, or double-clicking the test in the **Test Explorer** window.
 
