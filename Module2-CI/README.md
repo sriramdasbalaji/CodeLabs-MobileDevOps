@@ -37,8 +37,6 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
-> **Note**: If you have completed Module 1, then you need to only complete [Setup Task 2 - Generating a Personal Access Token (PAT)](#SetupTask2), and then go straight to [Exercise 1](#Exercise1)
-
 #### Sign up for a VSTS Account ####
 
 Before continuing, you must sign up for a free VSTS account.
@@ -48,7 +46,7 @@ Before continuing, you must sign up for a free VSTS account.
 
 In this setup task, you will create a new VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account and then go to [Setup Task 2](#SetupTask2). Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#Ex4Task2).
+> **Note**: If you have completed Module 1, or if you already have a VSTS account that you created, you can skip this step and go to [Setup Task 2](#SetupTask2). However, you need to ensure that it is an account in which you are the account owner.
 
 1. Browse to [https://go.microsoft.com/fwlink/?LinkId=307137](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
@@ -243,8 +241,6 @@ This module includes the following exercises:
 
 Estimated time to complete this module: **60 minutes**
 
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this module describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
-
 <a name="Exercise1" ></a>
 ### Exercise 1: Creating a Build Definition ###
 
@@ -255,7 +251,7 @@ In this exercise, you will create a Build definition to compile the solution, ru
 
 In this task, you will install a private build agent on your local machine.
 
-> **Note**: You can also use the Hosted build agent provided by VSTS. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop we are using a _private_ build agent because the Xamarin trial license activation does not work on the Hosted build agent.
+> **Note**: You can also use the Hosted build agent provided by VSTS for UWP and Android builds. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop we are using a _private_ build agent because you are using a trial Xamarin license.
 
 1. Navigate to the Agent Pools configuration in VSTS
     Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
@@ -352,7 +348,7 @@ In this task, you will log in to VSTS and create a build from the **master** bra
 
     _Select the Visual Studio build template_
 
-    >**Note**: You will see a Xamarin.Android and a Xamarin.iOS build template as well. For this workshop, you will be building multiple projects including the Portable Class Library (PCL) and the unit test project. For this reason, the Visual Studio build template is a better choice. Feel free to come back later and select the Xamarin templates to see how the task orchestration differs for those templates.
+    >**Note**: You will see Xamarin.Android and Xamarin.iOS build templates as well. For this workshop, you will be building multiple projects including the Portable Class Library (PCL) and the unit test project. For this reason, the Visual Studio build template is a good starting choice. Feel free to come back later and select the Xamarin templates to see how the task orchestration differs for those templates.
 
 1. Make sure that the repo settings are correct (it should be the **master** branch on the **HealthClinic** repo). Check the **Continuous Integration** checkbox and ensure that the **Default agent queue** is set to **Default** and click **Create**.
 
@@ -361,8 +357,6 @@ In this task, you will log in to VSTS and create a build from the **master** bra
     _Build Repo and Trigger_
 
     >**Note**: The **Continuous Integration** trigger tells VSTS to trigger this build to run each time that code is pushed to the **master** branch.
-
-    >**Note**: In order to build iOS projects, the build requires Mac hardware. You can integrate the your builds into [MacInCloud](http://www.macincloud.com/) to get access to Mac hardware during a build.
 
 <a name="Ex1Task3"></a>
 #### Task 3 - Configure the Build Tasks ####

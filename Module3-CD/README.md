@@ -336,8 +336,6 @@ This module includes the following exercises:
 
 Estimated time to complete this module: **60 minutes**
 
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this module describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
-
 <a name="Exercise1" ></a>
 ### Exercise 1: Creating a HockeyApp Account ###
 
