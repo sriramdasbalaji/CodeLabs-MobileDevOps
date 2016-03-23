@@ -1,5 +1,5 @@
 ﻿<a name="HOLTop" ></a>
-# Continuous Integration using Visual Studio Team Services for Cross Platform Mobile Apps #
+# Mobile DevOps 2 - Continuous Integration using Visual Studio Team Services #
 
 ---
 
@@ -37,6 +37,8 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
+> **Note**: If you have completed Module 1, you can skip the set up and go straight to [Exercise 1](#Exercise1).
+
 #### Sign up for a VSTS Account ####
 
 Before continuing, you must sign up for a free VSTS account.
@@ -48,7 +50,7 @@ In this setup task, you will create a new VSTS account.
 
 > **Note**: If you have completed Module 1, or if you already have a VSTS account that you created, you can skip this step and go to [Setup Task 2](#SetupTask2). However, you need to ensure that it is an account in which you are the account owner.
 
-1. Browse to [https://go.microsoft.com/fwlink/?LinkId=307137](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
+1. Sign into [visualstudio.com](https://go.microsoft.com/fwlink/?LinkId=307137). Enter your Microsoft Account credentials.
 
     ![Signing in to visualstudio.com](Images/vsts-signin-no-account.png "Signing into visualstudio.com")
 
@@ -143,7 +145,7 @@ In order to run the exercises in this module, you will need to set up your envir
 
 In this task, you will create a Xamarin account.
 
-> **Note**: If you have a Xamarin business license or created a trial as part of Module 1 you can use it and skip this task.
+> **Note**: If you have a Xamarin business or trial license, you can skip this task.
 
 1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
 
@@ -161,8 +163,6 @@ In this task, you will create a Xamarin account.
 
 <a name="SetupTask5"></a>
 #### Setup Task 5 - Activating your Xamarin Account in Visual Studio ####
-
-> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
 
 In this setup task, you will activate your Xamarin Account in Visual Studio.
 
@@ -192,8 +192,6 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
 <a name="SetupTask6"></a>
 #### Setup Task 6 - Activating a Xamarin Business Trial ####
-
-> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
 
 In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
 
@@ -411,9 +409,9 @@ In this task, you will configure the Build tasks.
 
 1. Configure the Unit Test run. Click the **Visual Studio Test** task. By default, this task finds any assembly with the word `test` in it and runs the tests in that assembly. Since you have unit tests and UI tests, you will need to constrain the filter to ensure that only unit tests run during the build.
 
-    >**Note**: It is possible to run the UI tests using either [Xamarin Test Cloud](https://xamarin.com/test-cloud) or [Perfecto Mobile](http://www.perfectomobile.com/integrations/continuous-quality-integrated-visual-studio).  These services allow you to run the tests against a myriad of devices, recording results of runs against each device. Perfecto Mobile also provides user conditions testing, private cloud options, and the ability to execute one script (Java or C#) to test desktop and mobile browsers in parallel.  If you click **Add new task** and browse to the **Test** tasks, you will see a Xamarin Test Cloud task. You can install the Perfecto task to your account through the [VSTS Marketplace](https://marketplace.visualstudio.com/items?itemName=Perfecto.PerfectoCQ). For this lab, you will not run tests against either Xamarin Test Cloud or Perfecto’s Continuous Quality Lab, but it is possible to do so.  
+    >**Note**: It is possible to run UI tests using services like [Xamarin Test Cloud](https://xamarin.com/test-cloud) or [Perfecto Mobile](http://www.perfectomobile.com/integrations/continuous-quality-integrated-visual-studio).  These services allow you to run the tests against a myriad of devices, recording results of runs against each device. Perfecto Mobile offer 50 hours/month free for 3 Months and also provides user conditions testing, private cloud options, and the ability to execute one script (Java or C#) to test desktop and mobile browsers in parallel.  If you click **Add new task** and browse to the **Test** tasks, you will see a Xamarin Test Cloud task. You can install the Perfecto task to your account through the [VSTS Marketplace](https://marketplace.visualstudio.com/items?itemName=Perfecto.PerfectoCQ). For this lab, you will not run tests against either Xamarin Test Cloud or Perfecto’s Continuous Quality Lab, but it is possible to do so.  
 
-1. In the **Test Assembly** parameter, change the word `test` to `unittest`. Your task should look as follows:
+1. In the **Test Assembly** parameter, change the word `test` to `unittest`, so that it only runs tests in the MyHealth.Client.Core.UnitTests project. Your task should look as follows:
 
     ![Configure Test Run](Images/vsts-build-test-run.png "Configure Test Run")
 
@@ -437,7 +435,7 @@ In this task, you will configure the Build tasks.
 
 1. Configure the **Copy Files** Task. Click the **Copy Files** task. This task will copy files that we want as outputs of this build to the build artifacts staging directory. Any files in this directory will be published in the **Publish Build Artifacts** step.
 
-1. Change the **Source Folder** parameter to be **src/MyHealth.Client.Droid**. Change the **Contents** parameter to be `**\*-signed.apk`. The **Contents** parameter supports a minimatch filter, so this value tells the task to copy any file ending with `-signed.apk` in any subdirectory of the **Source Folder** to the **Target Folder**. Your task should look as follows.
+1. Change the **Source Folder** parameter to be **src/MyHealth.Client.Droid**. Change the **Contents** parameter to be `**\*-signed.apk`. The **Contents** parameter supports a minimatch filter, so this value tells the task to copy any file ending with `-signed.apk` in any subdirectory of the **Source Folder** to the **Target Folder**. This is because we are only interested in the compiled and signed Android mobile app file. Your task should look as follows.
 
     ![Configure Copy Files Task](Images/vsts-build-copy-task.png "Configure Copy Files Task")
 

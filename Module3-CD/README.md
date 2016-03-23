@@ -1,18 +1,18 @@
 ﻿<a name="HOLTop" ></a>
-# Continuous Delivery for Cross-Platform Mobile Apps using Visual Studio Team Services and HockeyApp #
+# Mobile DevOps 3 - Continuous Deployment and Beta Testing using Visual Studio Team Services and HockeyApp #
 
 ---
 
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Delivery is the next step to good DevOps after Continuous Integration. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not always manage or have access to the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
+Continuous Deployment is the ability for us to use the output from Continuous Integration to deploy to an environment, and Release Management matures this to orchestrate that deployment to multiple environments. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not always manage or have access to the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
 
 In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and Portable Class Libraries and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
 
-In [Module 2](../Module2-CI), you covered how to create a [Continuous Integration Build](https://www.visualstudio.com/features/continuous-integration-vs) in VSTS that queues a build to compile, test and package code for deployment every time a developer pushes code to the VSTS repo.
+In [Module 2](../Module2-CI), you covered how to create a [Continuous Integration Build](https://www.visualstudio.com/features/continuous-integration-vs) in VSTS that queues a build to compile, test and package a mobile app  every time a developer pushes code to the VSTS repo.
 
-In this module, you will learn how to create a Release to automatically release a new version of the app to users. To do this you will release the Android app through [HockeyApp](http://hockeyapp.net/) and Release Management in VSTS. HockeyApp is a Microsoft service that allows you to manage releases of your apps to beta testers, gather feedback and diagnose crash reports from your apps.
+In this module, you will learn how to create a Release to automatically release a new version of the app to users. To do this you will release the Android app through [HockeyApp](http://hockeyapp.net/) and Release Management in VSTS. HockeyApp is a Microsoft service that allows you to manage releases of your mobile apps to beta testers, gather feedback, and diagnose crash reports from your apps.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -20,7 +20,7 @@ In this module, you will see how to:
 
 - Create a HockeyApp account 
 - Create a VSTS Release Definition with a HockeyApp task
-- Queue the Release manually and installed the app via HockeyApp in the emulator
+- Queue the Release manually and install the app via HockeyApp in the emulator
 - Track feedback from within the app
 - Track app crashes from HockeyApp 
 
@@ -42,13 +42,13 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
-> **Note**: If you have completed Module 1 or Module 2, then you can skip this section and go straight to [Exercise 1](#Exercise1)
+> **Note**: If you have completed Module 2, then you can skip this section and go straight to [Exercise 1](#Exercise1)
 
 #### Sign up for a VSTS Account ####
 
 Before continuing, you must sign up for a free VSTS account.
 
-> **Note**: You can skip this task if you already have a VSTS account. However, you need to ensure that it is an account in which you are the account owner. In other words, if you create the account yourself, you can skip this step and just sign into your account. However, if some else created the account and added you to the account, then you will need to complete this step. Once you have signed into your existing account, then create a new Team Project as specified in [Module 1](../Module1-Xamarin#task-2---create-a-new-team-project).
+> **Note**: If you already have a VSTS account that you created, you can skip this step and go to Setup Task 2. However, you need to ensure that it is an account in which you are the account owner.
 
 <a name="SetupTask1"></a>
 #### Setup Task 1 - Creating a New VSTS Account ####
@@ -114,7 +114,7 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
 
 In this task, you will create a Xamarin account.
 
-> **Note**: If you have a Xamarin business license you can use it and skip this task.
+> **Note**: If you have a Xamarin business or trial license you can use it and skip this task.
 
 1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login") and click **Create a new account**.
 
@@ -153,49 +153,13 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
 
     _Xamarin Credentials in Visual Studio_  
 
-1. Once activated, you should see your account has been logged in. You can close the dialog.
+1. Once logged in, you can close the dialog.
 
     ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
 
     _Logged in to Xamarin in Visual Studio_
 
-<a name="SetupTask5"></a>
-#### Setup Task 5 - Running the Setup Script ####
-
-In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
-
-1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
-
-1. Enter the following command.
-
-```powershell
-.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
-```
-
-where:
-- `{youraccount}` is the VSTS account name you created earlier 
-- `{yourPAT}` is the VSTS PAT you created earlier.
-- `{xamarinEmail}` is the email address for your Xamarin account
-- `{xamarinPassword}` is the password for your Xamarin account
-
-> **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password. For example, the command should look something like:
-	>
-	> ```powershell
-.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
-	> ```
-
-1. Wait until you see a green **Done!** before continuing.
-
-	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
-
-	_The Setup script completed successfully_
-
-<a name="SetupTask6"></a>
-#### Setup Task 6 - Activating a Xamarin Business Trial ####
-
-> **Note**: If you already activated your Xamarin trial as part of Module 1 you can skip this task.
-
-In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
+> **Note**: You have only signed in to the Xamarin account, you still need to activate it to start the trial.
 
 1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
 
@@ -229,10 +193,49 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
 
     _Xamarin Business Trail confirmation_
 
-<a name="SetupTask7"></a>
-#### Setup Task 7 - Configure a Private Build Agent ####
 
-In this task, you will install a private build agent on your local machine. **If you have completed Module 1 or 2, skip this task**.
+<a name="SetupTask5"></a>
+#### Setup Task 5 - Running the Setup Script ####
+
+In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
+
+1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
+
+1. Enter the following command, pressing Y when prompted.
+
+	```powershell
+	Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+    ```
+
+1. And then the following command.
+
+```powershell
+.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
+```
+
+where:
+- `{youraccount}` is the VSTS account name you created earlier 
+- `{yourPAT}` is the VSTS PAT you created earlier.
+- `{xamarinEmail}` is the email address for your Xamarin account
+- `{xamarinPassword}` is the password for your Xamarin account
+
+> **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password. For example, the command should look something like:
+
+	> ```powershell
+.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
+	> ```
+
+1. Wait until you see a green **Done!** before continuing.
+
+	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
+
+	_The Setup script completed successfully_
+
+
+<a name="SetupTask6"></a>
+#### Setup Task 6 - Configure a Private Build Agent ####
+
+In this task, you will install a private build agent on your local machine. 
 
 > **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you need to use a _private_ build agent only because the Xamarin trial license does not work on the Hosted build agent.
 
@@ -1039,7 +1042,7 @@ By completing this module, you should have:
 
 - Created a HockeyApp account
 - Created a VSTS Release Definition with a HockeyApp task
-- Queued the Release manually and installed the app via HockeyApp in the emulator
+- Queued the Release manually and install the app via HockeyApp in the emulator
 - Tracked feedback from within the app
 - Tracked app crashes from HockeyApp
 
