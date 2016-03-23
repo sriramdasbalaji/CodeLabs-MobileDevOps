@@ -6,7 +6,7 @@
 <a name="Overview" ></a>
 ## Overview ##
 
-Continuous Deployment is the ability for us to use the output from Continuous Integration to deploy to an environment, and Release Management matures this to orchestrate that deployment to multiple environments. Typically, this involves ensuring that the application infrastructure is in a good state and configured correctly and then deploying the application to that infrastructure. However, mobile apps present a challenge - you do not always manage or have access to the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial.
+Continuous Deployment is the ability for us to use the output from Continuous Integration to deploy to an environment, and Release Management matures this to orchestrate that deployment to multiple environments. Typically this is deployed to an application infrastructure that you know is in a good state and configured correctly. However, mobile apps present a challenge - you do not always manage or have access to the target infrastructure - that is, the mobile devices of the users. Getting packaged apps to users in a controlled and managed manner is not trivial for mobile apps.
 
 In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and Portable Class Libraries and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it.
 
