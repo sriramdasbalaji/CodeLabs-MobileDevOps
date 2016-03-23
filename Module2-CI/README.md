@@ -8,7 +8,7 @@
 
 Continuous Integration (CI) is one of the key practices of DevOps. It requires the team to have a mindset to merge all working copies of developers’ code with a shared mainline, producing a new build upon code commit. The build not only compiles the code, but ideally runs code analysis, unit (and sometimes even integration) tests. This provides the team with rapid feedback on the quality of the code just committed. The CI build can even package the code so that it is ready for continuous deployment to test, QA or even Production environments. This module covers how to do that for the cross platform mobile applications used  in [Module 1](../Module1-Xamarin).
 
-In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it. Now let's see how to build and test it in an automated way. 
+In [Module 1](../Module1-Xamarin), you covered developing cross platform mobile apps using [Xamarin](https://xamarin.com/). You learned about the project structure and **Portable Class Libraries** and saw how to unit test the core of the application. You then created a [Visual Studio Team Services](https://www.visualstudio.com/products/visual-studio-team-services-vs.aspx) (VSTS) Team Project and committed the code into it. Now let's see how to build and test it in an automated way.
 
 ### A Note About HealthClinic.Biz ###
 The solution that you will use for this workshop is from [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz), an end-to-end sample from Microsoft. The code has
@@ -132,7 +132,7 @@ In order to run the exercises in this module, you will need to set up your envir
 	.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
 	> ```
 
-> **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password.
+ > **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password.
 
 1. Wait until you see a green **Done!** before continuing.
 
@@ -210,7 +210,7 @@ In this task, you will open the Xamarin solution for cross-mobile apps for Healt
     ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
 
     _Build failures_
-    
+
 1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
 
     ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
@@ -253,76 +253,76 @@ In this task, you will install a private build agent on your local machine.
 
 1. Navigate to the Agent Pools configuration in VSTS
     Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
-    
+
     ![Click the gear icon](Images/vsts-click-gear.png "Click the gear icon")
-    
+
     _Click the gear icon_
-    
-    In the top left of the navigation, click the **Control Panel** link:
-    
+
+1. In the top left of the navigation, click the **Control Panel** link:
+
     ![Click Control Panel](Images/vsts-click-controlpanel.png "Click Control Panel")
-    
+
     _Click Control Panel_
-    
+
     Click on the **Agent pools** tab.
-    
+
 1. Download the agent
     In the left menu, click the **Download agent** button.
-    
+
     ![Click Download agent](Images/vsts-download-agent.png "Click Download agent")
-    
+
     _Click Download agent_
-    
-    Enter `c:\buildworkshop` as the destination folder for the download. Make sure that popups are allowed from the site if nothing happens when you click the button.
-    
-    > **Note** If the browser mentions it blocked a popup, select always allow and click the Download agent link again. 
+
+1. Enter `c:\buildworkshop` as the destination folder for the download. Make sure that popups are allowed from the site if nothing happens when you click the button.
+
+    > **Note** If the browser mentions it blocked a popup, select always allow and click the Download agent link again.
 
 1. Unlock and extract the agent.zip file
 
     In File Explorer, navigate to `c:\buildworkshop'. Right click the **agent.zip** file and click **Properties**. Check the **Unblock** checkbox and click **Apply**.
-    
+
     ![Unblock the agent zip file](Images/vsts-agent-unblock.png "Unblock the agent zip file")
-    
+
     _Unblock the agent zip file_
-    
-    Close the properties window.
-    
-    Right click the **agent.zip** file and select "Extract All...". Keep the default path and click **Extract**.
-    
+
+1. Close the properties window.
+
+1. Right click the **agent.zip** file and select "Extract All...". Keep the default path and click **Extract**.
+
     ![Extract the agent zip file](Images/vsts-agent-extract.png "Extract the agent zip file")
-    
+
     _Extract the agent zip file_
-    
+
 1. Install the agent
     Once you have extracted the file, open a **Windows PowerShell** window and `cd` to `c:\buildworkshop\agent`. Then type `.\ConfigureAgent` to launch the agent configuration wizard.
-    
-    Enter the following information for each question:
+
+1. Enter the following information for each question:
     - **Enter the name for this agent**: press enter (accept the default)
     - **Enter the URL for the Team Foundation Server**: enter your VSTS URL: (e.g. https://myaccount.visualstudio.com)
     - **Configure this agent against which agent pool?**: press enter (accept the default)
     - **Enter the path of the work folder for this agent**: press enter (accept the default)
     - **Would you like to install the agent as a Windows Service (Y/N)**: type **Y** and press enter
     - **Enter the name of the user account to use for the service**: press enter (accept the default)
-    
+
     At this point you will be asked to sign into your VSTS account using your VSTS credentials.
-    
+
     ![Sign in to your VSTS account](Images/vsts-signin.png "Sign in to your VSTS account")
-    
+
     _Sign in to your VSTS account_
-    
-    Make sure that the install completes successfully.
-    
+
+1. Make sure that the install completes successfully.
+
     ![Successful install of the build agent](Images/vsts-agent-install-success.png "Successful install of the build agent")
-    
+
     _Successful install of the build agent_
-    
+
 1. Check the agent in the Default Pool on VSTS
     Go back to the **Agent Pool** page in the configuration window of your VSTS account. Click on the **Default** pool in the left menu. Make sure that the build agent is showing and is green.
-    
+
     ![Agent waiting for builds](Images/vsts-agent-ready.png "Agent waiting for builds")
-    
+
     _Agent waiting for builds_
-    
+
 <a name="Ex1Task2"></a>
 #### Task 2 - Create the Build Definition ####
 
@@ -380,7 +380,7 @@ In this task, you will configure the Build tasks.
     ![Add the Xamarin License task](Images/vsts-build-add-xamarin.png "Add the Xamarin License task")
 
     _Add the Xamarin License task_
-    
+
     > **Note**: This is not strictly necessary in this case since the build agent is on your machine which already has a Xamarin license on it (the one you activated in Visual Studio). However, in real life the activation/deactivation of the Xamarin license on the build agent is typically necessary.
 
 1. This adds the **Xamarin License** task at the bottom of the definition. Click and drag the task so that it is just below the **NuGet Installer** task.
@@ -494,7 +494,7 @@ In this task, you will queue a build, and once complete, examine the build repor
 
     _The build report for the failed build_
 
-1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build). 
+1. In the graphs on the right, you will see that there is a test failure. You will also see trends showing the difference in failures, pass rate and run duration between this build and previous builds (not too useful at the moment since this is the first build).
 
 1. Analyzing the Test Failure. To get more detail about the test failure, click the **Tests** tab at the top of the report.
 
