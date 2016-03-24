@@ -747,3 +747,5 @@ By completing this module, you should have:
 - Created a VSTS Team Project
 - Pushed the Source Code to the VSTS Team Project
 - Run and understood Unit Tests
+
+> **Note**: If you are planning on doing Module 2, it is better not to log out of the machine (since a clean up script will delete all your work).  If you must log out, then you will have to run the setup script for Module 2 when you start it.

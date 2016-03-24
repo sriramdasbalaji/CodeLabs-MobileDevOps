@@ -32,7 +32,7 @@ $extensionId = "colinsalmcorner.colinsalmcorner-buildtasks"
 $agileTemplateId = "adcc42ab-9882-485e-a3ed-7678f01f66bc"
 $createProjectUri = "defaultcollection/_apis/projects?api-version=2.0-preview"
 $queryProjectUri = "defaultcollection/_apis/projects/$projectName" + "?api-version=1.0"
-$createBuildUri = "defaultcollection/$projectName/_apis/build/definitions?api-version=2.0"
+$buildDefUri = "defaultcollection/$projectName/_apis/build/definitions?api-version=2.0"
 $queueBuildUri = "defaultcollection/$projectName/_apis/build/builds?api-version=2.0"
 
 # create headers
@@ -59,14 +59,21 @@ $uri = "$vstsUrl/$queryProjectUri" -f $projectName
 $projectExists = $true
 try {
     $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-    Write-Host "Team project already exists - skipping create and code push" -ForegroundColor Cyan
+    Write-Host "Team project already exists" -ForegroundColor Cyan
 } catch {
     $projectExists = $false
     Write-Host "Team project does not exist" -ForegroundColor Cyan
 }
 
 ############################################################################
-if (!$projectExists) {
+Push-Location
+if ($projectExists) {
+    Write-Host "Cloning existing repo" -ForegroundColor Yellow
+    
+    cd $workshopPath
+    
+    git clone "$vstsUrl/DefaultCollection/_git/$projectName"
+else {
     Write-Host "Creating VSTS Team Project $projectName" -ForegroundColor Yellow
     $uri = "$vstsUrl/$createProjectUri"
 
@@ -108,7 +115,6 @@ if (!$projectExists) {
     ############################################################################
     Write-Host "Initializing local Git repo and committing code" -ForegroundColor Yellow
 
-    Push-Location
     cd "$workshopPath\HealthClinic.biz"
 
     git init
@@ -122,25 +128,48 @@ if (!$projectExists) {
 
     git remote add origin "$vstsUrl/DefaultCollection/_git/$projectName"
     git push -u origin --all
-
-    Pop-Location
 }
+Pop-Location
 
 ############################################################################
-Write-Host "Creating Team build $buildName" -ForegroundColor Yellow
-$uri = "$vstsUrl/$createBuildUri"
+Write-Host "Checking if team build $buildName exists" -ForegroundColor Yellow
+$uri = "$vstsUrl/$($buildDefUri)&name=$buildName"
 
-$buildDef = (Get-Content $buildDefinitionFilePath) -join "`n" | ConvertFrom-Json
+$response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
+if (response.count -eq 0) {
+    Write-Host "Creating Team build $buildName" -ForegroundColor Yellow
+    $uri = "$vstsUrl/$buildDefUri"
 
-# set some parameters for the build definition
-$buildDef.name = $buildName
-$buildDef.repository.url = "$vstsUrl/DefaultCollection/_git/$projectName"
-$buildDef.variables.XamarinEmail.value = $xamarinEmail
-$buildDef.variables.XamarinPassword.value = $xamarinPassword
+    $buildDef = (Get-Content $buildDefinitionFilePath) -join "`n" | ConvertFrom-Json
 
-$response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
-                              -Headers $headers -Body (ConvertTo-Json $buildDef -Depth 10)
-$buildDefId = $response.Id
+    # set some parameters for the build definition
+    $buildDef.name = $buildName
+    $buildDef.repository.url = "$vstsUrl/DefaultCollection/_git/$projectName"
+    $buildDef.variables.XamarinEmail.value = $xamarinEmail
+    $buildDef.variables.XamarinPassword.value = $xamarinPassword
+
+    $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
+                                  -Headers $headers -Body (ConvertTo-Json $buildDef -Depth 10)
+    $buildDefId = $response.Id
+} else {
+    Write-Host "Build $buildName already exists" -ForegroundColor Cyan
+    $buildDefId = $response.value.id
+}
+
+# ############################################################################
+# can't queue the build until the student has configured a private build agent :-(
+# Write-Host "Queueing Team build $buildName" -ForegroundColor Yellow
+# $uri = "$vstsUrl/$queueBuildUri"
+
+# $body = @{
+#     definition = @{
+#         id = $buildDefId
+#     }
+#     sourceBranch = "res/heads/master"
+# }
+
+# Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
+#                   -Headers $headers -Body (ConvertTo-Json $body -Depth 10)
 
 ############################################################################
 #                        END OF SCRIPT                                     #

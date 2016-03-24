@@ -42,7 +42,11 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
-> **Note**: If you have completed Module 2, then you can skip this section and go straight to [Exercise 1](#Exercise1)
+> **Note**: If you have completed Module 2, you can skip the set up and go straight to [Exercise 1](#Exercise1). However, if you logged off the machine you used for Module 2 (or are using a different machine), then your work will have been deleted and you will need to run go complete the following setup tasks:
+>- [Login to your Xamarin Account in Visual Studio](SetupTask4)
+>- [Run the setup script](SetupTask5).
+>
+> You will then be able to proceed to [Exercise 1](#Exercise1)
 
 #### Sign up for a VSTS Account ####
 
@@ -152,6 +156,8 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
+    
+    > **Note:** If the login fails because the license is installed on another lab machine, then you will have to log in to your Xamarin account and deactivate the license on the other machine before reattempting the login.
 
 1. Once logged in, you can close the dialog.
 
@@ -160,39 +166,6 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
     _Logged in to Xamarin in Visual Studio_
 
 > **Note**: You have only signed in to the Xamarin account, you still need to activate it to start the trial.
-
-1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
-
-    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
-
-    _The Xamarin Mac Agent Dialog_
-
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
-
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
-
-    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
-
-    _Build failures_
-
-1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** from **c:\buildworkshop\HealthClinic.biz** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
-
-    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-
 
 <a name="SetupTask5"></a>
 #### Setup Task 5 - Running the Setup Script ####
@@ -230,7 +203,6 @@ In order to run the exercises in this module, you will need to set up your envir
 	![The Setup script completed successfully](Images/setup-done.png "The Setup script completed successfully")
 
 	_The Setup script completed successfully_
-
 
 <a name="SetupTask6"></a>
 #### Setup Task 6 - Configure a Private Build Agent ####
@@ -280,6 +252,8 @@ In this task, you will install a private build agent on your local machine.
 
 1. Install the agent
     Once you have extracted the file, open a **Windows PowerShell** window and `cd` to `c:\buildworkshop\agent`. Then type `.\ConfigureAgent` to launch the agent configuration wizard.
+    
+    > **Note:** If the first prompt is **An existing configuration file was detected.  This will update the local agent settings.  Do you want to also replace the server registration (default is N)?** then you must answer **Y**. This is a previous build agent setup and your setup must replace the configuration that exists.
 
     Enter the following information for each question:
     - **Enter the name for this agent**: press enter (accept the default)
@@ -309,7 +283,46 @@ In this task, you will install a private build agent on your local machine.
     _Agent waiting for builds_
 
 <a name="SetupTask8"></a>
-#### Setup Task 8 - Queue the Build ####
+#### Setup Task 8 - Activate a Xamarin Business Trial ####
+
+> **Note**: If you have already activated your Xamarin Business trial in Module 1 or Module 2, you can skip this task.
+
+In this task you will activate a Xamarin Business Trial.
+
+1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
+
+1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
+
+    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
+
+    _The Xamarin Mac Agent Dialog_
+
+    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
+
+1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
+
+    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
+
+    _Build failures_
+
+1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** from **c:\buildworkshop\HealthClinic.biz** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
+
+    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
+
+1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
+
+    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
+
+    _Select Begin a Trial_
+
+1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
+
+    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
+
+    _Xamarin Business Trail confirmation_
+
+<a name="SetupTask9"></a>
+#### Setup Task 9 - Queue the Build ####
 
 In Module 2, a Continuous Integration (CI) build is created that creates a compiled Android App (an **apk** file). However, since you have only just installed the build agent, the build has not yet run. You will now queue the build so that you have a binary ready for distribution using Release Management.
 

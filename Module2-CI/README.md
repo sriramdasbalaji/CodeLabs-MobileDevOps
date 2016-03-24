@@ -37,7 +37,12 @@ The following is required to complete this module:
 <a name="Setup" ></a>
 ### Setup ###
 
-> **Note**: If you have completed Module 1, you can skip the set up and go straight to [Exercise 1](#Exercise1).
+> **Note**: If you have completed Module 1, you can skip the set up and go straight to [Exercise 1](#Exercise1). However, if you logged off the machine you used for Module 1 (or are using a different machine), then your work will have been deleted and you will need to run go complete the following setup tasks:
+>- [Run the setup script](SetupTask3).
+>- [Login to your Xamarin Account in Visual Studio](SetupTask5)
+>- [Queue a build](SetupTask9)
+>
+> You will then be able to proceed to [Exercise 1](#Exercise1)
 
 #### Sign up for a VSTS Account ####
 
@@ -183,6 +188,8 @@ In this setup task, you will activate your Xamarin Account in Visual Studio.
     ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
 
     _Xamarin Credentials in Visual Studio_  
+    
+    > **Note:** If the login fails because the license is installed on another lab machine, then you will have to log in to your Xamarin account and deactivate the license on the other machine before reattempting the login.
 
 1. Once activated, you should see your account has been logged in. You can close the dialog.
 
@@ -295,6 +302,8 @@ In this task, you will install a private build agent on your local machine.
 
 1. Install the agent
     Once you have extracted the file, open a **Windows PowerShell** window and `cd` to `c:\buildworkshop\agent`. Then type `.\ConfigureAgent` to launch the agent configuration wizard.
+    
+    > **Note:** If the first prompt is **An existing configuration file was detected.  This will update the local agent settings.  Do you want to also replace the server registration (default is N)?** then you must answer **Y**. This is a previous build agent setup and your setup must replace the configuration that exists. 
 
 1. Enter the following information for each question:
     - **Enter the name for this agent**: press enter (accept the default)
@@ -792,3 +801,5 @@ By completing this module, you should have:
 - Logged a rich bug from test failure
 - Triggered a build by committing the bug fix to the repo
 - Improved the package versioning via a custom build task from the Marketplace
+
+> **Note**: If you are planning on doing Module 3, it is better not to log out of the machine (since a clean up script will delete all your work). If you must log out, then you will have to run the setup script for Module 3 when you start it.

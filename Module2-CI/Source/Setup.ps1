@@ -32,70 +32,87 @@ $headers = @{
 ############################################################################
 
 ############################################################################
-Write-Host "Copying files" -ForegroundColor Yellow
-
-if (!(Test-Path -Path $workshopPath)) {
-    mkdir $workshopPath 
-}
-
-xcopy $pwd\Setup\*.* $workshopPath /Y /E
-
-############################################################################
 Write-Host "Creating VSTS Team Project $projectName" -ForegroundColor Yellow
 $uri = "$vstsUrl/$createProjectUri"
 
-$body = @{
-    name = $projectName
-    description = "Project created for Build Workshop"
-    capabilities = @{
-        versioncontrol = @{
-            sourceControlType = "Git"
-        }
-        processTemplate = @{
-        templateTypeId = $agileTemplateId
-        }
-    }
-}
-
-$response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
-                              -Headers $headers -Body (ConvertTo-Json $body)
-
-# wait for the project to be created
+# first check if the Team Project exists
+$teamProjectExists = $false
 $uri = "$vstsUrl/$queryProjectUri" -f $projectName
-$projectId = ""
-for ($i = 0; $i -lt 15; $i++) {
-    Write-Host "   waiting for Team Project job to complete..."
-    sleep 20
-    
-    $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-    if ($response.state -eq "wellFormed") {
-        $projectId = $response.id
-        break
+$response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
+if ($response.state -eq "wellFormed") {
+    Write-Host "Team Project $projectName already exists" -ForegroundColor Cyan
+    $projectId = $response.id
+    $teamProjectExists = $true
+} else {
+    $body = @{
+        name = $projectName
+        description = "Project created for Build Workshop"
+        capabilities = @{
+            versioncontrol = @{
+                sourceControlType = "Git"
+            }
+            processTemplate = @{
+            templateTypeId = $agileTemplateId
+            }
+        }
+    }
+
+    $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
+                                -Headers $headers -Body (ConvertTo-Json $body)
+
+    # wait for the project to be created
+    $uri = "$vstsUrl/$queryProjectUri" -f $projectName
+    $projectId = ""
+    for ($i = 0; $i -lt 15; $i++) {
+        Write-Host "   waiting for Team Project job to complete..."
+        sleep 20
+        
+        $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
+        if ($response.state -eq "wellFormed") {
+            $projectId = $response.id
+            break
+        }
+    }
+    if ($projectId -ne "") {
+        Write-Host "VSTS Team project was created successfully" -ForegroundColor Cyan
+    } else {
+        throw "Could not create VSTS project (timeout)"
     }
 }
-if ($projectId -ne "") {
-    Write-Host "VSTS Team project was created successfully" -ForegroundColor Cyan
-} else {
-    throw "Could not create VSTS project (timeout)"
-}
 
 ############################################################################
-Write-Host "Initializing local Git repo and committing code" -ForegroundColor Yellow
-
 Push-Location
-cd "$workshopPath\HealthClinic.biz"
+if ($teamProjectExists){
+    Write-Host "Cloning existing repo" -ForegroundColor Yellow
+    
+    cd $workshopPath
+    
+    git clone "$vstsUrl/DefaultCollection/_git/$projectName"
+} else {
+    Write-Host "Copying files" -ForegroundColor Yellow
 
-git init
+    if (!(Test-Path -Path $workshopPath)) {
+        mkdir $workshopPath 
+    }
+    
+    xcopy $pwd\Setup\*.* $workshopPath /Y /E
+    
+    Write-Host "Initializing local Git repo and committing code" -ForegroundColor Yellow
+    
+    cd "$workshopPath\HealthClinic.biz"
+    
+    git init
 
-git add .
+    git add .
 
-git commit -m "Initial commit"
+    git commit -m "Initial commit"
 
-############################################################################
-Write-Host "Pushing code to VSTS" -ForegroundColor Yellow
+    ############################################################################
+    Write-Host "Pushing code to VSTS" -ForegroundColor Yellow
 
-git remote add origin "$vstsUrl/DefaultCollection/_git/$projectName"
-git push -u origin --all
+    git remote add origin "$vstsUrl/DefaultCollection/_git/$projectName"
+    git push -u origin --all
+}
 
 Pop-Location
 
