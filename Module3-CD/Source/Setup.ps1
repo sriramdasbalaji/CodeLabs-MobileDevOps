@@ -137,7 +137,7 @@ Write-Host "Checking if team build $buildName exists" -ForegroundColor Yellow
 $uri = "$vstsUrl/$($buildDefUri)&name=$buildName"
 
 $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-if (response.count -eq 0) {
+if ($response.count -eq 0) {
     Write-Host "Creating Team build $buildName" -ForegroundColor Yellow
     $uri = "$vstsUrl/$buildDefUri"
 
