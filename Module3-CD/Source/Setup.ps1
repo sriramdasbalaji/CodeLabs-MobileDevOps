@@ -73,6 +73,7 @@ if ($projectExists) {
     cd $workshopPath
     
     git clone "$vstsUrl/DefaultCollection/_git/$projectName"
+}
 else {
     Write-Host "Creating VSTS Team Project $projectName" -ForegroundColor Yellow
     $uri = "$vstsUrl/$createProjectUri"

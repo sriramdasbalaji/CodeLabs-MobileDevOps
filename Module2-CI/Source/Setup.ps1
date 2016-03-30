@@ -38,12 +38,7 @@ $uri = "$vstsUrl/$createProjectUri"
 # first check if the Team Project exists
 $teamProjectExists = $false
 $uri = "$vstsUrl/$queryProjectUri" -f $projectName
-$response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-if ($response.state -eq "wellFormed") {
-    Write-Host "Team Project $projectName already exists" -ForegroundColor Cyan
-    $projectId = $response.id
-    $teamProjectExists = $true
-} else {
+
     $body = @{
         name = $projectName
         description = "Project created for Build Workshop"
@@ -57,28 +52,35 @@ if ($response.state -eq "wellFormed") {
         }
     }
 
-    $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
-                                -Headers $headers -Body (ConvertTo-Json $body)
+    try{
+        $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
+                                    -Headers $headers -Body (ConvertTo-Json $body)
 
-    # wait for the project to be created
-    $uri = "$vstsUrl/$queryProjectUri" -f $projectName
-    $projectId = ""
-    for ($i = 0; $i -lt 15; $i++) {
-        Write-Host "   waiting for Team Project job to complete..."
-        sleep 20
+        # wait for the project to be created
+        $uri = "$vstsUrl/$queryProjectUri" -f $projectName
+        $projectId = ""
+        for ($i = 0; $i -lt 15; $i++) {
+            Write-Host "   waiting for Team Project job to complete..."
+            sleep 20
         
-        $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
-        if ($response.state -eq "wellFormed") {
-            $projectId = $response.id
-            break
+            $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
+            if ($response.state -eq "wellFormed") {
+                $projectId = $response.id
+                break
+            }
+        }
+        if ($projectId -ne "") {
+            Write-Host "VSTS Team project was created successfully" -ForegroundColor Cyan
+        } else {
+            throw "Could not create VSTS project (timeout)"
         }
     }
-    if ($projectId -ne "") {
-        Write-Host "VSTS Team project was created successfully" -ForegroundColor Cyan
-    } else {
-        throw "Could not create VSTS project (timeout)"
+    catch
+    {
+        Write-Host "VSTS Team project probably already exists" -ForegroundColor Cyan
+        $teamProjectExists = $true
     }
-}
+
 
 ############################################################################
 Push-Location
