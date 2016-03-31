@@ -128,19 +128,17 @@ In order to run the exercises in this module, you will need to set up your envir
 1. And then the following command.
 
  ```powershell
-.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} -xamarinEmail {xamarinEmail} -xamarinPassword {xamarinPassword}
+.\Setup.ps1 -vstsUrl https://{youraccount}.visualstudio.com -vstsPat {yourPAT} 
  ```
 
  where:
  - `{youraccount}` is the VSTS account name you created earlier
- - `{yourPAT}` is the VSTS PAT you created earlier.
- - `{xamarinEmail}` is the email address for your Xamarin account
- - `{xamarinPassword}` is the password for your Xamarin account
+ - `{yourPAT}` is the VSTS PAT you created earlier
 
  > **Note**: If you get prompted for credentials for the origin remote, enter your Microsoft account email as the user, and paste the **VSTS PAT** as the password. For example, the command should look something like:
 
 	> ```powershell
-.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh -xamarinEmail myemail@outlook.com -xamarinPassword P@ssw0rd
+.\Setup.ps1 -vstsUrl https://colbuildworkshop.visualstudio.com -vstsPat pvzgfvhjh5fhsldfh248sl6ifyidfsdisdfs5vbchdsdffksd9hfk3qooh
 	> ```
 
 1. Wait until you see a green **Done!** before continuing.
