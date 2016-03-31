@@ -5,15 +5,7 @@ param(
     
     [Parameter(Mandatory=$true, HelpMessage="Your VSTS PAT")]
     [ValidateNotNullOrEmpty()]
-    [string]$vstsPat,
-    
-    [Parameter(Mandatory=$true, HelpMessage="Your Xamarin email")]
-    [ValidateNotNullOrEmpty()]
-    [string]$xamarinEmail,
-    
-    [Parameter(Mandatory=$true, HelpMessage="Your Xamarin password")]
-    [ValidateNotNullOrEmpty()]
-    [string]$xamarinPassword
+    [string]$vstsPat
 )
 
 $ErrorActionPreference = "Stop"
@@ -146,8 +138,6 @@ if ($response.count -eq 0) {
     # set some parameters for the build definition
     $buildDef.name = $buildName
     $buildDef.repository.url = "$vstsUrl/DefaultCollection/_git/$projectName"
-    $buildDef.variables.XamarinEmail.value = $xamarinEmail
-    $buildDef.variables.XamarinPassword.value = $xamarinPassword
 
     $response = Invoke-RestMethod -Method Post -Uri $uri -ContentType "application/json" `
                                   -Headers $headers -Body (ConvertTo-Json $buildDef -Depth 10)
