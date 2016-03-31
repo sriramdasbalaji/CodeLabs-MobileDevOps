@@ -101,7 +101,7 @@ In this task you will learn about different types of Xamarin projects.
 <a name="Exercise2"></a>
 ### Exercise 2: Compiling the HealthClinic.Biz Xamarin Solution ###
 
-In this exercise, you will open the cross-platform mobile apps for the [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) project. You will examine the project structure and compile the solution. You will run the application in the UWP simulator and the Android emulator.
+In this exercise, you will open the cross-platform mobile apps for the [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) project. You will examine the project structure and compile the solution. You will run the application in the Android emulator.
 
 > **Note**: While most of the code is the same for this workshop as the code in the GitHub repo, there are some differences. You will not see exactly the same code if you open the GitHub repo yourself after the workshop.
 
