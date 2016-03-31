@@ -21,23 +21,6 @@
                       "enabled":  true,
                       "continueOnError":  false,
                       "alwaysRun":  false,
-                      "displayName":  "Activate Xamarin license",
-                      "task":  {
-                                   "id":  "6237827d-6244-4d52-b93e-47d8610fbd8a",
-                                   "versionSpec":  "*"
-                               },
-                      "inputs":  {
-                                     "action":  "Activate",
-                                     "email":  "$(XamarinEmail)",
-                                     "password":  "$(XamarinPassword)",
-                                     "activateAndroid":  "true",
-                                     "timeout":  "30"
-                                 }
-                  },
-                  {
-                      "enabled":  true,
-                      "continueOnError":  false,
-                      "alwaysRun":  false,
                       "displayName":  "Build solution 04_Demos_NativeXamarinApps.sln",
                       "task":  {
                                    "id":  "71a9a2d3-a98a-4caa-96ab-affca411ecda",
@@ -143,23 +126,6 @@
                       "enabled":  true,
                       "continueOnError":  false,
                       "alwaysRun":  true,
-                      "displayName":  "Deactivate Xamarin license",
-                      "task":  {
-                                   "id":  "6237827d-6244-4d52-b93e-47d8610fbd8a",
-                                   "versionSpec":  "*"
-                               },
-                      "inputs":  {
-                                     "action":  "Deactivate",
-                                     "email":  "$(XamarinEmail)",
-                                     "password":  "$(XamarinPassword)",
-                                     "activateAndroid":  "true",
-                                     "timeout":  "30"
-                                 }
-                  },
-                  {
-                      "enabled":  true,
-                      "continueOnError":  false,
-                      "alwaysRun":  true,
                       "displayName":  "Publish Artifact: drop",
                       "task":  {
                                    "id":  "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
@@ -229,14 +195,7 @@
                       "BuildPlatform":  {
                                             "value":  "any cpu",
                                             "allowOverride":  true
-                                        },
-                      "XamarinEmail":  {
-                                           "value":  "colin.dembovsky@nwcadence.com"
-                                       },
-                      "XamarinPassword":  {
-                                              "value":  null,
-                                              "isSecret":  true
-                                          }
+                                        }
                   },
     "retentionRules":  [
                            {
