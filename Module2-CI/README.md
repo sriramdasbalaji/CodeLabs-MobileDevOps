@@ -32,15 +32,13 @@ In this module, you will see how to:
 
 The following is required to complete this module:
 
-- An email address for creating a new Xamarin account and VSTS account (you will skip this if you have already done Module 1)
+- An email address for creating a new VSTS account (you will skip this if you have already done Module 1)
 
 <a name="Setup" ></a>
 ### Setup ###
 
 > **Note**: If you have completed Module 1, you can skip the set up and go straight to [Exercise 1](#Exercise1). However, if you logged off the machine you used for Module 1 (or are using a different machine), then your work will have been deleted and you will need to run go complete the following setup tasks:
->- [Run the setup script](SetupTask3).
->- [Login to your Xamarin Account in Visual Studio](SetupTask5)
->- [Queue a build](SetupTask9)
+>- [Run the setup script](SetupTask3)
 >
 > You will then be able to proceed to [Exercise 1](#Exercise1)
 
@@ -145,95 +143,6 @@ In order to run the exercises in this module, you will need to set up your envir
 
 	_The Setup script completed successfully_
 
-<a name="SetupTask4"></a>
-#### Setup Task 4 - Creating a Xamarin Account ####
-
-In this task, you will create a Xamarin account.
-
-> **Note**: If you have a Xamarin business or trial license, you can skip this task.
-
-1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login"). Click the **Create a new account** link.
-
-	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
-
-	_Xamarin Store Login screen_
-
-1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click the **Register** button.
-
-    ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
-
-    _Create a new Xamarin account_
-
-	> **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
-
-<a name="SetupTask5"></a>
-#### Setup Task 5 - Activating your Xamarin Account in Visual Studio ####
-
-In this setup task, you will activate your Xamarin Account in Visual Studio.
-
-1. Open the Xamarin Account window. To do this, start Visual Studio. In the **Tools** menu, click **Xamarin Account...**.
-
-    ![Xamarin Account in the Tools Menu](Images/vs-xamarin-account-menu.png "Xamarin Account in the Tools Menu")
-
-    _Xamarin Account in the Tools Menu_
-
-1. Click **Log In**.
-
-    ![Xamarin Login in Visual Studio](Images/vs-xamarin-account-login.png "Xamarin Login in Visual Studio")
-
-    _Xamarin Login in Visual Studio_  
-
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 3](#SetupTask3) and press **Login**.
-
-    ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
-
-    _Xamarin Credentials in Visual Studio_  
-    
-    > **Note:** If the login fails because the license is installed on another lab machine, then you will have to log in to your Xamarin account and deactivate the license on the other machine before reattempting the login.
-
-1. Once activated, you should see your account has been logged in. You can close the dialog.
-
-    ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
-
-    _Logged in to Xamarin in Visual Studio_
-
-<a name="SetupTask6"></a>
-#### Setup Task 6 - Activating a Xamarin Business Trial ####
-
-In this task, you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
-
-1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
-
-    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
-
-    _The Xamarin Mac Agent Dialog_
-
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
-
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
-
-    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
-
-    _Build failures_
-
-1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
-
-    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-
 ---
 
 <a name="Exercises" ></a>
@@ -251,12 +160,14 @@ Estimated time to complete this module: **60 minutes**
 
 In this exercise, you will create a Build definition to compile the solution, run unit tests and package the Android application. In Module 3, you will see how to put this package into a Continuous Deployment pipeline to distribute the app code to users.
 
+> **Note**: The build definition images below currently have Xamarin license activation steps. These are not needed anymore so please disregard those tasks in the build definition images.
+
 <a name="Ex1Task1"></a>
 #### Task 1 - Configure a Private Build Agent ####
 
 In this task, you will install a private build agent on your local machine.
 
-> **Note**: You can also use the Hosted build agent provided by VSTS for UWP and Android builds. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop we are using a _private_ build agent because you are using a trial Xamarin license.
+> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you will use a _private_ build agent to learn more about it.
 
 1. Navigate to the Agent Pools configuration in VSTS
     Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
@@ -384,32 +295,6 @@ In this task, you will configure the Build tasks.
 
     _Selecting the solution_
 
-1. Before the Xamarin solution can be built, the Xamarin license must be activated on the build server. Click the **Add build step...** in the toolbar to add a new task. In the list of tasks, click **Utility** and then scroll down to the **Xamarin License** task. Click the **Add** button to add this task and then click **Close**.
-
-    ![Add the Xamarin License task](Images/vsts-build-add-xamarin.png "Add the Xamarin License task")
-
-    _Add the Xamarin License task_
-
-    > **Note**: This is not strictly necessary in this case since the build agent is on your machine which already has a Xamarin license on it (the one you activated in Visual Studio). However, in real life the activation/deactivation of the Xamarin license on the build agent is typically necessary.
-
-1. This adds the **Xamarin License** task at the bottom of the definition. Click and drag the task so that it is just below the **NuGet Installer** task.
-
-1. Make sure that the **Action** parameter is set to **Activate**. Enter `$(XamarinEmail)` and `$(XamarinPassword)` into the **Email** and **Password** parameters.
-
-    ![Configure the Xamarin Activation task](Images/vsts-build-xamarin-task-config.png "Configure the Xamarin Activation task")
-
-    _Configure the Xamarin Activation task_
-
-    >**Note**: You could "hardcode" the username and password parameters. However, you will shortly add another **Xamarin License** task to deactivate the license which will require the same username and password parameters. The `$(name)` notation tells the build to look in the build variables to find a variable called _name_ and use its value.
-
-1. Configure the Xamarin Username and Password Variables. Click the **Variables** tab in the build definition. Click the **Add Variable** button at the bottom of the table and add the two Xamarin parameters. Enter your Xamarin email address and password in the correct value boxes. Finally, click the padlock icon to the right of the password value to make it a _secret_ variable.
-
-    ![Setting the Build Variables](Images/vsts-build-variables.png "Setting the Build Variables")
-
-    _Setting the Build Variables_
-
-    > **Note**: Secret variables can be used by build tasks, but will be masked in the Variables pane. If you unset the padlock, the value is emptied so that no-one can see the value of the variable. The build logs will also mask the secret variable so that it will not be visible in the logs. However, developers could still write tasks or scripts that would expose the value of a secret variable.
-
 1. Configure Building the solution. Back on the **Build** tab, click the **Visual Studio Build** task and update the solution to **04_Demos_NativeXamarinApps.sln** just like you did in the **Nuget Installer** task. This will build all the projects in the solution.
 
     ![Build the solution](Images/vsts-build-solution.png "Build the solution")
@@ -451,14 +336,6 @@ In this task, you will configure the Build tasks.
     _Configure Copy Files Task_
 
     > **Note**: The UWP application is being built as part of the same build. You could also copy the **appxupload** file - the signed app - to the build outputs so that you can release the UWP app from the same build. You will not do so in this workshop.
-
-1. Deactivate the Xamarin License. Click the **Add build step...** button. Under **Utility**, find the **Xamarin License** task and click **Add**. Then close the dialog.
-
-1. Drag this new task above the **Publish Build Artifacts** task. Change the **Action** parameter to **Deactivate**. Enter `$(XamarinEmail)` and `$(XamarinPassword)` for the email and password parameters respectively. Finally, make sure that you check the **Always Run** checkbox. This will ensure that the Xamarin license is always deactivated, even if a previous step fails (like unit tests for example).
-
-    ![Deactivate the Xamarin License](Images/vsts-build-xamarin-deactivate.png "Deactivate the Xamarin License")
-
-    _Deactivate the Xamarin License_
 
 1. Save the Build Definition. In the toolbar of the build definition, click **Save**. Enter the name `Xamarin CI` and click **OK**.
 
@@ -728,7 +605,7 @@ In this task, you will install a VSTS extension that contains some custom build 
 
     _Add the Version Assembly task_
 
-1. Drag the **Version Assembly** task so that it is just below the first **Xamarin License** task. Expand the **Advanced** group and set the parameters as follows:
+1. Drag the **Version Assembly** task so that it is just below the first **Visual Studio Build** task. Expand the **Advanced** group and set the parameters as follows:
     - **Source Path**: `src/MyHealth.Client.Droid/Properties` (you can type this or browse to the folder)
     - **File Pattern**: `AndroidManifest.xml`
     - **Build Regex Pattern**: `(?:\d+\.\d+\.)(\d+)`
@@ -801,5 +678,3 @@ By completing this module, you should have:
 - Logged a rich bug from test failure
 - Triggered a build by committing the bug fix to the repo
 - Improved the package versioning via a custom build task from the Marketplace
-
-> **Note**: If you are planning on doing Module 3, it is better not to log out of the machine (since a clean up script will delete all your work). If you must log out, then you will have to run the setup script for Module 3 when you start it.

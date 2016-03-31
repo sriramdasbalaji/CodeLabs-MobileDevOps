@@ -32,6 +32,7 @@ In this module, you will see how to:
 The following is required to complete this module:
 
 - An email address for creating a new Xamarin account and VSTS account
+- A computer with the latest Visual Studio and latest Xamarin tools installed (if following the labs at the Build 2016 conference this will have been installed for you already)
 
 ---
 <a name="Setup"></a>
@@ -40,88 +41,27 @@ The following is required to complete this module:
 In order to run the exercises in this module, you will need to set up your environment first.
 
 1. Open Windows Explorer and browse to the module's **Source** folder.
-1. Right-click **Setup.ps1** and select **Run with PowerShell** to launch the setup process that will configure your environment and install the Source Code for this module.
+1. Right-click **Setup.ps1** and select **Run with PowerShell** to launch the setup process. This will configure your environment and copy the Source Code for this module to your working folder at **c:\buildworkshop\HealthClinic.biz**
 1. If the User Account Control dialog box is shown, confirm the action to proceed.
 
 <a name="Exercises"></a>
 ## Exercises ##
 This module includes the following exercises:
 
-1. [Signing up for a Xamarin Account](#Exercise1)
-1. [Exploring Xamarin Projects in Visual Studio](#Exercise2)
-1. [Compiling the HealthClinic.Biz Xamarin Solution](#Exercise3)
-1. [Creating a VSTS Team Project](#Exercise4)
-1. [Pushing the Source Code to the VSTS Team Project](#Exercise5)
-1. [Running Unit Tests](#Exercise6)
+1. [Exploring Xamarin Projects in Visual Studio](#Exercise1)
+1. [Compiling the HealthClinic.Biz Xamarin Solution](#Exercise2)
+1. [Creating a VSTS Team Project](#Exercise3)
+1. [Pushing the Source Code to the VSTS Team Project](#Exercise4)
+1. [Running Unit Tests](#Exercise5)
 
 Estimated time to complete this module: **60 minutes**
 
 <a name="Exercise1"></a>
-### Exercise 1: Signing up for a Xamarin Account ###
-
-Xamarin provides developers with tools to manage cross-platform applications. Developers can choose to run the standalone [Xamarin Studio](https://xamarin.com/studio) (which runs on Windows or Mac) or use Visual Studio with the [Xamarin for Visual Studio](https://xamarin.com/visual-studio).
-
-In this workshop you will be using Xamarin for Visual Studio.
-
-Xamarin provides many benefits:
-- A single tool to manage mobile apps across iOS, Android and Windows
-- Share application logic across all platforms
-- Leverage existing C# skills
-- 100% coverage of all APIs across all platforms - anything you can do in Objective-C, Swift or Java can be done in C# with Xamarin for mobile applications
-- Native performance as Xamarin compiles C# code to native apps
-
-In this exercise, you will create a Xamarin account that you will use for the remainder of this workshop. You will then open the source code, enter your Xamarin credentials and compile the projects.
-
-<a name="Ex1Task1"></a>
-#### Task 1 - Creating a Xamarin Account ####
-
-In this task, you will create a Xamarin account.
-  > **Note**: If you have a Xamarin business license you can use it and skip this exercise.
-  
-1. Navigate to the [Xamarin Store](https://store.xamarin.com/login "Xamarin Store login") and click the **Create a new account** link.
-
-
-	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
-
-	_Xamarin Store Login screen_
-
-1. Fill in a name, email address and password. Make a note of the email and password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
-
-    ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
-
-    _Create a new Xamarin account_
-
-    > **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
-
-<a name="Ex1Task2"></a>
-#### Task 2 - Activating your Xamarin Account in Visual Studio ####
-
-In this task, you will activate your Xamarin Account in Visual Studio.
-
-1. Start Visual Studio. In the Tools menu, click **Xamarin Account...**.
-
-    ![Xamarin Account in the Tools Menu](Images/vs-xamarin-account-menu.png "Xamarin Account in the Tools Menu")
-
-    _Xamarin Account in the Tools Menu_
-
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 1](#Ex1Task1) and press **Login**.
-
-    ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
-
-    _Xamarin Credentials in Visual Studio_  
-
-1. Once activated, the dialog will close. You can open the dialog from Tools menu, and **Xamarin Account...** again if you want to see that your account has been logged in. You can now close the dialog.
-
-    ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
-
-    _Logged in to Xamarin in Visual Studio_
-
-<a name="Exercise2"></a>
-### Exercise 2: Exploring Xamarin Projects in Visual Studio ###
+### Exercise 1: Exploring Xamarin Projects in Visual Studio ###
 
 In this exercise, you will explore Xamarin projects in Visual Studio.
 
-<a name="Ex2Task1"></a>
+<a name="Ex1Task1"></a>
 #### Task 1 - Exploring Xamarin Project Types ####
 
 In this task you will learn about different types of Xamarin projects.
@@ -158,17 +98,17 @@ In this task you will learn about different types of Xamarin projects.
         - Apps that use many platform-specific APIs
         - Apps where custom UI is more important than code sharing
 
-<a name="Exercise3"></a>
-### Exercise 3: Compiling the HealthClinic.Biz Xamarin Solution ###
+<a name="Exercise2"></a>
+### Exercise 2: Compiling the HealthClinic.Biz Xamarin Solution ###
 
 In this exercise, you will open the cross-platform mobile apps for the [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) project. You will examine the project structure and compile the solution. You will run the application in the UWP simulator and the Android emulator.
 
 > **Note**: While most of the code is the same for this workshop as the code in the GitHub repo, there are some differences. You will not see exactly the same code if you open the GitHub repo yourself after the workshop.
 
-<a name="Ex3Task1"></a>
+<a name="Ex2Task1"></a>
 #### Task 1 - Opening the HealthClinic.Biz Xamarin Solution ####
 
-In this task you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz and activate your Xamarin Business trial license.
+In this task you will open the Xamarin solution for cross-mobile apps for HealthClinic.biz.
 
 1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
 
@@ -194,23 +134,7 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     _Build failures_
     
-1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
-
-    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-
-1. Now clean and rebuild the solution as we did above. Ensure that the solution builds without errors. 
+1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. Ensure that the solution builds without errors. 
 
     > **Note**: If you see the error `The name 'InitializeComponent' does not exist in the current context` you may safely ignore it.
 
@@ -259,12 +183,12 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     In later tasks, you will mock the services so that unit tests do not have any dependency on the services. However, when you run the applications in the emulators, they will connect to the service in Azure.
 
-<a name="Ex3Task2"></a>
-#### Task 2 - Running the UWP and Android Emulators ####
+<a name="Ex2Task2"></a>
+#### Task 2 - Running the Android Emulator ####
 
-In this task, you will run the Android and UWP applications in their respective emulators. You will set a breakpoint and confirm that Visual Studio breaks at the code even when it is running in the emulators.
+In this task, you will run the Android application in the Visual Studio Emulator for Android. You will set a breakpoint and confirm that Visual Studio breaks at the code even when it is running in the emulators.
 
-> **Note**: It is also possible to debug iOS applications in exactly the same manner as debugging UWP or Android applications. However, to do so you require a Mac to be connected (via the Mac agent).
+> **Note**: It is also possible to debug iOS and UWP applications in exactly the same manner as debugging Android applications. For iOS you require Mac OX to be connected via the Mac agent.
 
 1. Open **MyHealth.Client.Core\ServiceAgents\PatientsService.cs** and set a breakpoint at the return statement in the `GetAsync(int id)` method. You can do this by clicking the breakpoint gutter on the left or by placing the cursor on the line and pressing **F9**.
 
@@ -272,61 +196,27 @@ In this task, you will run the Android and UWP applications in their respective 
 
     _Setting a breakpoint in the PatientsService_
 
-1. Right-click the **MyHealth.Client.W10.UWP** project and click **Set as Startup Project**. In the Toolbar, click the **Run in Simulator**.
-
-    > **Note**: if the button does not say **Simulator** then click the dropdown menu on the right of the button and click **Simulator**. If you do, you can see the other run options you have for UWP applications.
-
-    ![The Run UWP Simulator button](Images/vs-toolbar-uwp-simulator.png "The Run UWP Simulator button")
-
-    _The Run UWP Simulator button_
-
-1. The application should launch in the simulator after a few seconds.
-
-    ![The Patient app running in the UWP Simulator](Images/patient-app-in-windows-simulator.png "The Patient app running in the UWP Simulator")
-
-    _The Patient app running in the UWP Simulator_
-
-    > **Note**: If the simulator is small, simply drag it to enlarge the view. You can also maximize the app.
-
-1. Now click the **hamburger** menu icon on the top left of the app and then click the **User** menu item.
-
-    ![The Patient User menu item](Images/patient-app-uwp-user-menu.png "The Patient User menu item")
-
-    _The Patient User menu item_
-
-1. You should now see the debugger break in the **PatientsService** class at the breakpoint you set. Press **F5** to continue running the application.
-
-    ![The Visual Studio debugger breaking](Images/vs-debugger-android.png "The Visual Studio debugger breaking")
-
-    _The Visual Studio debugger breaking_
-
-1. Now click the Stop button in the toolbar to stop debugging.
-
-    ![The Stop Debugging button](Images/vs-toolbar-stop-debugging.png "The Stop Debugging button")
-
-    _The Stop Debugging button_
-
 1. Now, let's run the Android App in the Android Emulator. Right-click the **MyHealth.Client.Droid** project and click **Set as Startup Project**. In the toolbar, click **Run in Simulator**, which should have a name like **5" KitKat (4.4) XXHDPI Phone (Android 4.4 - API 19)**.
 
     ![Click Run Android Emulator](Images/vs-android-emulator-button.png "Click Run Android Emulator")
 
     _Click Run Android Emulator_
 
-1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. You may also be asked if you want it to be configured for internet access, and if you do, click **Yes**.  
+1. The first time you do so, the emulator is created and configured, so it may take a few moments to start up. **Make sure your unlock the Android emulator once it starts by dragging with your mouse to the side.** You may also be asked if you want it to be configured for internet access, and if you do, click **Yes**.  
 Once it starts up, you should see the emulator run the **Patients** app.
 
     ![App in the Android Emulator](Images/vs-android-emulator-running.png "App in the Android Emulator")
 
     _App in the Android Emulator_
 
-1. Confirm that the debugger breaks in the **PatientsService.cs** file. This is the same code breakpoint as it did in the UWP emulator! Press **F5** to continue running the app. When you are done, click **Stop** to stop debugging.
+1. Confirm that the debugger breaks in the **PatientsService.cs** file. This is the same code shared by the iOS and UWP apps! Press **F5** to continue running the app. When you are done, click **Stop** to stop debugging.
 
-<a name="Exercise4"></a>
+<a name="Exercise3"></a>
 ### Exercise 4: Creating a VSTS Team Project ###
 
 In this exercise, you sign up for a VSTS account and create a new Team Project for your Xamarin projects. In this module you will push toe source code to the team project's Git repository. In later modules you will use it to create an automated build that runs unit tests and produces binaries, and create a release definition to manage releases of your builds and track work items like bugs.
 
-<a name="Ex4Task1"></a>
+<a name="Ex3Task1"></a>
 #### Task 1 - Signing up for a VSTS Account ####
 
 In this task, you will sign up for a free VSTS account.
@@ -356,25 +246,25 @@ In this task, you will sign up for a free VSTS account.
 
 1. Once the account is created, you will see the VSTS landing page, which will prompt you to create a new Team Project. Continue to the next task.
 
-<a name="Ex4Task2"></a>
+<a name="Ex3Task2"></a>
 #### Task 2 - Creating a New Team Project ####
 
 In this task, you will create a new Team Project.
 
 1. On the **New Team Project** page, enter the following information:
 
-    - A project name - the workshop will use _HealthClinic_, so it is recommended that you use this too
+    - In project name enter _HealthClinic_
     - Select the **Agile** process template
     - Select **Git** version control
     - Click **Create project** button
 
-    > **Note**: VSTS might not prompt you to create a new Project but create one for you automatically. If so, you don't need ot create the new project.
+    > **Note**: VSTS might not prompt you to create a new Project but create one for you automatically. If so, click on **New** under _Recent projects & teams_ to create the new project.
 
     ![Creating a New Team Project](Images/vsts-new-team-project.png "Creating a New Team Project")
 
     _Creating a New Team Project_
 
-    > **Note**: This workshop will use the Agile template, but could just as easily use the Scrum template. Similarly, you could use Team Foundation Version Control as well, but this workshop will use Git. In other words, these choices do not affect the ability to do cross-platform mobile app development or DevOps.
+    > **Note**: This workshop will use the Agile template, but could just as easily use the Scrum template. Similarly, you could use Team Foundation Version Control as well, but this workshop will use Git. These choices do not affect the ability to do cross-platform mobile app development or DevOps.
 
 1. Once the Team Project is created, you will be redirected to the Team Project dashboard. You can close the Congratulations dialog once you have read it.
 
@@ -382,12 +272,12 @@ In this task, you will create a new Team Project.
 
     _The Team Project Dashboard_
 
-<a name="Exercise5"></a>
+<a name="Exercise4"></a>
 ### Exercise 5: Pushing the Source Code to the VSTS Team Project ###
 
 In this exercise, you will push the source code to your VSTS Team Project. Once the code is in the team project, you will branch it.
 
-<a name="Ex5Task1"></a>
+<a name="Ex4Task1"></a>
 #### Task 1 - Initializing the Local Repo ####
 
 In this task, you will initialize a local Git repo for your source code. Since there is more code in the repository than just the solution you have open, you will use the command line to initialize the repo.
@@ -422,7 +312,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
 1. You'll connect to the newly initialized repo in Visual Studio. Click **View->Team Explorer** and then, **Connect** (it looks like a little plug).
 
-    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the command line. Then skip to the [next task](Ex5Task2).
+    > **Note**: This task could be accomplished from the command line too. Feel free to run `git add .` and `git commit -m "Initial commit"` from the command line if you are familiar with using Git from the command line. Then skip to the [next task](Ex4Task2).
 
     ![The Connect button in Team Explorer](Images/vs-te-connect.png "The Connect button in Team Explorer")
 
@@ -470,7 +360,7 @@ In this task, you will initialize a local Git repo for your source code. Since t
 
     _No changes in Team Explorer_
 
-<a name="Ex5Task2"></a>
+<a name="Ex4Task2"></a>
 #### Task 2 - Pushing the Code to the VSTS Repo ####
 
 In this task, you will add the **remote** - that is, a repo that other developers (and processes like builds) can **pull** code from. While the entire source history lives in your local Git repo, you will have to share your code somehow for others to read and change it. The _unit of sharing_ (if you will) is the **remote** repo.
@@ -537,12 +427,12 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _The code pushed to VSTS_
 
-<a name="Exercise6"></a>
-### Exercise 6: Running Unit Tests ###
+<a name="Exercise5"></a>
+### Exercise 5: Running Unit Tests ###
 
 In this exercise, you will run unit tests against the **Client.Core** library. You will explore the architecture of the unit tests and how to write tests against hard-to-test code. You will also learn how to mock service references for unit testing. You will also see how to calculate code coverage for a solution.
 
-<a name="Ex6Task1"></a>
+<a name="Ex5Task1"></a>
 #### Task 1 - Running Unit Tests ####
 
 In this task, you will run the unit tests.
@@ -579,7 +469,7 @@ In this task, you will run the unit tests.
 
     _Test Results with a failure_
 
-<a name="Ex6Task2"></a>
+<a name="Ex5Task2"></a>
 #### Task 2 - Running UI Tests ####
 
 In this task, you will run UI tests.
@@ -635,7 +525,7 @@ In this task, you will run UI tests.
     - `Flash` uses an `AppQuery` lambda to find a control and make it blink (or flash) in the UI. If you watch the test running, you will see the medicine names flash as this method finds the controls
     - `Tap` is used to tap a control or point - specified by another `AppQuery` lambda
 
-<a name="Ex6Task3"></a>
+<a name="Ex5Task3"></a>
 #### Task 3 - Mocks ####
 
 In this task, you will examine how mocks are used to isolate the unit tests from dependencies - like services.
@@ -741,11 +631,8 @@ In this task, you will examine how mocks are used to isolate the unit tests from
 
 By completing this module, you should have:
 
-- Signed up for a Xamarin Account
 - Explored Xamarin Projects in Visual Studio
 - Opened the HealthClinic.Biz Xamarin Solution
 - Created a VSTS Team Project
 - Pushed the Source Code to the VSTS Team Project
 - Run and understood Unit Tests
-
-> **Note**: If you are planning on doing Module 2, it is better not to log out of the machine (since a clean up script will delete all your work).  If you must log out, then you will have to run the setup script for Module 2 when you start it.

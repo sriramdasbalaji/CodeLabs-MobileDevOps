@@ -43,8 +43,7 @@ The following is required to complete this module:
 ### Setup ###
 
 > **Note**: If you have completed Module 2, you can skip the set up and go straight to [Exercise 1](#Exercise1). However, if you logged off the machine you used for Module 2 (or are using a different machine), then your work will have been deleted and you will need to run go complete the following setup tasks:
->- [Login to your Xamarin Account in Visual Studio](SetupTask4)
->- [Run the setup script](SetupTask5).
+>- [Run the setup script](SetupTask3).
 >
 > You will then be able to proceed to [Exercise 1](#Exercise1)
 
@@ -114,61 +113,7 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
     _Copying the PAT_
 
 <a name="SetupTask3"></a>
-#### Setup Task 3 - Creating a Xamarin Account ####
-
-In this task, you will create a Xamarin account.
-
-> **Note**: If you have a Xamarin business or trial license you can use it and skip this task.
-
-1. Navigate to [https://store.xamarin.com/login](https://store.xamarin.com/login "Xamarin Store login") and click **Create a new account**.
-
-	![Xamarin store login](Images/xamarin-store-login.png "Xamarin store login")
-
-	_Xamarin Store Login screen_
-
-1. Fill in a name, email address and password. Make a note of the password, since you will need this in a later exercise. Make sure you check both checkboxes and then click **Register**.
-
-    ![Create a new Xamarin account](Images/xamarin-new-account.png "Create a new Xamarin account")
-
-    _Create a new Xamarin account_
-
-	> **Note**: If you get a "validation failed" error, it probably means that your password is not strong enough. Make sure your password is at least 12 characters long.
-
-<a name="SetupTask4"></a>
-#### Setup Task 4 - Activating your Xamarin Account in Visual Studio ####
-
-In this setup task, you will activate your Xamarin Account in Visual Studio.
-
-1. Open the Xamarin Account window. To do this, start Visual Studio. In the **Tools** menu, click **Xamarin Account...**.
-
-    ![Xamarin Account in the Tools Menu](Images/vs-xamarin-account-menu.png "Xamarin Account in the Tools Menu")
-
-    _Xamarin Account in the Tools Menu_
-
-1. Click the **Log In** button.
-
-    ![Xamarin Login in Visual Studio](Images/vs-xamarin-account-login.png "Xamarin Login in Visual Studio")
-
-    _Xamarin Login in Visual Studio_  
-
-1. Enter the email address and password that you used for creating your Xamarin account in [Task 3](#SetupTask3) and press **Login**.
-
-    ![Xamarin Credentials in Visual Studio](Images/vs-xamarin-account-creds.png "Xamarin Credentials in Visual Studio")
-
-    _Xamarin Credentials in Visual Studio_  
-    
-    > **Note:** If the login fails because the license is installed on another lab machine, then you will have to log in to your Xamarin account and deactivate the license on the other machine before reattempting the login.
-
-1. Once logged in, you can close the dialog.
-
-    ![Logged in to Xamarin in Visual Studio](Images/vs-xamarin-account-activated.png "Logged in to Xamarin in Visual Studio")
-
-    _Logged in to Xamarin in Visual Studio_
-
-> **Note**: You have only signed in to the Xamarin account, you still need to activate it to start the trial.
-
-<a name="SetupTask5"></a>
-#### Setup Task 5 - Running the Setup Script ####
+#### Setup Task 3 - Running the Setup Script ####
 
 In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
 
@@ -204,12 +149,12 @@ In order to run the exercises in this module, you will need to set up your envir
 
 	_The Setup script completed successfully_
 
-<a name="SetupTask6"></a>
-#### Setup Task 6 - Configure a Private Build Agent ####
+<a name="SetupTask4"></a>
+#### Setup Task 4 - Configure a Private Build Agent ####
 
 In this task, you will install a private build agent on your local machine.
 
-> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you need to use a _private_ build agent only because the Xamarin trial license does not work on the Hosted build agent.
+> **Note**: You could also use the Hosted build agent. The Hosted build agent spins up when a build is triggered, runs the build, and then spins down. Hosted build agents let you build without having to maintain build infrastructure. For this workshop, you will use a _private_ build agent to learn more about it.
 
 1. Navigate to the Agent Pools configuration in VSTS
     Log in to the `HealthClinic` team project in VSTS. In the upper right corner, click the **gear** icon to open the admin page:
@@ -282,47 +227,8 @@ In this task, you will install a private build agent on your local machine.
 
     _Agent waiting for builds_
 
-<a name="SetupTask8"></a>
-#### Setup Task 8 - Activate a Xamarin Business Trial ####
-
-> **Note**: If you have already activated your Xamarin Business trial in Module 1 or Module 2, you can skip this task.
-
-In this task you will activate a Xamarin Business Trial.
-
-1. In Visual Studio, click **File->Open->Project/Solution**. Browse to **c:\buildworkshop\HealthClinic.biz** and open **04_Demos_NativeXamarinApps.sln**.
-
-1. Once the solution is open, you may be prompted to configure a Xamarin Mac agent. Since we don't have one for the workshop, you can check the **Don't show this again** checkbox and click **OK**.
-
-    ![The Xamarin Mac Agent Dialog](Images/vs-mac-agent.png "The Xamarin Mac Agent Dialog")
-
-    _The Xamarin Mac Agent Dialog_
-
-    > **Note**: In order to compile Xamarin.iOS projects, you will need a Mac agent running on a Mac machine. Every time you open the solution, you will be prompted to connect to your Mac agent - since you won't have one for this workshop, you can just close the dialog.
-
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
-
-    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
-
-    _Build failures_
-
-1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** from **c:\buildworkshop\HealthClinic.biz** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. You will notice that there are now 5 errors, with one saying that you require a business license to build.
-
-    ![Build failure requiring Xamarin License](Images/vs-xamarin-requires-business.png "Build failure requiring Xamarin License")
-
-1. **Double click the error**. This will launch the Xamarin license dialog. Click **Begin a Trial** to begin a trial of the Business edition of Xamarin.
-
-    ![Select Begin a Trial](Images/vs-xamarin-trial.png "Select Begin a Trial")
-
-    _Select Begin a Trial_
-
-1. Once the trial has been activated, you will see a confirmation dialog, click **Close**.
-
-    ![Xamarin Business Trail confirmation](Images/vs-xamarin-trial-success.png "Xamarin Business Trail confirmation")
-
-    _Xamarin Business Trail confirmation_
-
-<a name="SetupTask9"></a>
-#### Setup Task 9 - Queue the Build ####
+<a name="SetupTask5"></a>
+#### Setup Task 5 - Queue the Build ####
 
 In Module 2, a Continuous Integration (CI) build is created that creates a compiled Android App (an **apk** file). However, since you have only just installed the build agent, the build has not yet run. You will now queue the build so that you have a binary ready for distribution using Release Management.
 

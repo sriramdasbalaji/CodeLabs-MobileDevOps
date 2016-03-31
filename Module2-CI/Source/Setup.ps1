@@ -77,7 +77,7 @@ $uri = "$vstsUrl/$queryProjectUri" -f $projectName
     }
     catch
     {
-        Write-Host "VSTS Team project probably already exists" -ForegroundColor Cyan
+        Write-Host "VSTS Team project already exists" -ForegroundColor Cyan
         $teamProjectExists = $true
     }
 
