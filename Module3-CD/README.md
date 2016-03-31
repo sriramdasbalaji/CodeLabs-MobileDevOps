@@ -36,7 +36,7 @@ response but will not modify any data in the database. If you wish to host these
 
 The following is required to complete this module:
 
-- An email address for creating a new Xamarin account and VSTS account (you will skip this if you have already done Module 1 or Module 2)
+- An email address for creating a new VSTS account (you will skip this if you have already done Module 1 or Module 2)
 - An email address for creating a HockeyApp account (you can use the same email address for all 3 accounts if you want to)
 
 <a name="Setup" ></a>
