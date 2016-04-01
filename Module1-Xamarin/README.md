@@ -40,7 +40,7 @@ The following is required to complete this module:
 
 In order to run the exercises in this module, you will need to set up your environment first.
 
-1. Open Windows Explorer and browse to the module's **Source** folder.
+1. Open Windows Explorer and browse to the module's **Source** folder at **c:\Labs\CodeLabs-MobileDevOps\Module1-Xamarin\Source**.
 1. Right-click **Setup.ps1** and select **Run with PowerShell** to launch the setup process. This will configure your environment and copy the Source Code for this module to your working folder at **c:\buildworkshop\HealthClinic.biz**
 1. If the User Account Control dialog box is shown, confirm the action to proceed.
 
