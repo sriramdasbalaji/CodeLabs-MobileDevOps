@@ -374,7 +374,7 @@ In this task, you will add the **remote** - that is, a repo that other developer
 
     _Click Add Remote in the Repo Settings Pane_
 
-1. Enter **origin** as the name of the remote **MAKE SURE TO TYPE origin ALL LOWER CASE** and then paste the clone URL you copied from VSTS into the **Fetch** text box. Make sure that **Push matches fetch** is selected. Click **Save**.
+1. Enter **origin** as the name of the remote (**MAKE SURE TO TYPE origin ALL LOWER CASE**) and then paste the clone URL you copied from VSTS into the **Fetch** text box. Make sure that **Push matches fetch** is selected. Click **Save**.
 
     ![Configure the origin remote](Images/vs-te-add-origin.png "Configure the origin remote")
 
