@@ -38,7 +38,7 @@ The following is required to complete this module:
 ### Setup ###
 
 > **Note**: If you have completed Module 1, you can skip the set up and go straight to [Exercise 1](#Exercise1). However, if you logged off the machine you used for Module 1 (or are using a different machine), then your work will have been deleted and you will need to run go complete the following setup tasks:
->- [Run the setup script](SetupTask3)
+>- [Run the setup script](#SetupTask3)
 >
 > You will then be able to proceed to [Exercise 1](#Exercise1)
 
