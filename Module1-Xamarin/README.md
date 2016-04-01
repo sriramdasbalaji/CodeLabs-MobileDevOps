@@ -128,19 +128,8 @@ In this task you will open the Xamarin solution for cross-mobile apps for Health
 
     > **Note**: The original [HealthClinic.biz](https://github.com/microsoft/healthclinic.biz) sample includes other projects, like Apple Watch and WPF clients, and the service side code as well.
 
-1. Click **Build->Build Solution** to build the solution. (You can also use **Ctrl+Shift+B** or **F6** depending on your Visual Studio Settings). Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio. This may take a few moments, since Visual Studio will need to restore components and packages that the projects require. The build will fail. This is a current issue that is easily fixed by restarting Visual Studio.
-
-    ![Build failures](Images/vs-xamarin-build-errors.png "Build failures")
-
-    _Build failures_
-    
-1. Close Visual Studio and reopen it, then open **04_Demos_NativeXamarinApps.sln** again. Once it loads, right click the solution and select **Clean Solution**, then right click the solution and click **Rebuild Solution**. Ensure that the solution builds without errors. 
-
-    > **Note**: If you see the error `The name 'InitializeComponent' does not exist in the current context` you may safely ignore it.
-
-    ![Ignore the InitializeComponent error](Images/vs-ignore-error.png "Ignore the InitializeComponent error")
-
-    _Ignore the InitializeComponent error_
+**THIS STEP IS VERY IMPORTANT TO BUILD THE SOLUTION PROPERLY**
+1. Right click on the solution 04_Demos_NativeXamarinApps and select **Restore NuGet Packages**. Once all the nuget packages have been restored, right click the solution again and choose **Clean Solution**, and then right click the solution again and choose **Rebuild Solution**. Wait until it has finished building by looking at the progress bar at the bottom right of Visual Studio.
 
 1. Let's examine the Portable Class Library. The **MyHealth.Client.Core** project is a **Portable Class Library (PCL)**. It contains components that are shared by the Android and iOS applications in this solution as well as the Windows Presentation Foundation (WPF) desktop application and the Windows Universal Platform (UWP) app. This is the bulk of the code for the application. The other projects are more platform specific, and largely consist of wiring up the objects (like ViewModels) from the PCL to the native UI pages.
 
