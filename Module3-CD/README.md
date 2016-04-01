@@ -117,7 +117,7 @@ In this setup task, you will generate a Personal Access Token (PAT) which is req
 
 In order to run the exercises in this module, you will need to set up your environment first. **If you have completed Module 1 or 2, skip this task**.
 
-1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder.
+1. Open a **Windows PowerShell** command prompt and `cd` to the Modules **Source** folder at c:\Labs\CodeLabs-MobileDevOps\Module3-CD\Source.
 
 1. Enter the following command, pressing Y when prompted.
 
