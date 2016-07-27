@@ -80,6 +80,12 @@ get { return new MvxCommand(LaunchCrashApp); }
                 hockeyAppFeedbackService.LaunchHockeyAppFeedback();
             }
         }
+        void LaunchCrashApp()
+{
+int a = 0;
+int b = 0;
+int c = a / b;
+} 
 
 		bool CheckInvalidUrl(string url)
 		{
