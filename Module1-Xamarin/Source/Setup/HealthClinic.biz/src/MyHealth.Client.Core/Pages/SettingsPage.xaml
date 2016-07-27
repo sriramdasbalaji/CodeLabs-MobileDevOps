@@ -99,7 +99,7 @@
       <Button Text="Crash"
 Command="{Binding CrashApp}"
 AbsoluteLayout.LayoutFlags="PositionProportional"
-AbsoluteLayout.LayoutBounds="0.95, 0, AutoSize, AutoSize"
+AbsoluteLayout.LayoutBounds="0, 0, AutoSize, AutoSize"
 Style="{StaticResource ButtonStyle}"
 FontAttributes="None">
 <Button.IsVisible>
