@@ -96,6 +96,16 @@
           <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="true" />
         </Button.IsVisible>
       </Button>
+      <Button Text="Crash"
+Command="{Binding CrashApp}"
+AbsoluteLayout.LayoutFlags="PositionProportional"
+AbsoluteLayout.LayoutBounds="0.95, 0, AutoSize, AutoSize"
+Style="{StaticResource ButtonStyle}"
+FontAttributes="None">
+<Button.IsVisible>
+<OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="true" />
+</Button.IsVisible>
+</Button> 
     </AbsoluteLayout>
   </ContentPage.Content>
 </ContentPage>
