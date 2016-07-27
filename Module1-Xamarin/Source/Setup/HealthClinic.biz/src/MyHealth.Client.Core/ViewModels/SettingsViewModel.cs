@@ -68,7 +68,10 @@ namespace MyHealth.Client.Core.ViewModels
 			ServerAddress = AppSettings.ServerlUrl;
             AzureADAuthorizationEnabled = Settings.ADAuthenticationEnabled;
 		}
-
+public IMvxCommand CrashApp
+{
+get { return new MvxCommand(LaunchCrashApp); }
+} 
         void LaunchHockeyAppFeedback()
         {
             IHockeyAppFeedbackService hockeyAppFeedbackService;
