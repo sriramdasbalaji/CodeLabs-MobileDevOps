@@ -103,9 +103,9 @@ namespace MyHealth.Client.Droid.Views
         }
 
         private void RegisterHockeyApp()
-        {
-            //CrashManager.Register(this, AppSettings.HockeyAppID);
-            //UpdateManager.Register(this, AppSettings.HockeyAppID);
+        {//uncommented two lines for hockey app
+            CrashManager.Register(this, AppSettings.HockeyAppID);
+            UpdateManager.Register(this, AppSettings.HockeyAppID);
 
             // Initialize the HockeyApp TraceWriter
             TraceWriter.Initialize();
